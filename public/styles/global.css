@@ -1,0 +1,10 @@
+:root {
+    --primary-color: #00F500; 
+}
+* {
+    font-family: 'ABeeZee', sans-serif;
+}
+html, body, ul {
+    margin: 0;
+    padding: 0;
+}
