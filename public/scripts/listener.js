@@ -1,7 +1,4 @@
-window.addEventListener('load', toggle);
-window.addEventListener('resize', toggle);
-
-function toggle() {
+window.onload = window.onresize = function() {
     if (this.innerWidth <= 768) {
         navigation.classList.add('side');
         menuIcon.style.setProperty('display', 'inline-block');
