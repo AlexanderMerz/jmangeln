@@ -109,8 +109,9 @@
     .navbar__navigation ul {
         height: calc(100vh - 80px);
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        margin-top: 2.5rem;
     }
     .navbar__navigation ul li {
         font-size: 1.6rem;
