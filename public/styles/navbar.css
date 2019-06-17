@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    box-shadow: 0 0 6px;
+    box-shadow: 0 0 1.2rem;
 }
 .navbar__brand {
     height: calc(100% - 1.2rem);
@@ -23,6 +23,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    width: 100%;
 }
 .navbar__navigation ul li {
     font-size: 1.8rem;
@@ -39,7 +40,7 @@
     align-items: center;
 }
 .navbar__navigation ul li a:hover {
-    background-color: rgb(16, 16, 16);
+    background-color: rgb(12, 12, 12);
     color: var(--primary-color);
 }
 .sticky {
@@ -70,28 +71,7 @@
     -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
     transform: rotate(45deg) translate(-8px, -8px) ;
 }
-.side {
-    position: fixed;
-    height: 100%;
-    width: 0;
-    top: 0;
-    right: 0;
-    background-color: black;
-    overflow: hidden;
-    transition: width 0.4s;
-    -webkit-transition: width 0.4s;
-    margin: 80px 0 0 0;
-}
-.side ul {
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.side ul li {
-    height: calc((100vh - 80px)/5);
-    transition: opacity 0.2s;
-}
-@media(max-width: 1024px) {
+@media(max-width: 1200px) {
     .navbar__brand {
         height: calc(100% - 1.5rem);
         width: auto;
@@ -101,8 +81,35 @@
         font-size: 1.6rem;
     }
 }
-@media(max-width: 768px) {
+@media(max-width: 992px) {
     .navbar__navigation ul li {
-        font-size: 2rem;
+        font-size: 1.5rem;
+    }
+}
+@media(max-width: 768px) {
+    .menu-icon {
+        display: inline-block;
+    }
+    .navbar__navigation {
+        position: fixed;
+        height: 100%;
+        width: 0;
+        top: 0;
+        right: 0;
+        background-color: black;
+        overflow: hidden;
+        transition: width 0.4s;
+        -webkit-transition: width 0.4s;
+        margin: 80px 0 0 0;
+    }
+    .navbar__navigation ul {
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .navbar__navigation ul li {
+        font-size: 1.8rem;
+        height: calc((100vh - 80px)/5);
+        transition: opacity 0.125s;
     }
 }
