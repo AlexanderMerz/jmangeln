@@ -12,7 +12,11 @@
 <body>
     
     <header class="navbar">
-        <img class="navbar__brand" src="./images/brand.webp" alt="J&M Angeln Logo">
+        <picture class="navbar__brand">
+            <source  srcset="./images/brand.webp" type="image/webp">
+            <source srcset="./images/brand.jpg" type="image/jpeg"> 
+            <img src="./images/brand.jpg" alt="J&M Angeln Logo">
+        </picture>
         <nav class="navbar__navigation">
             <ul>
                 <li><a href="/">Team</a></li>
