@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="./styles/global.css">
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/banner.css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Syncopate:400,700&display=swap" rel="stylesheet"
-    >
 </head>
 <body>
     
@@ -42,10 +39,28 @@
                 width="100%"
                 height
                 type="image/webp"
-                srcset="./images/landing.webp"
+                srcset="./images/test_big.webp"
+                media="(min-width:1600px)"
+            >
+            <source
+                width="100%"
+                height
+                type="image/webp"
+                srcset="./images/test_medium.webp"
                 media="(min-width:1024px)"
             >
-            <img src="./images/landing.jpeg" alt="Two men fishing">
+            <source
+                width="100%"
+                height
+                type="image/webp"
+                srcset="./images/test_small.webp"
+                media="(min-width:768px)"
+            >
+            <img srcset="
+                ./images/test_big.jpg 1600w,
+                ./images/test_medium.jpg 1024w,
+                ./images/test_small.jpg 768w
+            " alt="Two men fishing">
         </picture>
     </section>
 
