@@ -2,7 +2,8 @@
     width: 100%;
     height: 100vh;
     object-fit: cover;
-    object-position: 10%;
+    object-position: center;
+    opacity: 0.775;
 }
 .label {
     position: absolute;
@@ -15,51 +16,51 @@
     text-align: center;
     background-image: linear-gradient(
         transparent, 
-        rgba(0,0,0,0.675),
-        rgba(0,0,0,0.75),
-        rgba(0,0,0,0.675),
+        rgba(0,0,0,0.525),
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.525),
         transparent
     );
-    background: rgba(0,0,0,0.675);
+    background: rgba(0,0,0,0.525);
     background: -moz-linear-gradient(
         transparent, 
-        rgba(0,0,0.675),
-        rgba(0,0,0,0.75),
-        rgba(0,0,0.675),
+        rgba(0,0,0.525),
+        rgba(0,0,0,0.65),
+        rgba(0,0,0.525),
         transparent
     );
     background: -webkit-gradient(linear,
         color-stop(0%,transparent),
-        color-stop(25%,rgba(0,0,0,0.675)),
-        color-stop(50%,rgba(0,0,0,0.75)),
-        color-stop(75%,rgba(0,0,0,0.675)),
+        color-stop(5%,rgba(0,0,0,0.525)),
+        color-stop(50%,rgba(0,0,0,0.65)),
+        color-stop(5%,rgba(0,0,0,0.525)),
         color-stop(100%, transparent));
     background: -webkit-linear-gradient(
         transparent, 
-        rgba(0,0,0,0.675),
-        rgba(0,0,0,0.75),
-        rgba(0,0,0,0.675),
+        rgba(0,0,0,0.525),
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.525),
         transparent
     );
     background: -o-linear-gradient(
         transparent, 
-        rgba(0,0,0,0.675),
-        rgba(0,0,0,0.75),
-        rgba(0,0,0,0.675),
+        rgba(0,0,0,0.525),
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.525),
         transparent
     );
     background: -ms-linear-gradient(
         transparent, 
-        rgba(0,0,0,0.675),
-        rgba(0,0,0,0.75),
-        rgba(0,0,0,0.675),
+        rgba(0,0,0,0.525),
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.525),
         transparent
     );
     background: linear-gradient(
         transparent, 
-        rgba(0,0,0,0.675),
-        rgba(0,0,0,0.75),
-        rgba(0,0,0,0.675),
+        rgba(0,0,0,0.525),
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.525),
         transparent
     );
     filter: progid:DXImageTransform.Microsoft.gradient(
@@ -71,8 +72,8 @@
     font-weight: bold;
     color: white;
     font-size: 7.5rem;
-    text-shadow: 4px 4px 0 black;
-    opacity: 0.9;
+    text-shadow: 1px 1px 0 black;
+    opacity: 0.8;
 }
 .label h1 span {
     color: var(--primary-color);

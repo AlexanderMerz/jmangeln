@@ -2,8 +2,12 @@
     --primary-color: #00F500; 
 }
 @font-face {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans';
     src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Syncopate';
+    src: url('../fonts/Syncopate-Bold.ttf') format('truetype');
 }
 *, *:before, *:after {
     -moz-box-sizing: border-box;
