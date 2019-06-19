@@ -11,9 +11,9 @@
     width: 100%;
     height: 65vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
     background-image: linear-gradient(
         transparent, 
         rgba(0,0,0,0.425),
@@ -67,51 +67,100 @@
         startColorstr='#ffad26',endColorstr='#ff7701',GradientType=0
     );
 }
-.label h1 {
+.label__text, .label__highlight {
     font-family: 'Syncopate', cursive;
     font-weight: bold;
     color: white;
-    font-size: 7.5rem;
     text-shadow: 1px 1px 10px black;
     opacity: 1;
+    margin: 0;
 }
-.label h1 span {
+.label__text {
+    font-size: 7.5rem;
+}
+.label__highlight {
+    color: var(--primary-color);
+    margin-top: -22.5px;
+    font-size: 5.5rem;
+}
+.social {
+    padding: 0 2rem;
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.social i {
+    color: white;
+    text-shadow: 0 0 20px black;
+    font-size: 125px;
+    opacity: 0.9;
+    margin: 0 1.5vw;
+    cursor: pointer;
+}
+.social i:hover {
     color: var(--primary-color);
 }
 
 @media (max-width: 1400px) {
-    .label h1 {
+    .label__text {
         font-size: 5.5rem;
     }
-}
-@media (max-width: 1024px) {
-    .label h1 {
-        font-size: 4.5rem;
+    .label__highlight {
+        font-size: 4rem;
+    }
+    .social i {
+        font-size: 120px;
     }
 }
 @media (max-width: 768px) {
-    .label h1 {
-        font-size: 3.75rem;
+    .label__text {
+        font-size: 4.5rem;
+    }
+    .label__highlight {
+        font-size: 3.3rem;
+    }
+    .social i {
+        font-size: 100px;
     }
 }
 @media (max-width: 575px) {
-    .label h1 span {
-        font-size: 2.8rem;
+    .label__text {
+        font-size: 4.25rem;
+    }
+    .label__highlight {
+        font-size: 3.1rem;
+    }
+    .social i {
+        font-size: 80px;
     }
 }
 @media (max-width: 425px) {
-    .label h1 {
+    .label__text {
         font-size: 3.5rem;
     }
-    .label h1 span {
+    .label__highlight {
         font-size: 2.6rem;
+    }
+    .social i {
+        font-size: 70px;
+    }
+    .social {
+        bottom: 1.5rem;
     }
 }
 @media (max-width: 375px) {
-    .label h1 {
+    .label__text {
         font-size: 3rem;
     }
-    .label h1 span {
+    .label__highlight {
         font-size: 2.2rem;
+    }
+    .social i {
+        font-size: 60px;
     }
 }
