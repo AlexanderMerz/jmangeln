@@ -6,7 +6,7 @@ class InfoCard extends HTMLElement {
             <style>
                 .card {
                     background-color: white;
-                    box-shadow: 0 0 7px black;
+                    box-shadow: 0 0 6px black;
                     width: fit-content;
                     min-width: 320px;
                     max-width: 500px;
@@ -21,10 +21,11 @@ class InfoCard extends HTMLElement {
                     margin: 0;
                 }
                 .content p {
-                    font-size: 14px;
-                    padding: 1rem 2rem 2rem;
-                    margin: 0;
+                    padding: 0.5rem 2rem 2rem 2rem;
                     text-align: justify;
+                    line-height: 1.6;
+                    font-size: 14px;
+                    margin: 0;
                 }
                 img {
                     width: 100%;
@@ -36,7 +37,16 @@ class InfoCard extends HTMLElement {
                 }
                 @media (max-width: 525px) {
                     .content p {
-                        font-size: 12px;
+                        font-size: 14px;
+                    }
+                }
+                @media (max-width: 400px) {
+                    .card {
+                        border-radius: 0;
+                        box-shadow: none;
+                    }
+                    img {
+                        border-radius: 0;
                     }
                 }
             </style>
@@ -48,8 +58,8 @@ class InfoCard extends HTMLElement {
                 </div>
             </div>
         `;
-        this.attachShadow({ mode: 'open' })
-            .appendChild(template.content.cloneNode(true));
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
     connectedCallback() {
