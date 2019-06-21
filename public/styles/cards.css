@@ -1,0 +1,41 @@
+.cards {
+    width: 100%;
+    height: fit-content;
+}
+
+.card-wrapper {
+    width: 90%;
+    margin: 0 auto;
+    padding: 2.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    max-width: 1200px;   
+    grid-gap: 2rem;
+}
+
+.card-wrapper info-card {
+    margin: 0 auto;
+    transition: 0.2s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.card-wrapper info-card:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 400px) {
+    .card-wrapper {
+        margin: 0;
+        padding: 8px;
+        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 8px;
+    }
+}
+
+@media (max-width: 320px) {
+    .card-wrapper {
+        padding: 0;
+    }
+}
