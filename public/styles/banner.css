@@ -81,13 +81,13 @@
 }
 .label__highlight {
     color: var(--primary-color);
-    margin-top: -29px;
+    margin-top: -20px;
     font-size: 5.65rem;
 }
 .social {
     padding: 0 2rem;
     position: absolute;
-    bottom: 100px;
+    bottom: 50px;
     left: 0;
     width: 100%;
     height: fit-content;
@@ -100,7 +100,7 @@
     text-shadow: 0 0 20px black;
     font-size: 125px;
     opacity: 0.9;
-    margin: 0 1.5vw;
+    margin: 0 1vw;
     cursor: pointer;
 }
 .social i:hover {
