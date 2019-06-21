@@ -1,3 +1,8 @@
+.content {
+    width: 80%;
+    margin: 0 auto;
+}
+
 .content h1 {
     text-align: center;
     font-size: 4vw;
@@ -6,18 +11,17 @@
 }
 
 .content__head {
-    padding: 1rem 6rem;
     font-size: 2.75rem;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 .content__text {
-    margin: 0;
-    padding: 2rem 6rem;
     text-align: justify;
     line-height: 1.75;
     text-justify: inter-word;
     font-size: 20px;
+    margin-bottom: 2rem;
 }
 
 .content q::before,
@@ -40,10 +44,6 @@
 @media (max-width: 768px) {
     .content__head {
         font-size: 1.5rem;
-        padding: 1rem 3rem;
-    }
-    .content__text {
-        padding: 1.5rem 3rem 3rem;
     }
 }
 
@@ -56,15 +56,6 @@
     }
     .content__text {
         font-size: 15px;
-    }
-}
-
-@media (max-width: 426px) {
-    .content__head {
-        padding: 0.5rem 1.8rem 0.5rem 1.8rem;
-    }
-    .content__text {
-        padding: 1rem 1.8rem 1.8rem;
     }
 }
 

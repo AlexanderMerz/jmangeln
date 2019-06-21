@@ -27,15 +27,12 @@
 @media (max-width: 400px) {
     .card-wrapper {
         margin: 0;
-        padding: 8px;
+        padding: 0;
         width: 100%;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 8px;
+        grid-gap: 0;
     }
-}
-
-@media (max-width: 320px) {
-    .card-wrapper {
-        padding: 0;
+    .card-wrapper info-card:hover {
+        transform: unset;
     }
 }

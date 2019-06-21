@@ -7,13 +7,13 @@
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    box-shadow: 0 0 10px black;
 }
 .navbar__brand {
     height: calc(100% - 1.5rem);
     width: auto;
     margin-left: 0.75rem;
     position: relative;
+    cursor: pointer;
 }
 .navbar__brand source, .navbar__brand img {
     height: 100%;
