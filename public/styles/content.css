@@ -6,27 +6,30 @@
 .content h1 {
     text-align: center;
     font-size: 4vw;
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 1rem;
+    font-weight: 100;
 }
 
 .content__head {
     font-size: 2.75rem;
     text-align: center;
-    margin-bottom: 1rem;
+    margin: 2rem 0.5rem;
+    padding: 1rem 0;
+    background: linear-gradient(to right, white, rgb(248, 248, 248), white);
 }
 
 .content__text {
     text-align: justify;
-    line-height: 1.75;
+    line-height: 1.5;
     text-justify: inter-word;
     font-size: 20px;
-    margin-bottom: 2rem;
 }
 
-.content q::before,
-.content q::after {
-    font-weight: bold;
+.content__head p {
+    font-family: 'Source Serif Pro', serif;;
+    letter-spacing: 4px;
+    word-break: keep-all;
 }
 
 @media (max-width: 1024px) {
@@ -52,15 +55,21 @@
         font-size: 1.8rem;
     }
     .content__head {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
     }
     .content__text {
         font-size: 15px;
     }
 }
 
+@media (max-width: 400px) {
+    .content__text {
+        margin-bottom: 2.5rem;
+    }
+}
+
 @media (max-width: 350px) {
     .content__text {
-        font-size: 14px;
+        font-size: 13px;
     }
 }
