@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>J&M Angeln</title>
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="./styles/global.css">
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/banner.css">
     <link rel="stylesheet" href="./styles/content.css">
     <link rel="stylesheet" href="./styles/cards.css">
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      crossorigin="anonymous"
-    />
-    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap" rel="stylesheet">
+    <!-- Scripts -->
+    <script defer src="./scripts/ui.js"></script>
+    <script defer src="./components/info-card.js"></script>
 </head>
 <body>
     
@@ -41,113 +39,146 @@
         </div>
     </header>
 
-    <section class="banner">
-        <picture>
-            <source
-                width="100%"
-                height
-                type="image/webp"
-                srcset="./images/test_big.webp"
-                media="(min-width:1600px)"
-            >
-            <source
-                width="100%"
-                height
-                type="image/webp"
-                srcset="./images/test_medium.webp"
-                media="(min-width:1024px)"
-            >
-            <source
-                width="100%"
-                height
-                type="image/webp"
-                srcset="./images/test_small.webp"
-                media="(min-width:768px)"
-            >
-            <img srcset="
-                ./images/test_big.jpg 1600w,
-                ./images/test_medium.jpg 1024w,
-                ./images/test_small.jpg 768w
-            " alt="Two men fishing">
-        </picture>
-    </section>
+    <main>
 
-    <section class="label">
-        <h1 class="label__text">Angeln</h1><br/>
-        <h1 class="label__highlight">verbindet</h1>
-    </section>
+        <section class="banner">
+            <picture>
+                <source
+                    width="100%"
+                    height
+                    type="image/webp"
+                    srcset="./images/test_big.webp"
+                    media="(min-width:1600px)"
+                >
+                <source
+                    width="100%"
+                    height
+                    type="image/webp"
+                    srcset="./images/test_medium.webp"
+                    media="(min-width:1024px)"
+                >
+                <source
+                    width="100%"
+                    height
+                    type="image/webp"
+                    srcset="./images/test_small.webp"
+                    media="(min-width:768px)"
+                >
+                <img srcset="
+                    ./images/test_big.jpg 1600w,
+                    ./images/test_medium.jpg 1024w,
+                    ./images/test_small.jpg 768w
+                " alt="Two men fishing">
+            </picture>
+        </section>
 
-    <section class="social">
-        <i class="fab fa-facebook-square"></i>
-        <i class="fab fa-youtube"></i>
-        <i class="fab fa-instagram"></i>
-    </section>
+        <section class="label">
+            <h1 class="label__text">Angeln</h1><br/>
+            <h1 class="label__highlight">verbindet</h1>
+        </section>
 
-    <section class="content">
-        <h1>Hintergrund</h1>
-        <div class="content__head">
-            <p>
-                "Angeln ist mehr als nur Fische fangen und jeder von uns verbindet es
-                mit etwas anderem."
+        <section class="social">
+            <i class="fab fa-facebook-square"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-instagram"></i>
+        </section>
+
+        <section class="content">
+            <h1>Hintergrund</h1>
+            <div class="content__head">
+                <hr>
+                <p>
+                    Angeln ist mehr als nur Fische fangen und jeder 
+                    von uns verbindet es mit etwas anderem.
+                </p>
+                <hr>
+            </div>
+            <p class="content__text">
+                Für uns bedeutet Angeln Zeit mit guten Freunden in der Natur zu 
+                verbringen, die Wildnis zu erleben und einem Biss entgegen zu 
+                fiebern. Kein Angelausflug gleicht dem anderen und jede Session 
+                ist auf ihre eigene Weise etwas Besonderes. Umso wichtiger ist 
+                es sich durch Fotos bzw. Videos bleibende Erinnerungen an eine 
+                sorgenfreie Zeit zu schaffen. Mit genau diesem Gedanken begannen 
+                wir vor etwas mehr als sechs Jahren damit unsere kleineren 
+                Angelausflüge und unsere Fänge zu fotografieren. Um unsere 
+                vergangenen Abenteuer noch einmal erleben zu können und Erfahrungen 
+                festzuhalten, begannen wir erste Filaufnahmen unserer Sessions zu 
+                erstellen. Da wir selbst mit Begeisterung die Abenteuer und Tricks 
+                anderer Angler auf Youtube verfolgten und dabei viel lernten, kam 
+                uns der Gedanke das weitere Angelanfänger von unseren gesammelten 
+                Erfahrungen profitieren könnten.
             </p>
-        </div>
-        <p class="content__text">
-            Für uns bedeutet Angeln Zeit mit guten Freunden in der Natur zu verbringen,
-            die Wildnis zu erleben und einem Biss entgegen zu fiebern. Kein Angelausflug
-            gleicht dem anderen und jede Session ist auf ihre eigene Weise etwas
-            besonderes. Umso wichtiger ist es sich durch Fotos bzw. Videos bleibende
-            Erinnerungen an eine sorgenfreie Zeit zu schaffen. Mit genau diesem Gedanken
-            begannen wir vor etwas mehr als sechs Jahren damit unsere kleineren
-            Angelausflüge und unsere Fänge zu fotografieren. Um unsere vergangenen
-            Abenteuer noch einmal erleben zu können und Erfahrungen festzuhalten,
-            begannen wir erste Filaufnahmen unserer Sessions zu erstellen. Da wir selbst
-            mit Begeisterung die Abenteuer und Tricks anderer Angler auf Youtube
-            verfolgten und dabei viel lernten, kam uns der Gedanke das weitere
-            Angelanfänger von unseren gesammelten Erfahrungen profitieren könnten.
-        </p>
-    </section>
+        </section>
 
-    <section class="cards">
-        <div class="card-wrapper">
-            <info-card title="Merch" image="./images/merch.jpg" href="/merch">
-                Egal ob am Wasser mit Freunden oder in der Schule durch die neongrünen
-                Schrift stichst du auf jeden Fall heraus, so ein cooles Design fällt auf
-                und passt überall hin. Von T-Shirts über Hoodies bis hin zur Snapback
-                haben wir für jeden was am Start.
-            </info-card>
-            <info-card title="Team" image="./images/team.jpg" href="/team">
-                J&M Angeln besteht im Grunde aus Jonas und Nico die du als Gesichter 
-                des Kanals kennst. Im Hintergrund stehen noch einige weitere Personen 
-                ohne deren Hilfe wir nicht dort wären wo wir heute sind.
-            </info-card>
-            <info-card title="Social Media" image="./images/social.jpg" href="/social">
-                Erlebnisse,  Erfahrungen und Eindrücke unserer Abenteuer am Wasser teilen 
-                wir mit euch auf verschiedenen Social Media Plattformen. Auf unserem YouTube
-                Kanal veröffentlichen wir regelmäßig neue Angelvideos mit Tipps, 
-                Tricks und tollen Naturaufnahmen. 
-            </info-card>
-            <info-card title="Unser Tackle" image="./images/tackle.jpg" href="/blog">
-                Jeder von uns hat im Laufe seiner Anglerlaufbahn diverses Tackle getestet.
-                Finde heraus, welches Material uns überzeugen konnte und auf welches
-                Equipment wir bei unseren Karpfen-, Spinnfisch- oder Ansitz-Sessions zurückgreifen.
-            </info-card>
-            <info-card title="Testberichte" image="./images/testberichte.jpg" href="/blog">
-                Gerade bei jungen Anglern ist oftmals der Preis kaufentscheidend für ein Produkt. 
-                Um dich vor dem bekannten „Billig kauft doppelt“ zu schützen möchten wir 
-                dir über unsere Testberichte einen Eindruck vermitteln welche Produkte uns 
-                überzeugen konnten und warum.
-            </info-card>
-            <info-card title="Sessionberichte" image="./images/sessionberichte.jpg" href="/blog">
-                Um die Ruhe der Natur und die Zeit mit seinen Freunden am Wasser noch intensiver 
-                genießen zu können verzichten wir manchmal auf die aufwendige Produktion eines Videos. 
-                Damit du unsere Abenteuer miterleben kannst schreiben wir zu einigen unserer Sessions Berichte.
-            </info-card>
-        </div>
-    </section>
-    
-    <!-- Scripts -->
-    <script src="./scripts/menu-icon.js"></script>
-    <script src="./components/info-card.js"></script>
-    
+        <section class="cards">
+            <div class="card-wrapper">
+                <info-card
+                    title="Merch" 
+                    image="./images/merch.jpg"
+                    href="/merch"
+                >
+                    Egal ob am Wasser mit Freunden oder in der Schule durch die 
+                    neongrünen Schrift stichst du auf jeden Fall heraus, so ein 
+                    cooles Design fällt auf und passt überall hin. Von T-Shirts 
+                    über Hoodies bis hin zur Snapback haben wir für jeden was am 
+                    Start.
+                </info-card>
+                <info-card
+                    title="Team"
+                    image="./images/team.jpg"
+                    href="/team"
+                >
+                    J&M Angeln besteht im Grunde aus Jonas und Nico die du als 
+                    Gesichter des Kanals kennst. Im Hintergrund stehen noch einige 
+                    weitere Personen ohne deren Hilfe wir nicht dort wären wo wir 
+                    heute sind.
+                </info-card>
+                <info-card
+                    title="Social Media"
+                    image="./images/social.jpg"
+                    href="/social"
+                >
+                    Erlebnisse,  Erfahrungen und Eindrücke unserer Abenteuer am 
+                    Wasser teilen wir mit euch auf verschiedenen Social Media 
+                    Plattformen. Auf unserem YouTube-Kanal veröffentlichen wir 
+                    regelmäßig neue Angelvideos mit Tipps, Tricks und tollen 
+                    Naturaufnahmen. 
+                </info-card>
+                <info-card
+                    title="Unser Tackle"
+                    image="./images/tackle.jpg"
+                    href="/blog"
+                >
+                    Jeder von uns hat im Laufe seiner Anglerlaufbahn diverses 
+                    Tackle getestet. Finde heraus, welches Material uns überzeugen 
+                    konnte und auf welches Equipment wir bei unseren Karpfen-, 
+                    Spinnfisch- oder Ansitz-Sessions zurückgreifen.
+                </info-card>
+                <info-card
+                    title="Testberichte"
+                    image="./images/testberichte.jpg"
+                    href="/blog"
+                >
+                    Gerade bei jungen Anglern ist oftmals der Preis kaufentscheidend 
+                    für ein Produkt. Um dich vor dem bekannten „Billig kauft doppelt“ 
+                    zu schützen möchten wir dir über unsere Testberichte einen Eindruck 
+                    vermitteln welche Produkte uns überzeugen konnten und warum.
+                </info-card>
+                <info-card
+                    title="Sessionberichte"
+                    image="./images/sessionberichte.jpg"
+                    href="/blog"
+                >
+                    Um die Ruhe der Natur und die Zeit mit seinen Freunden am Wasser 
+                    noch intensiver genießen zu können verzichten wir manchmal auf 
+                    die aufwendige Produktion eines Videos. Damit du unsere Abenteuer 
+                    miterleben kannst schreiben wir zu einigen unserer Sessions Berichte.
+                </info-card>
+            </div>
+        </section>
+
+    </main>
+
 </body>
 </html>
