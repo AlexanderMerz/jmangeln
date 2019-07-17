@@ -1,4 +1,4 @@
-class PlayerItem extends HTMLElement {
+class PlaylistItem extends HTMLElement {
     constructor() {
         super();
         this.root = this.attachShadow({ mode: 'open' });
@@ -21,4 +21,4 @@ class PlayerItem extends HTMLElement {
         `;
     }
 }
-customElements.define('player-item', PlayerItem);
+customElements.define('player-item', PlaylistItem);
