@@ -1,12 +1,7 @@
 window.addEventListener('load', async () => {
     if (!sessionStorage.getItem('youtube')) {
-        try {
-            const response = await fetch('/api/youtube')
-            const json = await response.json();
-        } catch(error) {
-            console.log(error);
-            return;
-        }
+        const response = await fetch('/api/youtube')
+        const json = await response.json();
         sessionStorage.setItem('youtube', JSON.stringify(json));
         alert('Fetch hat funktioniert');
     }
