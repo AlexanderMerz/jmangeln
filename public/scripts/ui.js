@@ -1,6 +1,9 @@
+const logo = document.querySelector('.navbar__brand img');
 const navigation = document.querySelector('.navbar__navigation');
-const menuIcon = document.querySelector('.menu-icon');
 const ul = document.querySelector('.navbar__navigation ul');
+const menuIcon = document.querySelector('.menu-icon');
+
+logo.addEventListener('click', () => window.location = '/');
 
 menuIcon.addEventListener('click', function() {
     this.classList.toggle('change');
