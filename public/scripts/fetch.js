@@ -1,9 +1,22 @@
-if (!sessionStorage.getItem('youtube')) {
-    fetch('/api/youtube')
-    .then(response => response.json())
-    .then(data => {
-        sessionStorage.setItem('youtube', JSON.stringify(data));
+window.addEventListener('load', async () => {
+    if (!sessionStorage.getItem('youtube')) {
+        try {
+            const response = await fetch('/api/youtube')
+            const json = await response.json();
+        } catch(error) {
+            console.log(error);
+            return;
+        }
+        sessionStorage.setItem('youtube', JSON.stringify(json));
         alert('Fetch hat funktioniert');
-    })
-    .catch(error => console.error(error));
-}
+    }
+    const { items } = JSON.parse(sessionStorage.getItem('youtube'));
+    const playlist = document.querySelector('.playlist');
+    const player = document.querySelector('.video-player iframe');
+    player.src += items[0].id.videoId;
+    for (let item of items) {
+        const playerItem = document.createElement('player-item');
+        playerItem.data = item;
+        playlist.appendChild(playerItem);
+    }
+});
