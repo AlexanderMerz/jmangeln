@@ -6,14 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>J&M Angeln</title>
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="./styles/global.css">
-    <link rel="stylesheet" href="./styles/navbar.css">
-    <link rel="stylesheet" href="./styles/banner.css">
-    <link rel="stylesheet" href="./styles/content.css">
-    <link rel="stylesheet" href="./styles/cards.css">
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/banner.css">
+    <link rel="stylesheet" href="../styles/content.css">
+    <link rel="stylesheet" href="../styles/cards.css">
+    <link rel="stylesheet" href="../styles/videos.css">
     <!-- Scripts -->
     <script defer src="./scripts/ui.js"></script>
     <script async src="./scripts/fetch.js"></script>
+    <script defer src="../components/player-item.js"></script>
 </head>
 <body>
     
@@ -38,6 +40,18 @@
             <div class="bar bar3"></div>
         </div>
     </header>
+
+    <div class="space"></div>
+
+    <main class="video-player">
+        <iframe
+            src="https://www.youtube.com/embed/"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+        ></iframe>
+        <ul class="playlist"></ul>
+    </main>
     
 </body>
 </html>
