@@ -46,4 +46,7 @@ img {
     img {
         border-radius: 0;
     }
+    .content p {
+        font-size: 13px;
+    }
 }
