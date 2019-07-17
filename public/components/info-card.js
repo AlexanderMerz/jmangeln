@@ -24,7 +24,8 @@ class InfoCard extends HTMLElement {
         this.shadowRoot.querySelector('h1').innerText = this.getAttribute('title');
         this.shadowRoot.querySelector('img').src = this.getAttribute('image');
         this.shadowRoot.addEventListener('click', () => {
-            window.location = this.getAttribute('href')
+            const href = this.getAttribute('href');
+            if (href) window.location = href;
         });
     }
 }
