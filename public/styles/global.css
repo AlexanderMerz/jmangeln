@@ -22,11 +22,11 @@ body {
     font-family: 'Open Sans', sans-serif;
     overflow-x: hidden;
 }
-.path {
-    padding-top: 90px;
-    padding-bottom: 10px;
-    font-size: 1.5rem;
-    width: 100%;
-    text-align: center;
-    background-color: white;
+.space {
+    height: 80px;
+}
+hr {
+    border: none;
+    height: 1px;
+    background-color: gray;
 }
