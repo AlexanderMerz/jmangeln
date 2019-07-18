@@ -10,7 +10,7 @@ class PlaylistItem extends HTMLElement {
         const imageHref = data.snippet.thumbnails.medium.url;
 
         this.root.innerHTML = `
-            <style>@import "../styles/player-item.css"</style>
+            <style>@import "../styles/playlist-item.css"</style>
             <div class="video" data-video-id="${videoId}">
                 <div class="info">
                     <h3 class="info__title">${title}</h3>
@@ -21,4 +21,4 @@ class PlaylistItem extends HTMLElement {
         `;
     }
 }
-customElements.define('player-item', PlaylistItem);
+customElements.define('playlist-item', PlaylistItem);
