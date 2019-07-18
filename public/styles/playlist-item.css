@@ -9,14 +9,13 @@ div, p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 0 4px;
+    border: 1px solid black;
     border-radius: 8px;
     transition: 0.2s;
     cursor: pointer;
 }
 .video:hover {
     background-color: rgb(240, 240, 240);
-    box-shadow: 0 0 8px;
 }
 .info {
     text-align: center;
