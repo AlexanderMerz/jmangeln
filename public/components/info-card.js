@@ -1,3 +1,5 @@
+import { loadLazy } from '../scripts/lazy-load.mjs';
+
 class InfoCard extends HTMLElement {
     constructor() {
         super();
@@ -16,13 +18,16 @@ class InfoCard extends HTMLElement {
         const style = document.createElement('style');
         style.textContent = '@import "../styles/info-card.css"';
 
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.append(template.content.cloneNode(true), style);
+        this.attachShadow({ mode: 'open' })
+            .append(template.content.cloneNode(true), style);
     }
 
     connectedCallback() {
-        this.shadowRoot.querySelector('h1').innerText = this.getAttribute('title');
-        this.shadowRoot.querySelector('img').src = this.getAttribute('image');
+        const title = this.shadowRoot.querySelector('h1');
+        const image = this.shadowRoot.querySelector('img');
+        title.innerText = this.getAttribute('title');
+        image.dataset.src = this.getAttribute('image');
+        loadLazy(image);
         this.shadowRoot.addEventListener('click', () => {
             const href = this.getAttribute('href');
             if (href) window.location = href;
