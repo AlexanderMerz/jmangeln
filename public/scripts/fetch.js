@@ -1,17 +1,47 @@
 window.addEventListener('load', async () => {
-    const playlist = document.querySelector('.playlist');
-    const player = document.querySelector('.video-player iframe');
 
-    if (!sessionStorage.getItem('youtube')) {
-        const response = await fetch('/api/youtube')
-        const json = await response.json();
-        sessionStorage.setItem('youtube', JSON.stringify(json));
+    switch(this.location.pathname) {
+
+        case '/videos': {
+            const playlist = document.querySelector('.playlist');
+            const player = document.querySelector('.video-player iframe');
+            if (!sessionStorage.getItem('youtube')) {
+                try {
+                    const response = await fetch('/api/youtube');
+                    const json = await response.json();
+                    if (json.status === 423) {
+                        player.src += 'YnjdFKQAZhw';
+                        return;
+                    }
+                    sessionStorage.setItem('youtube', JSON.stringify(json));
+                } catch(error) {
+                    console.error(error);
+                }
+            }
+            const { items } = JSON.parse(sessionStorage.getItem('youtube'));
+            player.src += items[0].id.videoId;
+            for (let item of items) {
+                const playlistItem = document.createElement('playlist-item');
+                playlistItem.data = item;
+                playlist.appendChild(playlistItem);
+            }
+        }
+
+        case '/blog': {
+            const blogSection = document.querySelector('.blog');
+            if (!sessionStorage.getItem('posts')) {
+                const response = await fetch('/api/blogs');
+                const json = await response.json();
+                sessionStorage.setItem('posts', JSON.stringify(json));
+            }
+            const posts = JSON.parse(sessionStorage.getItem('posts'));
+            for (let post of posts) {
+                const blogPost = document.createElement('blog-post');
+                blogPost.content = post;
+                blogSection.appendChild(blogPost);
+            }
+        }
+        
     }
-    const { items } = JSON.parse(sessionStorage.getItem('youtube'));
-    player.src += items[0].id.videoId;
-    for (let item of items) {
-        const video = document.createElement('player-item');
-        video.data = item;
-        playlist.appendChild(video);
-    }
+
 });
