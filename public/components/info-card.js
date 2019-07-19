@@ -7,7 +7,7 @@ class InfoCard extends HTMLElement {
         const template = document.createElement('template');
         template.innerHTML = `
             <div class="card">
-                <img>
+                <img alt="info-card image">
                 <div class="content">
                     <h1></h1>
                     <p><slot></slot></p>
