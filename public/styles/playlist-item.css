@@ -9,13 +9,14 @@ div, p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
+    border: 4px solid white;
+    box-shadow: 0 0 4px;
     border-radius: 8px;
-    transition: 0.2s;
+    transition: 0.25s;
     cursor: pointer;
 }
 .video:hover {
-    background-color: rgb(240, 240, 240);
+    border: 4px solid var(--primary-color);
 }
 .info {
     text-align: center;
@@ -30,10 +31,10 @@ div, p {
     margin-top: 0;
 }
 .video__image {
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 4px 4px 0;
     opacity: 0.9;
-    height: 180px;
-    width: 320px;
+    height: 100%;
+    width: auto;
 }
 @media screen and (max-width: 768px) {
     .video {
@@ -69,6 +70,6 @@ div, p {
         width: 300px;
     }
     .video {
-        margin: 0.5rem auto;
+        margin: 0.8rem auto;
     }
 }
