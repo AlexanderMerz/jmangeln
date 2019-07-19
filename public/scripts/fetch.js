@@ -18,13 +18,14 @@ window.addEventListener('load', async () => {
                     console.error(error);
                 }
             }
-            const { items } = JSON.parse(sessionStorage.getItem('youtube'));
-            player.src += items[0].id.videoId;
-            for (let item of items) {
+            const { data } = JSON.parse(sessionStorage.getItem('youtube'));
+            player.src += data.items[0].id.videoId;
+            for (let item of data.items) {
                 const playlistItem = document.createElement('playlist-item');
                 playlistItem.data = item;
                 playlist.appendChild(playlistItem);
             }
+            break;
         }
 
         case '/blog': {
@@ -40,7 +41,10 @@ window.addEventListener('load', async () => {
                 blogPost.content = post;
                 blogSection.appendChild(blogPost);
             }
+            break;
         }
+
+        default: return;
         
     }
 
