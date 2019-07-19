@@ -3,7 +3,7 @@
     height: calc(100vh - 80px);
 }
 .video-player__footer {
-    margin: 2rem auto;
+    margin: 3rem auto;
     text-align: center;
 }
 .video-player__footer a {
