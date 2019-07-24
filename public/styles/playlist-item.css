@@ -67,9 +67,9 @@ div, p {
 
 @media screen and (max-width: 340px) {
     .video, .video__image {
-        width: 300px;
+        width: 304px;
     }
     .video {
-        margin: 0.8rem auto;
+        margin: 0.5rem auto;
     }
 }
