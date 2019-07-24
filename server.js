@@ -29,11 +29,11 @@ app.use(multer({
 
 const pages = path.join(__dirname, 'public', 'pages');
 
-app.get('*', (req, res) => {
-    if (req.httpVersion == 1.1) {
-        res.redirect('https://' + req.headers.host + req.url);
-    }
-});
+// app.get('*', (req, res) => {
+//     if (req.httpVersion == 1.1) {
+//         res.redirect('https://' + req.headers.host + req.url);
+//     }
+// });
 app.get('/team', (req, res) => res.sendFile(pages + path.sep + 'team.html'));
 app.get('/social', (req, res) => res.sendFile(pages + path.sep + 'social.html'));
 app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'));
