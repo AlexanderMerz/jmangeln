@@ -1,4 +1,4 @@
-import { loadLazy } from '../scripts/lazy-load.mjs';
+import { lazyLoad } from '../scripts/lazy-load.mjs';
 
 class InfoCard extends HTMLElement {
     constructor() {
@@ -27,11 +27,11 @@ class InfoCard extends HTMLElement {
         const image = this.shadowRoot.querySelector('img');
         title.innerText = this.getAttribute('title');
         image.dataset.src = this.getAttribute('image');
-        loadLazy(image);
         this.shadowRoot.addEventListener('click', () => {
             const href = this.getAttribute('href');
             if (href) window.location = href;
         });
+        lazyLoad(image);
     }
 }
 customElements.define('info-card', InfoCard);

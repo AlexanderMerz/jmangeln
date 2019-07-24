@@ -1,20 +1,20 @@
 /**
- * Instantiates an IntersectionObserver if available to detect the
- * *imageElement* entering the viewport to eventually load it.
+ * Instantiates an **IntersectionObserver** if available to detect the
+ * **imageElement** entering the viewport to eventually lazy load it.
+ * The element therefore needs to reference the source via the **data-src** attribute.
  * @param {HTMLImageElement} imageElement node object of <img>
  */
-export function loadLazy(imageElement) {
+export function lazyLoad(imageElement) {
 
     if ('IntersectionObserver' in window) {
 
-        const imageObserver = new IntersectionObserver(([element]) => {
+        new IntersectionObserver(function ([element]) {
             const { target: image } = element;
             if (element.isIntersecting) {
                 image.src = image.dataset.src;
-                imageObserver.unobserve(image);
+                this.unobserve(image);
             }
-        });
-        imageObserver.observe(imageElement);
+        }).observe(imageElement);
     
     } else {
       

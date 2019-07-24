@@ -1,4 +1,4 @@
-import { loadLazy } from '../scripts/lazy-load.mjs';
+import { lazyLoad } from '../scripts/lazy-load.mjs';
 
 class PlaylistItem extends HTMLElement {
     constructor() {
@@ -27,7 +27,7 @@ class PlaylistItem extends HTMLElement {
         `;
     }
     connectedCallback() {
-        loadLazy(this.shadowRoot.querySelector('img'));
+        lazyLoad(this.shadowRoot.querySelector('img'));
     }
 }
 customElements.define('playlist-item', PlaylistItem);
