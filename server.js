@@ -8,12 +8,12 @@ const multer = require('multer');
 const { getYoutubeData } = require('./services/youtube');
 const blogController = require('./controllers/blog-controller');
 
-const mongoURL =
-  'mongodb+srv://' +
-  `${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}` +
-  '@cluster0-uhbcz.mongodb.net/' +
-  process.env.MONGO_DB +
-  '?retryWrites=true';
+const mongoURL = 'mongodb+srv://'
+  + process.env.MONGO_USER + ':'
+  + process.env.MONGO_PASSWORD
+  + '@cluster0-uhbcz.mongodb.net/'
+  + process.env.MONGO_DB
+  + '?retryWrites=true';
 
 const app = express();
 app.use(compression());
@@ -29,11 +29,6 @@ app.use(multer({
 
 const pages = path.join(__dirname, 'public', 'pages');
 
-// app.get('*', (req, res) => {
-//     if (req.httpVersion == 1.1) {
-//         res.redirect('https://' + req.headers.host + req.url);
-//     }
-// });
 app.get('/team', (req, res) => res.sendFile(pages + path.sep + 'team.html'));
 app.get('/social', (req, res) => res.sendFile(pages + path.sep + 'social.html'));
 app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'));
@@ -42,8 +37,8 @@ app.get('/blog', (req, res) => res.sendFile(pages + path.sep + 'blog.html'));
 
 app.get('/api/youtube', async (req, res) => {
     const data = await getYoutubeData();
-    if ('error' in data) return res.status(423).json({ status: 423, data });
-    else return res.status(200).json({ status: 200, data });
+    if ('error' in data) return res.json({ status: 423, data });
+    else return res.json({ status: 200, data });
 });
 
 app.get('/api/blogs', blogController.getBlogs);
