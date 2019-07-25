@@ -15,13 +15,13 @@
 
 .card-wrapper info-card {
     margin: 0 auto;
-    transition: 0.2s;
+    transition: 0.3s;
     cursor: pointer;
     text-align: center;
 }
 
 .card-wrapper info-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 @media (max-width: 400px) {
