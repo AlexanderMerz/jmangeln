@@ -29,6 +29,13 @@ app.use(multer({
 
 const pages = path.join(__dirname, 'public', 'pages');
 
+// Middleware to redirect non-https-requests (heroku only)
+app.get('*', (req, res, next) => {
+    req.headers['x-forwarded-proto'] != 'https' 
+        ? res.redirect(`https://${req.hostname}${req.url}`)
+        : next();
+});
+
 app.get('/team', (req, res) => res.sendFile(pages + path.sep + 'team.html'));
 app.get('/social', (req, res) => res.sendFile(pages + path.sep + 'social.html'));
 app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'));
