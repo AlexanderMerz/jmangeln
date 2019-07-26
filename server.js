@@ -15,7 +15,9 @@ const mongoURL = 'mongodb+srv://'
   + process.env.MONGO_DB
   + '?retryWrites=true';
 
+const pages = path.join(__dirname, 'public', 'pages');
 const app = express();
+
 app.use(compression());
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,14 +29,6 @@ app.use(multer({
     })
 }).single('image'));
 
-const pages = path.join(__dirname, 'public', 'pages');
-
-// Middleware to redirect non-https-requests (heroku only)
-app.get('*', (req, res, next) => {
-    req.headers['x-forwarded-proto'] != 'https' 
-        ? res.redirect(`https://${req.hostname}${req.url}`)
-        : next();
-});
 
 app.get('/', (req, res) => res.redirect('/home'));
 app.get('/home', (req, res) => res.sendFile('index.html'));
