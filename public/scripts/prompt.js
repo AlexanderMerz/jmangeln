@@ -1,10 +1,12 @@
-const customPrompt = document.querySelector('.pwa-btn');
 const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+const isStandalone = (window.navigator.standalone) &&
+    (window.matchMedia('(display-mode: standalone)').matches);
+const customPrompt = document.querySelector('.pwa-btn');
 let deferredPrompt;
 
-if (isIos) {
-    alert('IOS');
+if (isIos && !isStandalone) {
     window.addEventListener('beforeinstallprompt', event => {
+        alert('PROMPT');
         event.preventDefault();
         deferredPrompt = event;
         customPrompt.style.display = 'block';

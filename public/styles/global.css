@@ -41,4 +41,5 @@ hr {
     font-family: 'Open Sans', sans-serif;
     border: none;
     border-radius: 6px;
+    display: none;
 }
