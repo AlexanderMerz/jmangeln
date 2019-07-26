@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #00F500; 
+    --primary-color: #00F500;
 }
 @font-face {
     font-family: 'Open Sans';
@@ -29,4 +29,16 @@ hr {
     border: none;
     height: 1px;
     background-color: gray;
+}
+.pwa-btn {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: white;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    border: none;
+    border-radius: 6px;
 }
