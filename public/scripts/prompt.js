@@ -1,5 +1,5 @@
 const customPrompt = document.querySelector('.pwa-btn');
-const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase);
+const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
 let deferredPrompt;
 
 if (isIos) {
