@@ -31,12 +31,14 @@ class InfoCard extends HTMLElement {
         title.innerText = this.getAttribute('title');
         image.dataset.src = this.getAttribute('image');
         if (window.innerWidth > 400) {
-            this.shadowRoot.addEventListener('click', () => this.navigate(href));
+            this.shadowRoot.addEventListener('click', () => {
+                if (href) window.location = href;
+            });
         }
-        button.addEventListener('click', () => this.navigate(href));
+        button.addEventListener('click', () => {
+            if (href) window.location = href;
+        });
         lazyLoad(image);
     }
-
-    navigate = url => { if (url) window.location = url };
 }
 customElements.define('info-card', InfoCard);
