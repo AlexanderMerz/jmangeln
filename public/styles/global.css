@@ -4,10 +4,12 @@
 @font-face {
     font-family: 'Open Sans';
     src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+    font-display: fallback;
 }
 @font-face {
     font-family: 'Syncopate';
     src: url('../fonts/Syncopate-Bold.ttf') format('truetype');
+    font-display: fallback;
 }
 *, *:before, *:after {
     -moz-box-sizing: border-box;
