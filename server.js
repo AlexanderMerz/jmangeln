@@ -29,9 +29,6 @@ app.use(multer({
     })
 }).single('image'));
 
-
-app.get('/', (req, res) => res.redirect('/home'));
-app.get('/home', (req, res) => res.sendFile('index.html'));
 app.get('/team', (req, res) => res.sendFile(pages + path.sep + 'team.html'));
 app.get('/social', (req, res) => res.sendFile(pages + path.sep + 'social.html'));
 app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'));
