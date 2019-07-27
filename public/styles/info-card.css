@@ -14,12 +14,13 @@
 .content h1 {
     text-align: center;
     padding: 0.5rem 0;
-    margin: 0;
+    margin: 0.2rem 0 0 0;
+    letter-spacing: -0.05rem;
 }
 .content p {
-    padding: 0.5rem 2rem 2rem 2rem;
+    padding: 0.5rem 1.5rem 1rem 1.5rem;
     text-align: justify;
-    line-height: 1.6;
+    line-height: 1.7;
     font-size: 14px;
     margin: 0;
 }
@@ -31,9 +32,21 @@ img {
     border: none;
     outline: none;
 }
+.card button {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    padding: 10px 6px;
+    background-color: white;
+    color: black;
+    border: none;
+    box-shadow: 0 0 2px;
+    width: 85%;
+    margin: 0.5rem 7.5% 1.75rem 7.5%;
+    display: none;
+}
 @media (max-width: 525px) {
     .content p {
-        font-size: 14px;
+        font-size: 13px;
     }
 }
 @media (max-width: 400px) {
@@ -47,6 +60,9 @@ img {
         border-radius: 0;
     }
     .content p {
-        font-size: 13px;
+        font-size: 12px;
+    }
+    .card button {
+        display: block;
     }
 }

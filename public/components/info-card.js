@@ -11,6 +11,7 @@ class InfoCard extends HTMLElement {
                 <div class="content">
                     <h1></h1>
                     <p><slot></slot></p>
+                    <button>Mehr</button>
                 </div>
             </div>
         `;
@@ -23,15 +24,19 @@ class InfoCard extends HTMLElement {
     }
 
     connectedCallback() {
+        const href = this.getAttribute('href');
         const title = this.shadowRoot.querySelector('h1');
         const image = this.shadowRoot.querySelector('img');
+        const button = this.shadowRoot.querySelector('button');
         title.innerText = this.getAttribute('title');
         image.dataset.src = this.getAttribute('image');
-        this.shadowRoot.addEventListener('click', () => {
-            const href = this.getAttribute('href');
-            if (href) window.location = href;
-        });
+        if (window.innerWidth > 400) {
+            this.shadowRoot.addEventListener('click', () => this.navigate(href));
+        }
+        button.addEventListener('click', () => this.navigate(href));
         lazyLoad(image);
     }
+
+    navigate = url => { if (url) window.location = url };
 }
 customElements.define('info-card', InfoCard);
