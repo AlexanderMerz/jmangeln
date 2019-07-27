@@ -1,8 +1,0 @@
-{
-    "env": {
-      "MONGO_USER": "alex",
-      "MONGO_PASSWORD": "WdiWmayhePrzu5yK",
-      "MONGO_DB": "jmangeln",
-      "YOUTUBE_KEY": "AIzaSyA9bVvLIJ-9ugfcqB-5vWAyYw1U4Qv2Nok"
-    }
-}
