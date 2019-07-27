@@ -1,5 +1,5 @@
 .content {
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
 }
 
@@ -9,6 +9,7 @@
     margin-top: 2rem;
     margin-bottom: 0;
     font-weight: 100;
+    letter-spacing: -0.1rem;
 }
 
 .content__head {
@@ -22,15 +23,16 @@
     text-align: justify;
     line-height: 2;
     text-justify: inter-word;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .content__head p {
     font-family: 'Source Serif Pro', serif;;
     letter-spacing: 4px;
     word-break: keep-all;
-    margin: 0;
     color: rgb(80, 80, 80);
+    font-style: italic;
+    margin: 1.5rem auto;
 }
 
 @media (max-width: 1024px) {
@@ -59,7 +61,7 @@
         font-size: 1.25rem;
     }
     .content__text {
-        font-size: 13px;
+        font-size: 12px;
     }
 }
 
