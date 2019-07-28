@@ -36,13 +36,14 @@ img {
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
     padding: 10px 6px;
-    background-color: white;
+    background-color: rgb(252, 252, 252);
     color: black;
     border: none;
     box-shadow: 0 0 2px;
     width: 85%;
     margin: 0.5rem 7.5% 1.75rem 7.5%;
     display: none;
+    border-radius: 4px;
 }
 @media (max-width: 525px) {
     .content p {

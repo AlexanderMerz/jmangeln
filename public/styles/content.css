@@ -13,7 +13,9 @@
 }
 
 .content__head {
-    font-size: 3vw;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 2.5vw;
     text-align: center;
     padding: 0.5rem 0;
     line-height: 1.5;
@@ -32,7 +34,6 @@
     word-break: keep-all;
     color: rgb(80, 80, 80);
     font-style: italic;
-    margin: 1.5rem auto;
 }
 
 @media (max-width: 1024px) {
