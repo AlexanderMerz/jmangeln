@@ -15,9 +15,6 @@ div, p {
     transition: 0.25s;
     cursor: pointer;
 }
-.video:hover {
-    border: 4px solid var(--primary-color);
-}
 .info {
     text-align: center;
     display: flex;
