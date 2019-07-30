@@ -4,17 +4,21 @@ class BlogPost extends HTMLElement {
         this.attachShadow({ mode: 'open' });
     }
     set content(data) {
-        const { title, content, image } = data;
+        const { id, title, content, image } = data;
         const date = new Date(data.date).toLocaleDateString();
 
         this.shadowRoot.innerHTML = `
             <style>@import "../styles/blog-post.css"</style>
-            <div class="post">
-                <h1 class="post__title">${title} vom ${date}</h1>
-                <p class="post__content">${content}</p>
+            <div class="post" data-id="${id}">
+                <h1 class="post__title">${title}</h1>
+                <p class="post__date">vom ${date}</p>
                 <img class="post__image" src="${image}">
             </div>
         `;
+    }
+    connectedCallback() {
+        const { id } = this.shadowRoot.querySelector('.post').dataset;
+        this.shadowRoot.addEventListener('click', () => window.location = `/blog/post/${id}`);
     }
 }
 customElements.define('blog-post', BlogPost);
