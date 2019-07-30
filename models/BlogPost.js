@@ -1,6 +1,7 @@
 const { model, Schema } = require('mongoose');
 
-module.exports = model('Blog', new Schema({
+module.exports = model('BlogPost', new Schema({
+    id: Number,
     title: String,
     content: String,
     image: String,
