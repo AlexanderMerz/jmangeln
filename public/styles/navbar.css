@@ -61,7 +61,6 @@
     height: 5px;
     background-color: white;
     margin: 6px 0;
-    transition: 0.4s;
     border-radius: 2px;
 }
 .change .bar1 {
@@ -102,8 +101,8 @@
         right: 0;
         background-color: black;
         overflow: hidden;
-        transition: width 0.3s;
-        -webkit-transition: width 0.3s;
+        transition: width 0.2s;
+        -webkit-transition: width 0.2s;
         margin: 80px 0 0 0;
     }
     .navbar__navigation ul {
