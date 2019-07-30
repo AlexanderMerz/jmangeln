@@ -13,7 +13,7 @@ class PlaylistItem extends HTMLElement {
 
         this.shadowRoot.innerHTML = `
             <style>@import "../styles/playlist-item.css"</style>
-            <div class="video" data-video-id="${videoId}">
+            <div class="video" data-id="${videoId}">
                 <div class="info">
                     <h3 class="info__title">${title}</h3>
                     <p class="info__date">${date}</p>
@@ -27,7 +27,14 @@ class PlaylistItem extends HTMLElement {
         `;
     }
     connectedCallback() {
+        const { id } = this.shadowRoot.querySelector('.video').dataset;
         lazyLoad(this.shadowRoot.querySelector('img'));
+        this.shadowRoot.addEventListener('click', () => {
+            this.dispatchEvent(new CustomEvent('update', {
+                bubbles: true,
+                detail: id
+            }));
+        });
     }
 }
 customElements.define('playlist-item', PlaylistItem);
