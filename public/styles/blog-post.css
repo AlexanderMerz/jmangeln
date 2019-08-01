@@ -1,6 +1,7 @@
 .post {
     position: relative;
     padding: 2rem;
+    margin: 1rem;
     border: 1px solid white;
     box-shadow: 0 4px 12px -4px;
     width: 300px;
