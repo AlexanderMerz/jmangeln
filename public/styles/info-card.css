@@ -1,14 +1,12 @@
 .card {
+    position: relative;
     background-color: white;
-    box-shadow: 0 0 6px black;
+    box-shadow: 0 4px 12px -4px;
     width: fit-content;
     min-width: 320px;
     max-width: 500px;
     height: 450px;
     max-height: 500px;
-    position: relative;
-    border-radius: 6px;
-    transition: 0.2s;
     text-overflow: clip;
 }
 .content h1 {
@@ -28,7 +26,6 @@ img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 6px 6px 0 0;
     border: none;
     outline: none;
 }
