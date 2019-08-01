@@ -28,7 +28,8 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-/* Set View Engine */
+/* Set Views Folder and View Engine */
+app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 
 /* File Upload Destination */
