@@ -3,6 +3,8 @@ const navigation = document.querySelector('.navbar__navigation');
 const ul = document.querySelector('.navbar__navigation ul');
 const menuIcon = document.querySelector('.menu-icon');
 
+document.addEventListener('touchmove', event => event.preventDefault());
+
 logo.addEventListener('click', () => window.location = '/');
 
 menuIcon.addEventListener('click', function() {
