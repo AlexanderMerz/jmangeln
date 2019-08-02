@@ -9,8 +9,12 @@ exports.getPosts = async (req, res) => {
 
 exports.getPostById = async (req, res) => {
     const post = await BlogPost.findOne({ id: req.params.id });
-    post.content = readFileSync(post.content);
-    return res.render('post', { post });
+    try {
+        post.content = readFileSync(post.content);
+    } catch (error) {
+        return res.redirect('/');
+    }
+    return res.render('post', { post: post });
 }
 
 exports.createPost = async (req, res) => {
