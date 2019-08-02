@@ -1,6 +1,8 @@
 const videoPlayer = document.querySelector('.video-player');
+const iframe = document.querySelector('.video-player iframe');
     videoPlayer.addEventListener('update', function(event) {
-    this.childNodes[0].nextElementSibling.src
-    = `https://www.youtube.com/embed/${event.detail}`;
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
+        iframe.src = `https://www.youtube.com/embed/${event.detail}`;
+        setTimeout(() => {
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+        }, 1000);
 });
