@@ -1,7 +1,6 @@
-const { readFileSync } = require('fs');
 const BlogPost = require('../models/BlogPost');
-const path = require('path');
-const fs = require('fs');
+const { readFileSync, writeFile } = require('fs');
+const { join } = require('path');
 
 exports.getPosts = async (req, res) => {
     const posts = await BlogPost.find().sort({ date: -1 });
@@ -16,9 +15,9 @@ exports.getPostById = async (req, res) => {
 
 exports.createPost = async (req, res) => {
     const imageName = req.file.filename.split('.')[0];
-    const contentPath = path.join('uploads', `${imageName}.txt`);
+    const contentPath = join('uploads', `${imageName}.txt`);
     try {
-        fs.writeFile(contentPath, req.body.content, error => {
+        writeFile(contentPath, req.body.content, error => {
             if (error) throw error;
             new BlogPost({ 
                 id: Math.round(Math.random() * 100), 
