@@ -6,8 +6,7 @@
 .content h1 {
     text-align: center;
     font-size: 4vw;
-    margin-top: 2rem;
-    margin-bottom: 0;
+    margin: 1rem auto;
     font-weight: 100;
     letter-spacing: -0.1rem;
 }
@@ -34,6 +33,7 @@
     word-break: keep-all;
     color: rgb(80, 80, 80);
     font-style: italic;
+    margin: 1.75rem auto;
 }
 
 @media (max-width: 1024px) {
