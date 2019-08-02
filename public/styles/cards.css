@@ -4,12 +4,11 @@
 }
 
 .card-wrapper {
-    width: 90%;
+    width: 85%;
     margin: 0 auto;
-    padding: 2.5rem 0;
+    padding: 2.5rem 0 4rem 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    max-width: 1200px;   
     grid-gap: 2rem;
 }
 
