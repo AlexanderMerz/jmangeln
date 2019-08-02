@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/videos.css">
+
 </head>
 <body>
     
@@ -20,7 +22,7 @@
         <nav class="navbar__navigation">
             <ul>
                 <li><a href="/team">Team</a></li>
-                <li><a href="/videos">Videos</a></li>
+                <li><a href="/videos" class="active">Videos</a></li>
                 <li><a href="/social">Social</a></li>
                 <li><a href="/merch">Merch</a></li>
                 <li><a href="/blog">Blog</a></li>
@@ -34,6 +36,12 @@
     </header>
 
     <div class="space"></div>
+
+    <div class="path">
+        Home
+        <img src="../images/baseline-arrow_forward-24px.svg" alt="path">
+        Videos
+    </div>
 
     <main class="video-player">
         <iframe
@@ -53,6 +61,7 @@
             >Zum Kanal</a>
         </div>
     </main>
+    
     <script defer src="../scripts/ui.js"></script>
     <script async src="../scripts/fetch.js"></script>
     <script defer type="module" src="../components/playlist-item.js"></script>
