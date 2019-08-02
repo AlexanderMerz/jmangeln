@@ -1,6 +1,18 @@
 .video-player iframe {
+    position: relative;
     width: 100%;
-    height: calc(100vh - 80px);
+    max-width: 840px;
+    height: 473px;
+    max-height: calc(100vh - 10px);
+    margin: 0 auto;
+    text-align: center;
+    align-self: center;
+}
+.video-wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
 }
 .video-player__footer {
     margin: 2rem auto;
