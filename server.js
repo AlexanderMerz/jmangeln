@@ -1,5 +1,4 @@
 /* Core Modules */
-const fs    = require('fs');
 const path  = require('path');
 
 /* Third Party Modules */
@@ -29,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 /* Set Views Folder and View Engine */
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', 'views');
 app.set('view engine', 'pug');
 
 /* File Upload Destination */
@@ -42,8 +41,6 @@ const upload = multer({
         )
     })
 });
-
-// new Date().toISOString().split('T')[0]
 
 /* Path to Pages Folder */
 const pages = path.join(__dirname, 'public', 'pages');
