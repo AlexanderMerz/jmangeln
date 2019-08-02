@@ -11,12 +11,17 @@
     src: url('../fonts/Syncopate-Bold.ttf') format('truetype');
     font-display: fallback;
 }
+@font-face {
+    font-family: 'Exo';
+    src: url('../fonts/Exo-Regular.ttf') format('truetype');
+    font-display: fallback;
+}
 *, *:before, *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-html, body, ul {
+html, body, ul, p {
     margin: 0;
     padding: 0;
 }
@@ -36,8 +41,16 @@ body {
 .space {
     height: 80px;
 }
-hr {
-    border: none;
-    height: 1px;
-    background-color: gray;
+.path {
+    font-size: 24px;
+    height: 60px;
+    font-family: 'Exo';
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(244, 244, 244);
+}
+.path img {
+    margin: auto 6px;
 }
