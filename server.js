@@ -2,14 +2,15 @@
 const path  = require('path');
 
 /* Third Party Modules */
-const bodyParser    = require('body-parser');
-const compression   = require('compression');
-const express       = require('express');
-const mongoose      = require('mongoose');
-const multer        = require('multer');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const express = require('express');
+const mongoose = require('mongoose');
+const multer = require('multer');
 
-const blogController        = require('./controllers/blog-controller');
-const { getYoutubeData }    = require('./services/youtube');
+/* Controller */
+const blogController = require('./controllers/blog-controller');
+const youtubeController = require('./controllers/youtube-controller');
 
 const mongoURL = 'mongodb+srv://'
   + process.env.MONGO_USER + ':'
@@ -27,14 +28,13 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-/* Set Views Folder and View Engine */
+/* Set Views Folder and Templating Engine */
 app.set('views', 'views');
 app.set('view engine', 'pug');
 
 /* File Upload Destination */
 const upload = multer({
     storage: multer.diskStorage({
-        destination: (req, file, cb) => cb(null, 'uploads'),
         filename: (req, file, cb) => cb(
             null, `${new Date().getTime()}`
             + `.${file.mimetype.split('/')[1]}`
@@ -58,11 +58,7 @@ app.get('/create-post', (req, res) => res.sendFile(pages + path.sep + 'create-po
 app.post('/create-post', upload.single('image'), blogController.createPost);
 
 /* API Endpoints */
-app.get('/api/youtube', async (req, res) => {
-    const data = await getYoutubeData();
-    if ('error' in data) return res.json({ status: 423, data });
-    else return res.json({ status: 200, data });
-});
+app.get('/api/youtube', youtubeController.getData);
 app.get('/api/blogs', blogController.getPosts);
 
 /* Database Connection + Server Start */
