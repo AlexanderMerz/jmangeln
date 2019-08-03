@@ -4,7 +4,7 @@ class BlogPost extends HTMLElement {
         this.attachShadow({ mode: 'open' });
     }
     set content(data) {
-        const { id, title, content, image } = data;
+        const { id, title, image } = data;
         const date = new Date(data.date).toLocaleDateString();
 
         this.shadowRoot.innerHTML = `
