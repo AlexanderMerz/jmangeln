@@ -8,13 +8,8 @@ window.addEventListener('load', async () => {
             try {
                 const response = await fetch('/api/youtube');
                 const json = await response.json();
-                if (json.status === 423) {
-                    player.src += 'YnjdFKQAZhw';
-                    return;
-                }
-                const { data } = json;
-                player.src += data.items[0].id.videoId;
-                for (let item of data.items) {
+                player.src += json.items[0].id.videoId;
+                for (let item of json.items) {
                     const playlistItem = document.createElement('playlist-item');
                     playlistItem.data = item;
                     playlist.appendChild(playlistItem);
