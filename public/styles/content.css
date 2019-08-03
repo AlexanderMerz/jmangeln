@@ -6,13 +6,16 @@
 .content h1 {
     text-align: center;
     font-size: 4vw;
-    margin: 1rem auto;
+    margin: 1.5rem auto 1rem auto;
     font-weight: 100;
     letter-spacing: -0.1rem;
 }
 
 .content__head {
-    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     margin: 0 auto;
     font-size: 2.5vw;
     text-align: center;
@@ -20,11 +23,26 @@
     line-height: 1.5;
 }
 
+.content__head img {
+    min-width: 80px;
+    width: 10vw;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(0%);
+}
+.content__head img:nth-of-type(1) {
+    transform: rotate(-10deg);
+}
+.content__head img:nth-of-type(2) {
+    transform: rotate(170deg);
+}
+
 .content__text {
     text-align: justify;
     line-height: 2;
     text-justify: inter-word;
     font-size: 18px;
+    margin-top: 1.5rem;
 }
 
 .content__head p {
@@ -32,8 +50,7 @@
     letter-spacing: 4px;
     word-break: keep-all;
     color: rgb(80, 80, 80);
-    font-style: italic;
-    margin: 1.75rem auto;
+    margin: 0.5rem 2rem;
 }
 
 @media (max-width: 1024px) {
@@ -43,14 +60,18 @@
     .content__text {
         font-size: 16px;
     }
-    .content__head {
-        font-size: 1.75rem;
-    }
 }
 
 @media (max-width: 768px) {
     .content__head {
         font-size: 1.5rem;
+        flex-direction: column;
+    }
+    .content__head img:nth-of-type(1) {
+        transform: rotate(35deg);
+    }
+    .content__head img:nth-of-type(2) {
+        transform: rotate(215deg);
     }
 }
 

@@ -6,7 +6,7 @@
 .card-wrapper {
     width: 85%;
     margin: 0 auto;
-    padding: 2.5rem 0 4rem 0;
+    padding: 2.5rem 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-gap: 2rem;
@@ -25,15 +25,10 @@
 
 @media (max-width: 400px) {
     .card-wrapper {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 0;
-    }
-    .card-wrapper info-card:hover {
-        position: relative;
-        top: 0px;
-        box-shadow: none;
+        width: calc(100% - 16px);
+        margin: 0 8px;
+        grid-gap: 8px;
+        padding: 0 0 8px 0;
+        grid-template-columns: repeat(auto-fit, minmax(304px, 1fr));
     }
 }
