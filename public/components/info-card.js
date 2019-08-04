@@ -7,11 +7,10 @@ class InfoCard extends HTMLElement {
         const template = document.createElement('template');
         template.innerHTML = `
             <div class="card">
-                <img alt="info-card image">
-                <div class="content">
+                <img class="card__image" alt="info-card image">
+                <div class="card__content">
                     <h1></h1>
                     <p><slot></slot></p>
-                    <button>Mehr</button>
                 </div>
             </div>
         `;
@@ -24,20 +23,14 @@ class InfoCard extends HTMLElement {
     }
 
     connectedCallback() {
-        const href = this.getAttribute('href');
         const title = this.shadowRoot.querySelector('h1');
         const image = this.shadowRoot.querySelector('img');
-        const button = this.shadowRoot.querySelector('button');
+        const href = this.getAttribute('href');
+        this.shadowRoot.addEventListener('click', () => {
+            window.location.href = href;
+        });
         title.innerText = this.getAttribute('title');
         image.dataset.src = this.getAttribute('image');
-        if (window.innerWidth > 400) {
-            this.shadowRoot.addEventListener('click', () => {
-                if (href) window.location = href;
-            });
-        }
-        button.addEventListener('click', () => {
-            if (href) window.location = href;
-        });
         lazyLoad(image);
     }
 }

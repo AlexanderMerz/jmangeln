@@ -8,52 +8,48 @@
     max-height: 500px;
     text-overflow: clip;
 }
-.content h1 {
+
+.card__content h1 {
     text-align: center;
     padding: 0.5rem 0;
     margin: 0.2rem 0 0 0;
     letter-spacing: -0.05rem;
 }
-.content p {
+
+.card__content p {
     padding: 0.5rem 1.5rem 1rem 1.5rem;
     text-align: justify;
     line-height: 1.7;
     font-size: 14px;
     margin: 0;
 }
-img {
+
+.card__image {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border: none;
     outline: none;
 }
-.card button {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 0.9rem;
-    padding: 8px;
-    background-color: rgb(252, 252, 252);
-    color: black;
-    border: none;
-    box-shadow: 0 0 1px;
-    width: 85%;
-    margin: 0.5rem 7.5% 1.75rem 7.5%;
-    display: none;
-}
+
 @media (max-width: 525px) {
-    .content p {
+    .card__content p {
         font-size: 13px;
     }
 }
+
 @media (max-width: 400px) {
     .card {
         height: fit-content;
     }
-    .content h1 {
+    .card__content h1 {
         font-size: 24px;
     }
-    .content p {
-        font-size: 11px;
+    .card__content p {
+        font-size: 12px;
         padding-bottom: 2rem;
+    }
+    .card__image {
+        height: 170px;
     }
 }
