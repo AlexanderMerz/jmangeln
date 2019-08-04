@@ -4,21 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Etwas ist schief gelaufen</title>
+    <title>J&M Angeln</title>
     <link rel="stylesheet" href="./styles/global.css">
     <link rel="stylesheet" href="./styles/navbar.css">
     <style>
         .message {
+            font-family: 'Exo';
             width: 100%;
             height: calc(100vh - 80px);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 2.5rem;
             text-align: center;
         }
         .message h1 {
-            font-size: 32px;
+            font-size: 24px;
+        }
+        .message a {
+            text-decoration: none;
+            color: black;
+            padding: 1rem;
+            box-shadow: 0 0 4px;
+            font-size: 24px;
         }
     </style>
 </head>
@@ -51,6 +60,7 @@
             Die Seite kann aufgrund fehlender 
             Internetverbindung nicht angezeigt werden.
         </h1>
+        <a href="/">Zurück zur Startseite</a>
     </section>
 
     <script src="../scripts/ui.js"></script>
