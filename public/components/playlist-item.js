@@ -1,4 +1,13 @@
 import { lazyLoad } from '../scripts/lazy-load.mjs';
+if ( typeof window.CustomEvent !== 'function' ) {
+    function CustomEvent ( event, params ) {
+        params = params || { bubbles: false, cancelable: false, detail: null };
+        const evt = document.createEvent( 'CustomEvent' );
+        evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+        return evt;
+    }
+    window.CustomEvent = CustomEvent;
+}
 
 class PlaylistItem extends HTMLElement {
     constructor() {
@@ -30,7 +39,7 @@ class PlaylistItem extends HTMLElement {
         const { id } = this.shadowRoot.querySelector('.video').dataset;
         lazyLoad(this.shadowRoot.querySelector('img'));
         this.shadowRoot.addEventListener('click', () => {
-            this.dispatchEvent(new Event('update', {
+            this.dispatchEvent(new CustomEvent('update', {
                 bubbles: true,
                 composed: true,
                 detail: id
