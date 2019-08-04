@@ -30,6 +30,7 @@ class PlaylistItem extends HTMLElement {
         const { id } = this.shadowRoot.querySelector('.video').dataset;
         lazyLoad(this.shadowRoot.querySelector('img'));
         this.shadowRoot.addEventListener('click', () => {
+            alert('CLICK');
             this.dispatchEvent(new CustomEvent('update', {
                 bubbles: true,
                 detail: id
