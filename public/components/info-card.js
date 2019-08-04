@@ -27,7 +27,7 @@ class InfoCard extends HTMLElement {
         const image = this.shadowRoot.querySelector('img');
         const href = this.getAttribute('href');
         this.shadowRoot.addEventListener('click', () => {
-            window.location.href = href;
+            if (href) window.location = href;
         });
         title.innerText = this.getAttribute('title');
         image.dataset.src = this.getAttribute('image');
