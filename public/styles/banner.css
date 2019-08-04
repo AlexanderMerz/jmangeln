@@ -81,7 +81,7 @@
 }
 .label__highlight {
     color: var(--primary-color);
-    margin-top: -40px;
+    margin-top: -42px;
     font-size: 5.65rem;
 }
 .social {
@@ -123,7 +123,7 @@
         font-size: 4.5rem;
     }
     .label__highlight {
-        margin-top: -28px;
+        margin-top: -32px;
         font-size: 3.4rem;
     }
     .social i {
