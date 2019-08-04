@@ -1,4 +1,5 @@
 const shell = 'site-static';
+const dynamicCache = 'site-dynamic';
 const assets = [
     '/',
     '/index.html',
@@ -10,15 +11,14 @@ const assets = [
     '/styles/cards.css',
     '/fonts/OpenSans-Regular.ttf',
     '/fonts/Syncopate-Bold.ttf',
-    '/scripts/init.js',
+    '/fonts/Exo-Regular.ttf',
     '/scripts/ui.js',
     '/scripts/fetch.js',
     '/scripts/lazy-load.mjs',
     '/components/info-card.js',
     '/images/brand.webp',
-    '/images/brand.jpg'
+    '/images/brand.jpg',
 ];
-const dynamicCache = 'site-dynamic';
 
 self.addEventListener('install', event => {
     event.waitUntil(caches.open(shell).then(cache => cache.addAll(assets)));
@@ -34,18 +34,35 @@ self.addEventListener('activate', event => {
     );
 });
 self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request).then(cacheRes => {
-            return cacheRes || fetch(event.request).then(fetchRes => {
+    if (!!~event.request.url.indexOf('/api/blog')) {
+        event.respondWith(
+            fetch(event.request.url).then(fetchRes => {
                 return caches.open(dynamicCache).then(cache => {
                     cache.put(event.request.url, fetchRes.clone());
                     return fetchRes;
-                });
+                })
             }).catch(() => {
-                if (event.request.url.indexOf('.html') !== -1) {
-                    return caches.match('/pages/fallback.html');
-                }
-            });
-        })
-    );
+                caches.match(event.request).then(response => {
+                    if (!response) return caches.open(shell).then(cache => {
+                        return cache.match('/pages/fallback.html');
+                    })
+                })
+            })
+        );
+    } else {
+        event.respondWith(
+            caches.match(event.request).then(cacheRes => {
+                return cacheRes || fetch(event.request).then(fetchRes => {
+                    return caches.open(dynamicCache).then(cache => {
+                        cache.put(event.request.url, fetchRes.clone());
+                        return fetchRes;
+                    });
+                }).catch(() => {
+                    return caches.open(shell).then(cache => {
+                        return cache.match('/pages/fallback.html')
+                    });
+                });
+            })
+        );
+    }
 });
