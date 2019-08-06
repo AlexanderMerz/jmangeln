@@ -28,6 +28,7 @@ div, p {
 }
 .info__title {
     margin-top: 0;
+    font-weight: 100;
 }
 .video__image {
     opacity: 0.9;
