@@ -7,7 +7,7 @@ class InfoCard extends HTMLElement {
         const template = document.createElement('template');
         template.innerHTML = `
             <div class="card">
-                <img class="card__image" alt="info-card image">
+                <img class="lazy card__image" alt="info-card image">
                 <div class="card__content">
                     <h1></h1>
                     <p><slot></slot></p>
@@ -31,7 +31,7 @@ class InfoCard extends HTMLElement {
         });
         title.innerText = this.getAttribute('title');
         image.dataset.src = this.getAttribute('image');
-        lazyLoad(image);
+        lazyLoad('.lazy', this.shadowRoot);
     }
 }
 customElements.define('info-card', InfoCard);
