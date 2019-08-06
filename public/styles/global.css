@@ -11,6 +11,11 @@
     src: url('../fonts/Exo-Regular.ttf') format('truetype');
     font-display: block;
 }
+@font-face {
+    font-family: 'Petit Formal Script';
+    src: url('../fonts/PetitFormalScript-Regular.ttf') format('truetype');
+    font-display: block;
+}
 *, *:before, *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;

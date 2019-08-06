@@ -25,7 +25,7 @@
 
 .content__head img {
     min-width: 80px;
-    width: 10vw;
+    width: 20vw;
     height: auto;
     object-fit: contain;
     filter: brightness(0%);
@@ -48,11 +48,13 @@
 }
 
 .content__head p {
-    font-family: 'Source Serif Pro', serif;;
+    /* font-family: 'Source Serif Pro', serif;; */
+    font-family: 'Petit Formal Script', cursive;
     letter-spacing: 4px;
     word-break: keep-all;
     color: rgb(80, 80, 80);
     margin: 0.5rem 2rem;
+    font-weight: 500;
 }
 
 @media (max-width: 1024px) {
