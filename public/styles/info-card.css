@@ -35,7 +35,7 @@
 
 @media (max-width: 525px) {
     .card__content p {
-        font-size: 13px;
+        font-size: 0.85rem;
     }
 }
 
@@ -47,7 +47,7 @@
         font-size: 24px;
     }
     .card__content p {
-        font-size: 0.8rem;
+        font-size: 12px;
         padding-bottom: 2rem;
     }
     .card__image {
