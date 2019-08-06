@@ -1,4 +1,4 @@
-const shell = 'site-static';
+const staticCache = 'site-static';
 const dynamicCache = 'site-dynamic';
 const assets = [
     '/',
@@ -21,18 +21,20 @@ const assets = [
 ];
 
 self.addEventListener('install', event => {
-    event.waitUntil(caches.open(shell).then(cache => cache.addAll(assets)));
+    event.waitUntil(caches.open(staticCache).then(cache => cache.addAll(assets)));
 });
+
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(keys => {
             return Promise.all(keys
-                .filter(key => key !== shell && key !== dynamicCache)
+                .filter(key => key !== staticCache && key !== dynamicCache)
                 .map(key => caches.delete(key))
             );
         })
     );
 });
+
 self.addEventListener('fetch', event => {
     if (!!~event.request.url.indexOf('/api/blog')) {
         event.respondWith(
@@ -43,10 +45,30 @@ self.addEventListener('fetch', event => {
                 })
             }).catch(() => {
                 caches.match(event.request).then(response => {
-                    if (!response) return caches.open(shell).then(cache => {
+                    if (!response) return caches.open(staticCache).then(cache => {
                         return cache.match('/pages/fallback.html');
                     })
                 })
+            })
+        );
+    } 
+    if (!!~event.request.url.indexOf('/api/youtube')) {
+        event.respondWith(
+            caches.match(event.request).then(cacheRes => {
+                // Return cached response if it was cached less than 24 hours ago
+                if (cacheRes) {
+                    const cachedAt = new Date(cacheRes.headers.get('date')).getTime();
+                    const now = new Date().getTime();
+                    console.log(now - cachedAt);
+                    if (( now - cachedAt ) < 8640000) return cacheRes;
+                }
+                // If response is null or time difference is greater than 24 hours
+                return fetch(event.request).then(fetchRes => {
+                    return caches.open(dynamicCache).then(cache => {
+                        cache.put(event.request.url, fetchRes.clone());
+                        return fetchRes;
+                    });
+                });
             })
         );
     } else {
@@ -58,7 +80,7 @@ self.addEventListener('fetch', event => {
                         return fetchRes;
                     });
                 }).catch(() => {
-                    return caches.open(shell).then(cache => {
+                    return caches.open(staticCache).then(cache => {
                         return cache.match('/pages/fallback.html')
                     });
                 });
