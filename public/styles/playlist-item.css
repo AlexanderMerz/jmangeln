@@ -48,6 +48,9 @@ div, p {
         height: fit-content;
         flex-direction: column-reverse;
     }
+    .video:hover {
+        transform: none;
+    }
     .info__title {
         margin: 0;
         padding: 2rem;

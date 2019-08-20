@@ -48,12 +48,11 @@
 }
 
 .content__head p {
-    /* font-family: 'Source Serif Pro', serif;; */
     font-family: 'Petit Formal Script', cursive;
     letter-spacing: 4px;
     word-break: keep-all;
     color: rgb(80, 80, 80);
-    margin: 0.5rem 2rem;
+    margin: 0.5rem 2.5rem;
     font-weight: 500;
 }
 
@@ -71,6 +70,9 @@
         font-size: 1.5rem;
         flex-direction: column;
     }
+    .content__head img {
+        width: 15vw;
+    }
     .content__head img:nth-of-type(1) {
         transform: rotate(35deg);
     }
@@ -85,6 +87,9 @@
     }
     .content__head {
         font-size: 1.25rem;
+    }
+    .content__head p {
+        margin: 0.5rem 1rem;
     }
     .content__text {
         font-size: 0.85rem;
