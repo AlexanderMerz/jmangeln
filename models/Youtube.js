@@ -1,10 +1,11 @@
 const fetch = require('node-fetch');
+const baseUrl = 'https://www.googleapis.com/youtube/v3/search';
 
 module.exports = class Youtube {
 
-    static async getData(channelID, apiKey) {
-        const url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId='
-        + channelID + '&maxResults=10&order=date&type=video&key=' + apiKey;
+    static async getData(channelID) {
+        const url = baseUrl + `?part=snippet&channelId=${channelID}`
+            + `&maxResults=10&order=date&type=video&key=${Youtube.getAPIKey()}`;
         try {
             const response = await fetch(url);
             const json = await response.json();
