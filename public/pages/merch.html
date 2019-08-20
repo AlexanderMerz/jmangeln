@@ -8,7 +8,8 @@
     <title>J&M Angeln - Merch</title>
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/navbar.css">
-    <link rel="stylesheet" href="../styles/cards.css">
+    <link rel="stylesheet" href="../styles/slideshow.css">
+    <script src="https://kit.fontawesome.com/59231fbde3.js"></script>
 
 </head>
 <body>
@@ -43,7 +44,37 @@
         Merch
     </div>
 
-    <script defer src="./scripts/ui.js"></script>
+    <div class="slider">
+        <div class="slide current">
+            <div class="slide__content">
+                <h1>Slide One</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Numquam nobis corrupti porro ullam, magnam rerum.</p>
+            </div>
+        </div>
+        <div class="slide">
+             <div class="slide__content">
+                <h1>Slide Two</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Numquam nobis corrupti porro ullam, magnam rerum.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide__content">
+                <h1>Slide Three</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Numquam nobis corrupti porro ullam, magnam rerum.</p>
+            </div>
+        </div>
+    </div>
+    <div class="dots">
+        <div data-id="1" class="dot current"></div>
+        <div data-id="2" class="dot"></div>
+        <div data-id="3" class="dot"></div>
+    </div>
+
+    <script defer src="../scripts/ui.js"></script>
+    <script defer src="../scripts/slideshow.js"></script>
 
 </body>
 </html>
