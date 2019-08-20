@@ -15,7 +15,8 @@ window.addEventListener('load', async () => {
                     playlist.appendChild(playlistItem);
                 }
             } catch(error) {
-                console.error(error);
+                // Show fallback video
+                player.src += 'YnjdFKQAZhw';
             }
             break;
         }
