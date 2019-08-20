@@ -27,13 +27,13 @@ class PlaylistItem extends HTMLElement {
         `;
     }
     connectedCallback() {
-        const { id } = this.shadowRoot.querySelector('.video').dataset;
+        const { id: videoID } = this.shadowRoot.querySelector('.video').dataset;
+        const player = this.ownerDocument.querySelector('.video-player iframe');
         this.shadowRoot.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('update', {
-                bubbles: true,
-                composed: true,
-                detail: id
-            }));
+            player.src = `https://www.youtube.com/embed/${videoID}`;
+            setTimeout(() => {
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+            }, 1000);
         });
         lazyLoad('.lazy', this.shadowRoot);
     }
