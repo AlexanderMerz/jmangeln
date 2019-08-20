@@ -29,7 +29,8 @@ class PlaylistItem extends HTMLElement {
     connectedCallback() {
         const { id: videoID } = this.shadowRoot.querySelector('.video').dataset;
         const player = this.ownerDocument.querySelector('.video-player iframe');
-        this.shadowRoot.addEventListener('click', () => {
+        const video = this.shadowRoot.querySelector('.video');
+        video.addEventListener('click', () => {
             player.src = `https://www.youtube.com/embed/${videoID}`;
             setTimeout(() => {
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
