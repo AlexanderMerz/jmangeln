@@ -1,18 +1,19 @@
 .slider {
     position: relative;
     overflow: hidden;
-    height: 50vh;
-    width: 100vw;
+    height: calc(100vh - 180px);
+    width: 80vw;
+    margin: 0 auto;
 }
 
 .slide {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     height: 100%;
     width: 100%;
     opacity: 0;
-    transition: opacitiy 0.4s ease-in-out;
+    transition: opacity 0.65s ease-in-out;
 }
 
 .slide.current {
@@ -21,18 +22,19 @@
 
 .slide__content {
     position: absolute;
-    bottom: 0;
-    left: -500px;
-    width: 500px;
+    right: 40px;
+    bottom: 40px;
+    width: 300px;
     background-color: rgba(255, 255, 255, 0.8);
     color: #333;
     padding: 1.5rem;
     opacity: 0;
+    transition: all 0.65s ease-in-out;
 }
 
 .slide__content h1 {
-    margin-bottom: 10px;
-    font-size: 20px;
+    margin: 0 0 4px 0;
+    font-size: 18px;
 }
 
 .slide__content p {
@@ -41,21 +43,27 @@
 
 .slide.current .slide__content {
     opacity: 1;
-    transform: translateX(500px);
-    transition: all 0.7s ease-in-out;
-}
-
-.slide:first-child {
-    background: url('../images/landing.jpeg') no-repeat center center/cover;
 }
 
 .slide:nth-child(2) {
-    background: url('../images/social.jpg') no-repeat center center/cover;
+    background: url('../images/merch_many.jpg');
+    /* background-position: 50% 50%; */
+    background-size: cover;
+    /* background-position: right;  */
+    background-position: 85% 50%;
 }
 
-.slide:nth-child(3) {
-    background: url('../images/tackle.jpg') no-repeat center center/cover;
+.slide:first-child {
+    background: url('../images/merch_muetze.jpg') no-repeat;
+    background-position: 40% 40%;
+    background-size: cover;
 }
+
+/* .slide:nth-child(3) {
+    background: url('../images/merch_test.jpg') no-repeat;
+    background-position: 60% 50%;
+    background-size: cover;
+} */
 
 .dots {
     height: 50px;
@@ -83,7 +91,7 @@
 
 @media (max-width: 500px) {
     .slider {
-        height: calc(100vh - 180px);
+        width: 100vw;
     }
     .buttons button {
         width: 50%;
@@ -93,7 +101,7 @@
     .slide .slide__content {
         width: 100%;
         bottom: -300px;
-        left: 0;
+        right: 0;
     }
     .slide.current .slide__content {
         transform: translateY(-300px);
