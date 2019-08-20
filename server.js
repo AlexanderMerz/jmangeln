@@ -7,6 +7,12 @@ const compression = require('compression');
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_APIKEY,
+    api_secret: process.env.CLOUDINARY_SECRET
+});
 
 /* Controller */
 const blogController = require('./controllers/blog-controller');
@@ -33,12 +39,12 @@ app.set('views', 'views');
 app.set('view engine', 'pug');
 
 /* File Upload Destination */
+const getDefaultFilename = mimetype => new Date().getTime().toString() + '.' + mimetype;
 const upload = multer({
     storage: multer.diskStorage({
-        filename: (req, file, cb) => cb(
-            null, `${new Date().getTime()}`
-            + `.${file.mimetype.split('/')[1]}`
-        )
+        filename: (req, file, cb) => {
+            cb(null, getDefaultFilename(file.mimetype.split('/')[1]));
+        }
     })
 });
 
@@ -50,7 +56,7 @@ app.get('/team', (req, res) => res.sendFile(pages + path.sep + 'team.html'));
 app.get('/social', (req, res) => res.sendFile(pages + path.sep + 'social.html'));
 app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'));
 app.get('/merch', (req, res) => res.sendFile(pages + path.sep + 'merch.html'));
-app.get('/blog/post/:id', blogController.getPostById);
+// app.get('/blog/post/:id', blogController.getPostById);
 app.get('/blog', (req, res) => res.sendFile(pages + path.sep + 'blog.html'));
 
 /* Create Blog Posts */
@@ -65,4 +71,7 @@ app.get('/api/blogs', blogController.getPosts);
 mongoose
     .connect(mongoURL, { useNewUrlParser: true })
     .then(() => app.listen(process.env.PORT || 8080))
-    .catch(error => console.log(error));
+    .catch(error => {
+        console.error(error);
+        process.exit(1);
+    });
