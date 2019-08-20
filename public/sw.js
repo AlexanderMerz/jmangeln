@@ -1,5 +1,5 @@
-const staticCache = 'site-static';
-const dynamicCache = 'site-dynamic';
+const staticCache = 'site-static-v1';
+const dynamicCache = 'site-dynamic-v1';
 const assets = [
     '/',
     '/index.html',
@@ -9,7 +9,6 @@ const assets = [
     '/styles/banner.css',
     '/styles/content.css',
     '/styles/cards.css',
-    '/fonts/OpenSans-Regular.ttf',
     '/fonts/Syncopate-Bold.ttf',
     '/fonts/Exo-Regular.ttf',
     '/scripts/ui.js',
@@ -21,7 +20,14 @@ const assets = [
 ];
 
 self.addEventListener('install', event => {
-    event.waitUntil(caches.open(staticCache).then(cache => cache.addAll(assets)));
+    event.waitUntil(
+        caches.open(staticCache).then(cache => {
+            assets.forEach(asset => cache.add(asset).catch(error => {
+                console.log('Error: ', error);
+                console.log('Asset: ', asset);
+            }));
+        })
+    );
 });
 
 self.addEventListener('activate', event => {
@@ -36,7 +42,7 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-    if (!!~event.request.url.indexOf('/api/blog')) {
+    if (event.request.url.indexOf('/api/blog') > 0) {
         event.respondWith(
             fetch(event.request.url).then(fetchRes => {
                 return caches.open(dynamicCache).then(cache => {
@@ -51,12 +57,12 @@ self.addEventListener('fetch', event => {
                 })
             })
         );
-    } 
-    if (!!~event.request.url.indexOf('/api/youtube')) {
+    } else if (event.request.url.indexOf('/api/youtube') > 0) {
         event.respondWith(
             caches.match(event.request).then(cacheRes => {
                 // Return cached response if it was cached less than 24 hours ago
-                if (cacheRes) {
+                // If cached response has status code of 400 try to fetch again
+                if (cacheRes && cacheRes.status !== 400) {
                     const cachedAt = new Date(cacheRes.headers.get('date')).getTime();
                     const now = new Date().getTime();
                     console.log(now - cachedAt);
