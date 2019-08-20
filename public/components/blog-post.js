@@ -18,7 +18,9 @@ class BlogPost extends HTMLElement {
     }
     connectedCallback() {
         const { id } = this.shadowRoot.querySelector('.post').dataset;
-        this.shadowRoot.addEventListener('click', () => window.location = `/blog/post/${id}`);
+        this.shadowRoot.addEventListener('click', () => {
+            window.location = `/blog/post/${id}`;
+        });
     }
 }
 customElements.define('blog-post', BlogPost);
