@@ -28,7 +28,7 @@ class PlaylistItem extends HTMLElement {
     }
     connectedCallback() {
         const { id: videoID } = this.shadowRoot.querySelector('.video').dataset;
-        this.shadowRoot.addEventListener('click', () => {
+        this.shadowRoot.querySelector('.video').addEventListener('click', () => {
             window.player.loadVideoById(videoID);
             document.body.scrollTop = document.documentElement.scrollTop = 0;
         });
