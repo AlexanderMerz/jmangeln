@@ -37,31 +37,15 @@
 
     <div class="space"></div>
 
-    <div class="path">
-        Home
-        <img src="../images/baseline-arrow_forward-24px.svg" alt="path">
-        Videos
-    </div>
-
     <main class="video-player">
-        <div class="video-wrapper">
-                <iframe
-                title="video-player"
-                alt="video-player"
-                rel="noopener"
-                src="https://www.youtube.com/embed/"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-            ></iframe>
-        </div>
+        <div id="player"></div>
         <section class="playlist"></section>
     </main>
     
     <script defer src="../scripts/ui.js"></script>
-    <script async src="../scripts/fetch.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="../scripts/video-player.js"></script>
     <script defer type="module" src="../components/playlist-item.js"></script>
-    <script defer src="../scripts/video-player.js"></script>
     
 </body>
 </html>
