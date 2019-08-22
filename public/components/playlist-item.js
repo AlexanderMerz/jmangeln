@@ -17,6 +17,7 @@ class PlaylistItem extends HTMLElement {
                 <div class="info">
                     <h3 class="info__title">${title}</h3>
                     <p class="info__date">${date}</p>
+                    <button class="info__button">Jetzt ansehen</button>
                 </div>
                 <img
                     class="lazy video__image"
@@ -29,8 +30,8 @@ class PlaylistItem extends HTMLElement {
     connectedCallback() {
         const { id: videoID } = this.shadowRoot.querySelector('.video').dataset;
         const player = this.ownerDocument.querySelector('.video-player iframe');
-        const video = this.shadowRoot.querySelector('.video');
-        video.addEventListener('click', () => {
+        const button = this.shadowRoot.querySelector('.info__button');
+        button.addEventListener('click', () => {
             player.src = `https://www.youtube.com/embed/${videoID}`;
             setTimeout(() => {
                 document.body.scrollTop = document.documentElement.scrollTop = 0;

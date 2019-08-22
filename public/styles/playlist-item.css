@@ -12,10 +12,7 @@ div, p {
     align-items: center;
     box-shadow: 0 0 4px;
     transition: 0.3s;
-    cursor: pointer;
-}
-.video:hover {
-    transform: scale(1.025);
+    font-size: 14px;
 }
 .info {
     text-align: center;
@@ -34,6 +31,17 @@ div, p {
     opacity: 0.9;
     height: auto;
     width: auto;
+}
+.info__button {
+    border-radius: 4px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border: 1px solid gray;
+    background-color: white;
+    font-size: 16px;
+    margin: 0.5rem auto;
+    cursor: pointer;
 }
 @media screen and (max-width: 768px) {
     .video {
@@ -59,7 +67,10 @@ div, p {
     .info {
         padding: 0;
     }
-    .info__date {
+    .info__button {
+        margin-bottom: 2rem;
+    }
+    .date {
         display: none;
     }
 }
