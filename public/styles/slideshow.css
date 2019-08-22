@@ -92,7 +92,7 @@
 @media (max-width: 500px) {
     .slider {
         height: 60vh;
-        width: 90vw;
+        width: 100vw;
     }
     .buttons button {
         width: 50%;
