@@ -1,0 +1,36 @@
+section.social {
+    position: relative;
+    height: 30vh;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+section.social i {
+    color: var(--primary-color);
+    font-size: 10vw;
+}
+
+section.social * {
+    margin: 0 3vw;
+    opacity: 0.8;
+}
+
+.line {
+    height: 105%;
+    width: 2px;
+    background-color: var(--primary-color);
+    transform: rotate(20deg);
+}
+
+@media (max-width: 800px) {
+    section.social {
+        height: 150px;
+    }
+    section.social i {
+        font-size: 4rem;
+    }
+}
