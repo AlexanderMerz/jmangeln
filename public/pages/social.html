@@ -10,8 +10,15 @@
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/social.css">
+    <link rel="stylesheet" href="../styles/cards.css">
 
     <script src="https://kit.fontawesome.com/59231fbde3.js"></script>
+    <script>
+        window.addEventListener('load', e => {
+            Array.from(document.querySelectorAll('.social *'))
+                .forEach(element => element.style.opacity = 1);
+        });
+    </script>
 
 </head>
 <body>
@@ -80,7 +87,6 @@
     </main>
 
     <script defer src="./scripts/ui.js"></script>
-    <link rel="stylesheet" href="../styles/cards.css">
     <script type="module" src="../components/info-card.js"></script>
 
 </body>
