@@ -6,7 +6,7 @@ section.social {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 section.social i {
@@ -16,7 +16,7 @@ section.social i {
 
 section.social * {
     margin: 0 3vw;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .line {
@@ -26,11 +26,17 @@ section.social * {
     transform: rotate(20deg);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
     section.social {
         height: 150px;
     }
     section.social i {
-        font-size: 4rem;
+        font-size: 5rem;
+    }
+}
+
+@media (max-width: 426px) {
+    .line {
+        display: none;
     }
 }
