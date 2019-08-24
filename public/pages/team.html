@@ -6,18 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>J&M Angeln - Team</title>
+
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/navbar.css">
-    <link rel="stylesheet" href="../styles/content.css">
-    <link rel="stylesheet" href="../styles/cards.css">
 
 </head>
 <body>
     
     <header class="navbar">
         <picture class="navbar__brand">
-            <source  srcset="./images/brand.webp" type="image/webp">
-            <source srcset="./images/brand.jpg" type="image/jpeg"> 
+            <!-- <source  srcset="./images/brand.webp" type="image/webp"> -->
+            <source srcset="./images/brand_small.jpg" type="image/jpeg">
             <img src="./images/brand.jpg" alt="J&M Angeln Logo">
         </picture>
         <nav class="navbar__navigation">
@@ -73,7 +72,9 @@
     </main>
 
     <script defer src="./scripts/ui.js"></script>
-    <script defer type="module" src="../components/info-card.js"></script>
+    <link rel="stylesheet" href="../styles/content.css">
+    <link rel="stylesheet" href="../styles/cards.css">
+    <script type="module" src="../components/info-card.js"></script>
 
 </body>
 </html>

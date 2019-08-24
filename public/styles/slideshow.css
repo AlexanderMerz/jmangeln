@@ -47,9 +47,7 @@
 
 .slide:nth-child(2) {
     background: url('../images/merch_many.jpg');
-    /* background-position: 50% 50%; */
     background-size: cover;
-    /* background-position: right;  */
     background-position: 85% 50%;
 }
 
@@ -58,12 +56,6 @@
     background-position: 40% 40%;
     background-size: cover;
 }
-
-/* .slide:nth-child(3) {
-    background: url('../images/merch_test.jpg') no-repeat;
-    background-position: 60% 50%;
-    background-size: cover;
-} */
 
 .dots {
     height: 30px;
