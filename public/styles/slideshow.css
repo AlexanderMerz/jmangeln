@@ -1,7 +1,7 @@
 .slider {
     position: relative;
     overflow: hidden;
-    height: calc(100vh - 180px);
+    height: 60vh;
     width: 80vw;
     margin: 0 auto;
 }
@@ -91,7 +91,6 @@
 
 @media (max-width: 500px) {
     .slider {
-        height: 60vh;
         width: 100vw;
     }
     .buttons button {
