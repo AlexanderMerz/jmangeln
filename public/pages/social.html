@@ -9,16 +9,7 @@
 
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/navbar.css">
-    <link rel="stylesheet" href="../styles/social.css">
     <link rel="stylesheet" href="../styles/cards.css">
-
-    <script src="https://kit.fontawesome.com/59231fbde3.js"></script>
-    <script>
-        window.addEventListener('load', e => {
-            Array.from(document.querySelectorAll('.social *'))
-                .forEach(element => element.style.opacity = 1);
-        });
-    </script>
 
 </head>
 <body>
@@ -53,14 +44,6 @@
         Social
     </div>
 
-    <section class="social">
-        <i class="fab fa-facebook-square"></i>
-        <div class="line"></div>
-        <i class="fab fa-youtube"></i>
-        <div class="line"></div>
-        <i class="fab fa-instagram"></i>
-    </section>
-
     <main>
         <section class="cards">
             <div class="card-wrapper">
@@ -87,7 +70,7 @@
     </main>
 
     <script defer src="./scripts/ui.js"></script>
-    <script type="module" src="../components/info-card.js"></script>
+    <script type="module" src="../components/info-card.mjs"></script>
 
 </body>
 </html>
