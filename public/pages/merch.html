@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/slideshow.css">
+    <link rel="stylesheet" href="../styles/cards.css">
 
 </head>
 <body>
@@ -45,7 +46,7 @@
     </div>
 
     <main>
-        <div class="slider">
+        <section class="slider">
             <div class="slide current">
             <div class="slide__content">
                 <h1>Slide One</h1>
@@ -60,15 +61,55 @@
                         Numquam nobis corrupti porro ullam, magnam rerum.</p>
                 </div>
             </div>
-        </div>
+        </section>
         <div class="dots">
             <div data-id="1" class="dot current"></div>
             <div data-id="2" class="dot"></div>
         </div>
+        <section class="products cards">
+            <div class="card-wrapper">
+                <!-- <product-card
+                    title="Cap"
+                    price="11.99"
+                    image="https://via.placeholder.com/500x180"
+                >
+                    <ul>
+                        <li>Grün</li>
+                        <li>Pink</li>
+                    </ul>
+                </product-card>
+                <product-card
+                    title="Pullover"
+                    price="20.00"
+                    image="https://via.placeholder.com/500x180"
+                >
+                    <ul>
+                        <li>S</li>
+                        <li>M</li>
+                        <li>L</li>
+                        <li>XL</li>
+                    </ul>
+                </product-card>
+                <product-card
+                    title="Pullover"
+                    price="20.00"
+                    image="https://via.placeholder.com/500x180"
+                >
+                    <ul>
+                        <li>S</li>
+                        <li>M</li>
+                        <li>L</li>
+                        <li>XL</li>
+                    </ul>
+                </product-card> -->
+            </div>
+        </section>
     </main>
 
+    <script src="../scripts/fetch.js"></script>
     <script defer src="../scripts/ui.js"></script>
     <script defer src="../scripts/slideshow.js"></script>
+    <script defer type="module" src="../components/product-card.js"></script>
 
 </body>
 </html>
