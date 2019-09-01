@@ -16,6 +16,7 @@ cloudinary.config({
 
 /* Controller */
 const blogController = require('./controllers/blog-controller');
+const productController = require('./controllers/product-controller');
 const youtubeController = require('./controllers/youtube-controller');
 
 const mongoURL = 'mongodb+srv://'
@@ -66,6 +67,7 @@ app.post('/create-post', upload.single('image'), blogController.createPost);
 /* API Endpoints */
 app.get('/api/youtube', youtubeController.getData);
 app.get('/api/blogs', blogController.getPosts);
+app.get('/api/products', productController.getProducts);
 
 /* Database Connection + Server Start */
 mongoose

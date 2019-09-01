@@ -1,4 +1,5 @@
 const Product = require('../models/Product');
+const cloudinary = require('cloudinary').v2;
 
 exports.addProduct = async (req, res) => {
     const { name, price, description, image } = req.params;
@@ -7,7 +8,11 @@ exports.addProduct = async (req, res) => {
 };
 
 exports.getProducts = async (req, res) => {
-    const products = await Product.find().sort({ release: -1 });
+    let products = await Product.find();
+    for (let product of products) {
+        product.image = cloudinary.url(product.image);
+    }
+    console.log(products);
     return res.status(200).json(products);
 };
 
