@@ -1,6 +1,6 @@
 import { lazyLoad } from '../scripts/lazy-load.mjs';
 
-class InfoCard extends HTMLElement {
+export default class InfoCard extends HTMLElement {
     constructor() {
         super();
 
