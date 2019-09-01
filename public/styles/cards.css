@@ -13,15 +13,17 @@
     grid-gap: 2rem;
 }
 
-.card-wrapper info-card {
+.card-wrapper info-card,
+.card-wrapper product-card {
     margin: 0 auto;
     cursor: pointer;
     text-align: center;
+    transition: all 0.35s;
 }
 
-.card-wrapper info-card:hover {
-    position: relative;
-    top: -4px;
+.card-wrapper info-card:hover,
+.card-wrapper product-card:hover {
+    transform: scale(1.05);
 }
 
 @media (max-width: 400px) {
@@ -32,7 +34,8 @@
         padding: 0 0 4px 0;
         grid-template-columns: repeat(auto-fit, minmax(312px, 1fr));
     }
-    .card-wrapper info-card:hover {
-        top: 0;
+    .card-wrapper info-card:hover,
+    .card-wrapper product-card:hover {
+        transform: none;
     }
 }

@@ -14,6 +14,7 @@ div, p {
     transition: 0.3s;
     font-size: 14px;
     cursor: pointer;
+    border-radius: 32px;
 }
 .video:hover {
     transform: scale(1.05);
@@ -35,6 +36,7 @@ div, p {
     opacity: 0.9;
     height: auto;
     width: auto;
+    border-radius: 32px;
 }
 @media screen and (max-width: 768px) {
     .video {
@@ -51,6 +53,9 @@ div, p {
     }
     .video:hover {
         transform: none;
+    }
+    .video__image {
+        border-radius: 32px 32px 0 0;
     }
     .info__title {
         margin: 0;
