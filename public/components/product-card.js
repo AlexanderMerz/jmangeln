@@ -52,7 +52,7 @@ class ProductCard extends InfoCard {
             `;
             Array.from(this.assignedNodes()[0].children).forEach(li => {
                 li.style.cssText = `
-                    font-size: 12px;
+                    font-size: 13px;
                     border: none;
                     box-shadow: 0 0 2px;
                     outline: none;
