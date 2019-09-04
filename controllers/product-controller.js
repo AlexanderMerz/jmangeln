@@ -10,9 +10,10 @@ exports.addProduct = async (req, res) => {
 exports.getProducts = async (req, res) => {
     let products = await Product.find();
     for (let product of products) {
-        product.image = cloudinary.url(product.image);
+        product.image = cloudinary
+            .url(product.image)
+            .replace('http', 'https');
     }
-    console.log(products);
     return res.status(200).json(products);
 };
 
