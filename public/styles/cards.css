@@ -5,6 +5,7 @@
 
 .card-wrapper {
     width: 85%;
+    max-width: 1374px;
     margin: 0 auto;
     padding: 2.5rem 0;
     display: grid;
