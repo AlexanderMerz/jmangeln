@@ -65,7 +65,7 @@ app.get('/create-post', (req, res) => res.sendFile(pages + path.sep + 'create-po
 app.post('/create-post', upload.single('image'), blogController.createPost);
 
 /* API Endpoints */
-app.get('/api/youtube', youtubeController.getData);
+app.get('/api/youtube', youtubeController.getVideos);
 app.get('/api/blogs', blogController.getPosts);
 app.get('/api/products', productController.getProducts);
 
