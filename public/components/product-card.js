@@ -3,35 +3,42 @@ import { lazyLoad } from '../scripts/lazy-load.mjs';
 
 class ProductCard extends InfoCard {
 
+    quantity = 0;
+
     constructor() {
         super();
+
+        const style = document.createElement('style');
+        style.textContent = '@import "../styles/product-card.css"';
+        this.shadowRoot.append(style);
         
         // Create new elements
+        const action = document.createElement('div');
+        const quantity = document.createElement('div');
         const button = document.createElement('button');
-
+        const input = document.createElement('input');
+        
         // Select existing elements
-        const content = this.shadowRoot.querySelector('.card__content');
+        const card = this.shadowRoot.querySelector('.card');
         const h1 = this.shadowRoot.querySelector('h1');
-        const p = this.shadowRoot.querySelector('p');
         
         h1.appendChild(document.createElement('span'));
         h1.appendChild(document.createElement('span'));
-        
-        // Assign styling and properties
-        [h1, p].forEach(element => element.style.cssText = `
-            width: 50%;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        `);
-        content.style.cssText += 'display:flex';
+
+        quantity.classList.add('quantity');
+        action.classList.add('action');
         button.classList.add('btn');
+
         button.innerText = 'In den Einkaufswagen';
+        button.style.width = '50%';
+        input.type = 'number';
+        input.value = 0;
 
         // Append to Shadow DOM
-        this.shadowRoot.querySelector('.card').appendChild(button);
+        quantity.appendChild(input);
+        action.appendChild(quantity);
+        action.appendChild(button);
+        card.appendChild(action);
     }
     
     connectedCallback() {
@@ -42,7 +49,6 @@ class ProductCard extends InfoCard {
         image.dataset.src = this.getAttribute('image');
         lazyLoad('.lazy', this.shadowRoot);
         this.shadowRoot.querySelector('slot').addEventListener('slotchange', function () {
-            // console.log(this.assignedNodes());
             this.assignedNodes()[0].style.cssText = `
                 list-style: none;
                 display: flex;
