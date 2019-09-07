@@ -35,7 +35,8 @@ class ProductCard extends InfoCard {
         input.value = 1;
         input.min = 1;
         input.max = 99;
-        
+        input.pattern = '[0-9]';
+
         // Append to Shadow DOM
         quantity.appendChild(input);
         action.appendChild(quantity);
