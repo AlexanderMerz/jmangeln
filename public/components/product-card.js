@@ -32,8 +32,10 @@ class ProductCard extends InfoCard {
         button.innerText = 'In den Einkaufswagen';
         button.style.width = '50%';
         input.type = 'number';
-        input.value = 0;
-
+        input.value = 1;
+        input.min = 1;
+        input.max = 99;
+        
         // Append to Shadow DOM
         quantity.appendChild(input);
         action.appendChild(quantity);
