@@ -1,6 +1,6 @@
 .navbar {
     position: fixed;
-    height: 80px;
+    height: 70px;
     width: 100vw;
     background-color: black;
     display: flex;
@@ -30,8 +30,8 @@
     width: 100%;
 }
 .navbar__navigation ul li {
-    font-size: 1.6rem;
-    height: 80px;
+    font-size: 1.5rem;
+    height: 70px;
     width: 100%;
 }
 .navbar__navigation ul li a {
@@ -106,10 +106,10 @@
         overflow: hidden;
         transition: width 0.2s;
         -webkit-transition: width 0.2s;
-        margin: 80px 0 0 0;
+        margin: 70px 0 0 0;
     }
     .navbar__navigation ul {
-        height: calc(100vh - 80px);
+        height: calc(100vh - 70px);
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
