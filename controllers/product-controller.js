@@ -10,14 +10,12 @@ exports.addProduct = async (req, res) => {
 exports.getProducts = async (req, res) => {
     let products = await Product.find();
     for (let product of products) {
-        product.image = cloudinary
-            .url(product.image)
-            .replace('http', 'https');
+        product.image = 'https://Placehold.it/500x200';
+        // cloudinary
+        //     .url(product.image)
+        //     .replace('http', 'https');
     }
     return res.status(200).json(products);
 };
 
-exports.findProductById = async (req, res) => {
-    const product = await BlogPost.findOne({ id: req.params.id });
-    return res.status(200).json(product);
-};
+exports.findProductById = async id => await Product.findOne({ id });
