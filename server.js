@@ -15,9 +15,13 @@ cloudinary.config({
 });
 
 /* Controller */
-const blogController = require('./controllers/blog-controller');
+// const youtubeController = require('./controllers/youtube-controller');
 const productController = require('./controllers/product-controller');
-const youtubeController = require('./controllers/youtube-controller');
+const cartController = require('./controllers/cart-controller');
+const blogController = require('./controllers/blog-controller');
+
+const youtubeService = require('./services/youtube-service');
+const { parseText } = require('./middleware/textparser');
 
 const mongoURL = 'mongodb+srv://'
   + process.env.MONGO_USER + ':'
@@ -30,9 +34,9 @@ const mongoURL = 'mongodb+srv://'
 const app = express();
 
 /* App Configuration */
-app.use(compression());
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 /* Set Views Folder and Templating Engine */
@@ -57,7 +61,6 @@ app.get('/team', (req, res) => res.sendFile(pages + path.sep + 'team.html'));
 app.get('/social', (req, res) => res.sendFile(pages + path.sep + 'social.html'));
 app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'));
 app.get('/merch', (req, res) => res.sendFile(pages + path.sep + 'merch.html'));
-// app.get('/blog/post/:id', blogController.getPostById);
 app.get('/blog', (req, res) => res.sendFile(pages + path.sep + 'blog.html'));
 
 /* Create Blog Posts */
@@ -65,9 +68,19 @@ app.get('/create-post', (req, res) => res.sendFile(pages + path.sep + 'create-po
 app.post('/create-post', upload.single('image'), blogController.createPost);
 
 /* API Endpoints */
-app.get('/api/youtube', youtubeController.getVideos);
+app.get('/api/youtube', async (req, res) => {
+    try {
+        const videos = await youtubeService.fetchVideos();
+        return res.status(200).json(videos);
+    } catch (error) {
+        return res.status(400).end();
+    }
+});
 app.get('/api/blogs', blogController.getPosts);
 app.get('/api/products', productController.getProducts);
+
+app.post('/cart', parseText, cartController.addToCart);
+app.get('/cart', cartController.getCart);
 
 /* Database Connection + Server Start */
 mongoose
