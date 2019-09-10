@@ -90,32 +90,44 @@ class ProductCard extends InfoCard {
         lazyLoad('.lazy', this.shadowRoot);
 
         this.shadowRoot.querySelector('slot').addEventListener('slotchange', function() {
-            const list = this.assignedNodes()[1];
-            list.style.cssText = `
-                list-style: none;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
+
+            // Elements
+
+            const heading = this.assignedNodes()[0];
+            const wrapper = this.assignedNodes()[2];
+            const select = wrapper.firstElementChild;
+            const { options } = select;
+            
+            // Styling
+            
+            heading.style.cssText = `
+                font-family: Verdana;
+                font-size: 18px;
+                font-weight: 100;
+                margin: 0 0 0.25rem 0;
             `;
-            Array.from(list.children).forEach(li => {
-                li.style.cssText = `
-                    font-size: 13px;
-                    border: none;
-                    box-shadow: 0 0 1px;
-                    outline: none;
-                    background-color: white;
-                    color: black;
-                    padding: 10px;
-                    text-align: center;
-                    cursor: pointer;
-                `;
-                li.addEventListener('click', function() {
-                    Array.from(list.children).filter(li => this !== li)
-                        .forEach(li => li.style.backgroundColor = 'white');
-                    this.style.backgroundColor = 'lightgray';
-                    productCard.dataset.meta = this.innerText;
-                });
+            wrapper.style.width = '50%';
+            select.style.cssText = `
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                appearance: none;
+                border: none;
+                width: 100%;
+                border: none;
+                outline: none;
+                box-shadow: 0 0 2px;
+                padding: 0.5rem;
+                font-family: Verdana;
+                font-weight: 100;
+                cursor: pointer;
+                border-radius: 4px;
+            `;
+                
+            // Logic
+
+            productCard.dataset.meta = select.value;
+            select.addEventListener('change', function() {
+                productCard.dataset.meta = this.value; 
             });
         });
     }

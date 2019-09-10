@@ -13,10 +13,16 @@ window.addEventListener('load', async () => {
                 productCard.setAttribute('price', product.price);
                 productCard.setAttribute('image', product.image);
                 productCard.dataset.id = product._id;
-                const meta = product.meta.map(data => `<li>${data}</li>`);
-                productCard.innerHTML = product.meta.some(data => data.length > 2)
-                    ? '<h3>Farbe wählen</h3>' : '<h3>Größe wählen</h3>';
-                productCard.innerHTML += `<ul>${meta.join('')}</ul>`;
+                const options = product.meta.map(data => 
+                    `<option value="${data}">${data}</option>`);
+                productCard.innerHTML = product.meta
+                    .some(data => data.length > 2)
+                        ? '<h3>Farbe</h3>'
+                        : '<h3>Größe</h3>';
+                productCard.innerHTML += `
+                    <div class="select-wrapper">
+                        <select>${options}</select>
+                    </div>`;
                 wrapper.appendChild(productCard);
             }
         }

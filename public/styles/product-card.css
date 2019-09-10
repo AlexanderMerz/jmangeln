@@ -1,11 +1,19 @@
-h1,
-p {
+.card__content h1,
+.card__content p {
     width: 50%;
-    padding: 1rem;
+    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.card__content h1 {
+    padding: 1rem 0 1rem 1rem;
+}
+
+.card__content p {
+    padding: 1rem 1rem 1rem 0;
 }
 
 .action {
@@ -17,7 +25,6 @@ p {
 }
 
 .btn {
-    font-family: Exo, sans-serif;
     font-size: 1rem;
     margin: 0 auto;
     width: 50%;

@@ -24,7 +24,7 @@
 
 .card-wrapper info-card:hover,
 .card-wrapper product-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.033);
 }
 
 @media (max-width: 400px) {
