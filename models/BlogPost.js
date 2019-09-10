@@ -1,9 +1,11 @@
-const { model, Schema } = require('mongoose');
+const mongoose = require('mongoose');
 
-module.exports = model('BlogPost', new Schema({
+const blogPostSchema = new mongoose.Schema({
     id: Number,
     title: String,
     content: String,
     image: String,
     date: { type: Date, default: Date.now }
-}));
+});
+
+module.exports = mongoose.model('BlogPost', blogPostSchema);
