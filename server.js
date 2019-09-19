@@ -22,6 +22,7 @@ const blogController = require('./controllers/blog-controller');
 
 const youtubeService = require('./services/youtube-service');
 const { parseText } = require('./middleware/textparser');
+const { capitalizeFirstLetter } = require('./helper/stringModifier');
 
 const mongoURL = 'mongodb+srv://'
   + process.env.MONGO_USER + ':'
@@ -63,14 +64,23 @@ app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'))
 
 /* Merch & Merch Subpages */
 app.get('/merch/*', async (req, res) => {
-    const category = req.url.split('merch/')[1];
-    const products = await productController.findProductsByCategory(category);
+    const category = capitalizeFirstLetter(req.url.split('merch/')[1]);
+    const products = await productController.findProductsByCategory(category.toLowerCase());
+    console.log(products);
     return products.length > 0
-        ? res.status(200).render('products', { products })
+        ? res.status(200).render('products', { category, products })
         : res.status(404).redirect('/');
-
 });
 app.get('/merch', (req, res) => res.sendFile(pages + path.sep + 'merch.html'));
+app.get('/produkt/:id', async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    const product = await productController.findProductById(id);
+    console.log(product);
+    return product
+        ? res.status(200).json(product)
+        : res.status(400).redirect('/merch');
+});
 
 /* Blog */
 app.get('/blog', (req, res) => res.sendFile(pages + path.sep + 'blog.html'));
@@ -85,7 +95,7 @@ app.get('/api/youtube', async (req, res) => {
         const videos = await youtubeService.fetchVideos();
         return res.status(200).json(videos);
     } catch (error) {
-        return res.status(400).end();
+        return res.status(404).end();
     }
 });
 app.get('/api/blogs', blogController.getPosts);
