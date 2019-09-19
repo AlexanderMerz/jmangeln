@@ -2,7 +2,7 @@
     position: relative;
     overflow: hidden;
     height: 60vh;
-    width: 85vw;
+    width: 90vw;
     margin: 0 auto;
 }
 
@@ -62,7 +62,8 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin: 0.5rem auto;
 }
 
 .dot {
