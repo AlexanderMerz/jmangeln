@@ -16,6 +16,6 @@ exports.getProducts = async (req, res) => {
     return res.status(200).json(products);
 };
 
-exports.findProductById = async id => await Product.findOne({ id });
+exports.findProductById = async id => await Product.findOne({ _id: id });
 
 exports.findProductsByCategory = async category => await Product.find({ category });
