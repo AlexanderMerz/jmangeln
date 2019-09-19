@@ -2,11 +2,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
-    margin: 1rem;
+    margin: auto 1rem;
 }
 .product {
     position: relative;
-    height: fit-content;
+    height: 250px;
     width: 100%;
     border: 1px solid gray;
     display: flex;
@@ -16,10 +16,11 @@
     border: 1px solid black;
 }
 .product__image {
-    height: 250px;
-    width: 250px;
+    align-self: center;
+    height: 220px;
+    width: 220px;
     object-fit: cover;
-    padding: 1rem;
+    margin: 1rem;
 }
 .product > div {
     width: 100%;
@@ -27,25 +28,28 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 1rem 0 0 0;
 }
 .product div h1 {
-    margin-bottom: 0;
+    margin: 0;
 }
 .product div p {
     font-size: 14px;
     text-align: justify;
-    margin: 2.5% 5%;
+    margin: 1rem 5%;
 }
-.product button {
+.product a {
     font-family: 'Exo', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     border: none;
     outline: none;
     background-color: white;
     cursor: pointer;
+    color: black;
+    text-decoration: none;
     padding: 1rem;
 }
-.product button:hover {
+.product a:hover {
     background-color: rgb(240, 240, 240);
 }
 .test {
@@ -59,8 +63,8 @@
     cursor: pointer;
 }
 .test span {
-    font-size: 18px;
-    margin: 1px 1.5rem 0 0;
+    font-size: 16px;
+    margin: 1px 0.5rem 0 0;
 }
 .product hr {
     border: none;
@@ -69,4 +73,26 @@
     width: 90%;
     margin: 0 auto;
     background-color: gray;
+}
+@media (max-width: 1024px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 500px) {
+    .product {
+        flex-direction: column;
+        height: fit-content;
+    }
+    .product__image {
+        width: 100%;
+        height: 150px;
+        margin: 0;
+    }
+    .product hr {
+        display: none;
+    }
+    .test {
+        margin-top: 1.5rem;
+    }
 }
