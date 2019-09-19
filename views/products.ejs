@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Produkte</title>
+    <link rel="stylesheet" href="/styles/global.css"/>
+    <link rel="stylesheet" href="/styles/navbar.css"/>
+    <link rel="stylesheet" href="/styles/products.css"/>
+  </head>
+  <body>
+    <header class="navbar">
+      <picture class="navbar__brand">
+        <!-- <source  srcset="./images/brand.webp" type="image/webp"> -->
+        <source srcset="/images/brand_small.jpg" type="image/jpeg" />
+        <img src="/images/brand.jpg" alt="J&M Angeln Logo" />
+      </picture>
+      <nav class="navbar__navigation">
+        <ul>
+          <li><a href="/team">Team</a></li>
+          <li><a href="/videos">Videos</a></li>
+          <li><a href="/social">Social</a></li>
+          <li><a href="/merch">Merch</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="menu-icon">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+      </div>
+    </header>
+
+    <div class="space"></div>
+
+    <section class="products">
+      <% for (const product of products) { %>
+        <div class="product">
+          <img class="product__image" src="https://Placehold.it/500x300" alt="" />
+          <div>
+            <div>
+              <h1><%= product.name %></h1>
+              <hr />
+              <p><%= product.description %></p>
+            </div>
+            <div class="test">
+              <span><%= product.price %> €</span>
+              <img src="/images/star.svg" />
+              <button>Zum Produkt</button>
+            </div>
+          </div>
+      <% } %>
+    </section>
+    
+  </body>
+</html>

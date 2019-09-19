@@ -15,7 +15,7 @@ cloudinary.config({
 });
 
 /* Controller */
-// const youtubeController = require('./controllers/youtube-controller');
+const categoryController = require('./controllers/category-controller');
 const productController = require('./controllers/product-controller');
 const cartController = require('./controllers/cart-controller');
 const blogController = require('./controllers/blog-controller');
@@ -36,12 +36,12 @@ const app = express();
 /* App Configuration */
 app.use(express.static('public'));
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 /* Set Views Folder and Templating Engine */
 app.set('views', 'views');
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 /* File Upload Destination */
 const getDefaultFilename = mimetype => new Date().getTime().toString() + '.' + mimetype;
@@ -60,7 +60,19 @@ const pages = path.join(__dirname, 'public', 'pages');
 app.get('/team', (req, res) => res.sendFile(pages + path.sep + 'team.html'));
 app.get('/social', (req, res) => res.sendFile(pages + path.sep + 'social.html'));
 app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'));
+
+/* Merch & Merch Subpages */
+app.get('/merch/*', async (req, res) => {
+    const category = req.url.split('merch/')[1];
+    const products = await productController.findProductsByCategory(category);
+    return products.length > 0
+        ? res.status(200).render('products', { products })
+        : res.status(404).redirect('/');
+
+});
 app.get('/merch', (req, res) => res.sendFile(pages + path.sep + 'merch.html'));
+
+/* Blog */
 app.get('/blog', (req, res) => res.sendFile(pages + path.sep + 'blog.html'));
 
 /* Create Blog Posts */
@@ -78,13 +90,14 @@ app.get('/api/youtube', async (req, res) => {
 });
 app.get('/api/blogs', blogController.getPosts);
 app.get('/api/products', productController.getProducts);
+app.get('/api/categories', categoryController.getCategories);
 
+/* Shopping Cart */
 app.post('/cart', parseText, cartController.addToCart);
 app.get('/cart', cartController.getCart);
 
 /* Database Connection + Server Start */
-mongoose
-    .connect(mongoURL, { useNewUrlParser: true })
+mongoose.connect(mongoURL, { useNewUrlParser: true })
     .then(() => app.listen(process.env.PORT || 8080))
     .catch(error => {
         console.error(error);

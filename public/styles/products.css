@@ -1,0 +1,72 @@
+.products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin: 1rem;
+}
+.product {
+    position: relative;
+    height: fit-content;
+    width: 100%;
+    border: 1px solid gray;
+    display: flex;
+    box-shadow: 0 2px 4px 0 gray;
+}
+.product:hover {
+    border: 1px solid black;
+}
+.product__image {
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    padding: 1rem;
+}
+.product > div {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.product div h1 {
+    margin-bottom: 0;
+}
+.product div p {
+    font-size: 14px;
+    text-align: justify;
+    margin: 2.5% 5%;
+}
+.product button {
+    font-family: 'Exo', sans-serif;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: white;
+    cursor: pointer;
+    padding: 1rem;
+}
+.product button:hover {
+    background-color: rgb(240, 240, 240);
+}
+.test {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.test img {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+.test span {
+    font-size: 18px;
+    margin: 1px 1.5rem 0 0;
+}
+.product hr {
+    border: none;
+    outline: none;
+    height: 1px;
+    width: 90%;
+    margin: 0 auto;
+    background-color: gray;
+}
