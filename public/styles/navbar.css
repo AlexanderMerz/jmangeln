@@ -2,7 +2,7 @@
     position: fixed;
     height: 70px;
     width: 100vw;
-    background-color: black;
+    background: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,7 +30,7 @@
     width: 100%;
 }
 .navbar__navigation ul li {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     height: 70px;
     width: 100%;
 }
@@ -42,13 +42,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    letter-spacing: 2px;
+    transition: letter-spacing 0.2s;
 }
 .navbar__navigation ul li a.active {
     color: var(--primary-color);
 }
 .navbar__navigation ul li a:hover {
-    background-color: rgb(12, 12, 12);
     color: var(--primary-color);
+    letter-spacing: 4px;
 }
 .sticky {
     position: fixed;
@@ -119,5 +121,11 @@
         font-size: 1.5rem;
         height: 60px;
         transition: opacity 0.125s;
+    }
+}
+@media (max-width: 425px) {
+    .navbar__navigation ul li {
+        font-size: 1.3rem;
+        height: 50px;
     }
 }

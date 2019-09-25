@@ -14,16 +14,14 @@
     grid-gap: 2rem;
 }
 
-.card-wrapper info-card,
-.card-wrapper product-card {
+.card-wrapper info-card {
     margin: 0 auto;
     cursor: pointer;
     text-align: center;
     transition: all 0.35s;
 }
 
-.card-wrapper info-card:hover,
-.card-wrapper product-card:hover {
+.card-wrapper info-card:hover {
     transform: scale(1.033);
 }
 
@@ -35,8 +33,7 @@
         padding: 0 0 4px 0;
         grid-template-columns: repeat(auto-fit, minmax(312px, 1fr));
     }
-    .card-wrapper info-card:hover,
-    .card-wrapper product-card:hover {
+    .card-wrapper info-card:hover {
         transform: none;
     }
 }

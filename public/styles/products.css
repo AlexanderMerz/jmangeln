@@ -2,18 +2,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
-    margin: auto 1rem;
+    margin: 0 1rem;
 }
 .product {
     position: relative;
     height: 250px;
     width: 100%;
-    border: 1px solid gray;
     display: flex;
     box-shadow: 0 2px 4px 0 gray;
-}
-.product:hover {
-    border: 1px solid black;
 }
 .product__image {
     align-self: center;
@@ -32,6 +28,7 @@
 }
 .product div h1 {
     margin: 0;
+    font-size: 32px;
 }
 .product div p {
     font-size: 14px;
@@ -57,6 +54,7 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    margin-top: 1rem;
 }
 .test img {
     margin-right: 0.5rem;
@@ -64,7 +62,7 @@
 }
 .test span {
     font-size: 16px;
-    margin: 1px 0.5rem 0 0;
+    margin: 1px 1.5rem 0 0;
 }
 .product hr {
     border: none;
@@ -91,8 +89,5 @@
     }
     .product hr {
         display: none;
-    }
-    .test {
-        margin-top: 1.5rem;
     }
 }

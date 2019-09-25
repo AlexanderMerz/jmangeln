@@ -4,8 +4,15 @@
     margin: 0 auto;
     text-align: center;
     align-self: center;
+    background-color: black;
 }
 #player {
     width: 100vw;
     height: calc(100vh - 70px);
+}
+.playlist {
+    position: relative;
+    height: fit-content;
+    background-color: black;
+    padding-bottom: 0.5rem;
 }
