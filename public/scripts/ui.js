@@ -2,8 +2,7 @@ const logo = document.querySelector('.navbar__brand img');
 const navigation = document.querySelector('.navbar__navigation');
 const ul = document.querySelector('.navbar__navigation ul');
 const menuIcon = document.querySelector('.menu-icon');
-
-// document.addEventListener('touchmove', event => event.preventDefault());
+const down = document.querySelector('.down img');
 
 logo.addEventListener('click', () => window.location = '/');
 
@@ -17,3 +16,13 @@ menuIcon.addEventListener('click', function() {
         Array.from(ul.children).forEach(li => li.style.opacity =  0);
     }
 });
+
+if (this.location.pathname === '/') {
+    down.addEventListener('mouseover', () => {
+        const content = document.querySelector('.content');
+        window.scrollTo({
+            top: (content.getBoundingClientRect().top - 100),
+            behavior: 'smooth'
+        });
+    });
+}
