@@ -66,17 +66,13 @@ app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'))
 app.get('/merch/*', async (req, res) => {
     const category = capitalizeFirstLetter(req.url.split('merch/')[1]);
     const products = await productController.findProductsByCategory(category.toLowerCase());
-    console.log(products);
     return products.length > 0
-        ? res.status(200).render('products', { category, products })
+        ? res.status(200).render('product-list', { category, products })
         : res.status(404).redirect('/');
 });
 app.get('/merch', (req, res) => res.sendFile(pages + path.sep + 'merch.html'));
 app.get('/produkt/:id', async (req, res) => {
-    const { id } = req.params;
-    console.log(id);
-    const product = await productController.findProductById(id);
-    console.log(product);
+    const product = await productController.findProductById(req.params.id);
     return product
         ? res.status(200).json(product)
         : res.status(400).redirect('/merch');
