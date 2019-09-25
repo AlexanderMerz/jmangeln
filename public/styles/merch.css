@@ -2,9 +2,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 1rem;
-    margin: 0 auto 1rem auto;
-    width: 90%;
+    grid-gap: 0;
+    width: 100%;
 }
 
 .category {
@@ -15,7 +14,6 @@
     position: relative;
     background-image: url('https://Placehold.it/500x250');
     background-position: center;
-    border: 1px solid darkgray;
     cursor: pointer;
 }
 
@@ -29,4 +27,10 @@
     position: absolute;
     bottom: 0;
     color: white;
+}
+@media (max-width: 425px) {
+    .categories {
+        width: 100%;
+        margin: 0;
+    }
 }
