@@ -115,7 +115,7 @@
         font-size: 70px;
     }
     .social {
-        bottom: 200px;
+        bottom: 150px;
     }
 }
 @media (max-width: 375px) {
@@ -126,7 +126,7 @@
         font-size: 2.3rem;
     }
     .social {
-        bottom: 170px;
+        bottom: 100px;
     }
     .social img {
         height: 70px;
