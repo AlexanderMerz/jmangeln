@@ -3,28 +3,19 @@ window.addEventListener('load', async () => {
     switch(this.location.pathname) {
 
         case '/merch': {
+            const categorySection = document.querySelector('.categories');
             const response = await fetch('/api/categories');
             const categories = await response.json();
-            console.log(categories);
-            // const wrapper = document.querySelector('.card-wrapper');
-            // for (let product of products) {
-            //     const productCard = document.createElement('product-card');
-            //     productCard.setAttribute('name', product.name);
-            //     productCard.setAttribute('price', product.price);
-            //     productCard.setAttribute('image', product.image);
-            //     productCard.dataset.id = product._id;
-            //     const options = product.meta.map(data => 
-            //         `<option value="${data}">${data}</option>`);
-            //     productCard.innerHTML = product.meta
-            //         .some(data => data.length > 2)
-            //             ? '<h3>Farbe</h3>'
-            //             : '<h3>Größe</h3>';
-            //     productCard.innerHTML += `
-            //         <div class="select-wrapper">
-            //             <select>${options}</select>
-            //         </div>`;
-            //     wrapper.appendChild(productCard);
-            // }
+            for (const category of categories) {
+                const categoryCard = document.createElement('a');
+                const categoryText = document.createElement('div');
+                categoryCard.classList.add('category');
+                categoryText.classList.add('category__text');
+                categoryCard.href = '/merch' + category.href;
+                categoryText.innerText = category.name;
+                categorySection.appendChild(categoryCard);
+                categoryCard.appendChild(categoryText);
+            }
         }
 
         case '/blog': {
