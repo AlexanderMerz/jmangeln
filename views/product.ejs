@@ -4,9 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>J&M Angeln - <%= product.name %></title>
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+
+    <link rel="stylesheet" href="/styles/product.css">
+
 </head>
 <body>
-    <h1>Hello World</h1>
+        
+    <header class="navbar">
+        <picture class="navbar__brand">
+            <img src="/images/brand.jpg" alt="J&M Angeln Logo">
+        </picture>
+        <nav class="navbar__navigation">
+            <ul>
+                <li><a href="/team">Team</a></li>
+                <li><a href="/videos">Videos</a></li>
+                <li><a href="/social">Social</a></li>
+                <li><a href="/merch">Merch</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </nav>
+        <div class="menu-icon">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+        </div>
+    </header>
+
+    <div class="space"></div>
+
+    <section class="product">
+        <div class="product__detail">
+            <h1><%= product.name %></h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia repudiandae aliquid reprehenderit, minima ducimus officiis sit dolores corporis, laudantium est saepe quasi itaque autem, culpa porro reiciendis quibusdam perspiciatis atque natus sint aut eveniet! Odit ipsam similique illum aperiam obcaecati, dolores alias dolorum tenetur sed in, debitis, sequi provident dignissimos.</p>
+            <div class="price">20,99 €* <br><span>*inkl. Mehrwertsteuer</span></div>
+            <div class="details">
+                <select name="sizes" id="sizes">
+                    <option value="" disabled selected>Größe wählen</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                </select>
+                <select name="quantity" id="quantity">
+                    <option value="" disabled selected>Menge wählen</option>
+                    <% for (let i = 1; i <= 20; i++) { %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+            </div>
+            <a class="btn" href="#">In den Warenkorb</a>
+        </div>
+        <img src="https://Placehold.it/500x300">
+    </section>
+
+    <script src="/scripts/ui.js"></script>
+
 </body>
 </html>

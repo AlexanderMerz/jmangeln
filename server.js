@@ -74,7 +74,7 @@ app.get('/merch', (req, res) => res.sendFile(pages + path.sep + 'merch.html'));
 app.get('/produkt/:id', async (req, res) => {
     const product = await productController.findProductById(req.params.id);
     return product
-        ? res.status(200).json(product)
+        ? res.status(200).render('product', { product })
         : res.status(400).redirect('/merch');
 });
 
