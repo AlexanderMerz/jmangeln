@@ -15,13 +15,3 @@ menuIcon.addEventListener('click', function() {
         Array.from(ul.children).forEach(li => li.style.opacity =  0);
     }
 });
-
-if (this.location.pathname === '/') {
-    document.querySelector('.down img')
-        .addEventListener('mouseover', () => {
-            window.scroll({
-                top: window.innerHeight - 70,
-                behavior: 'smooth'
-            });
-        });
-}
