@@ -115,7 +115,7 @@
         font-size: 70px;
     }
     .social {
-        bottom: 150px;
+        bottom: 40px;
     }
 }
 @media (max-width: 375px) {
@@ -124,9 +124,6 @@
     }
     .label__highlight {
         font-size: 2.3rem;
-    }
-    .social {
-        bottom: 100px;
     }
     .social img {
         height: 70px;
