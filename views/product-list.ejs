@@ -45,11 +45,15 @@
     <section class="products">
       <% for (const product of products) { %>
         <div class="product">
-          <img class="product__image" src="https://Placehold.it/500x300" alt="" />
+          <img
+            class="product__image"
+            src="https://Placehold.it/500x300"
+            alt="Produktbild"
+          />
           <div>
             <div>
               <h1><%= product.name %></h1>
-              <hr />
+              <!-- <hr /> -->
               <p><%= product.description %></p>
             </div>
             <div class="test">
