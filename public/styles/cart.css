@@ -38,3 +38,16 @@
     font-size: 26px;
     font-family: sans-serif;
 }
+@media (max-width: 425px) {
+    .cart {
+        right: -220px;
+    }
+    .cart img {
+        height: 30px;
+        width: 30px;
+        margin-right: 4px;
+    }
+    .cart span {
+        left: 60px;
+    }
+}
