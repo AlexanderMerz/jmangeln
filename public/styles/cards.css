@@ -18,7 +18,7 @@
     margin: 0 auto;
     cursor: pointer;
     text-align: center;
-    transition: all 0.35s;
+    transition: all 0.2s;
 }
 
 .card-wrapper info-card:hover {
