@@ -6,8 +6,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: black;
-    height: fit-content;
-    width: fit-content;
+    height: 70px;
     padding: 24px;
     cursor: pointer;
     transition: all 0.25s;
@@ -21,8 +20,8 @@
 }
 .cart img {
     filter: invert(100%);
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     margin-right: 8px;
 }
 .cart a {
@@ -33,7 +32,7 @@
 .cart span {
     position: absolute;
     color: white;
-    left: 80px;
+    left: 70px;
     bottom: 20px;
     font-size: 26px;
     font-family: sans-serif;
@@ -48,6 +47,7 @@
         margin-right: 4px;
     }
     .cart span {
+        font-size: 24px;
         left: 60px;
     }
 }
