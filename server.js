@@ -64,7 +64,11 @@ app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'))
 
 /* Merch & Merch Subpages */
 app.get('/merch/*', async (req, res) => {
-    const category = capitalizeFirstLetter(req.url.split('merch/')[1]);
+    const endpoint = req.url.split('merch/')[1];
+    if (endpoint === 'cart') {
+        return res.render('cart');
+    }
+    const category = capitalizeFirstLetter(endpoint);
     const products = await productController.findProductsByCategory(category.toLowerCase());
     return products.length > 0
         ? res.status(200).render('product-list', { category, products })
