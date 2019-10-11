@@ -1,53 +1,57 @@
 .cart {
     position: fixed;
-    bottom: 10px;
-    right: -200px;
+    bottom: 20px;
+    right: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: black;
-    height: 70px;
-    padding: 24px;
+    height: 80px;
+    padding: 1rem;
     cursor: pointer;
     transition: all 0.25s;
-    width: 320px;
+    width: 80px;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+.cart:after {
+    opacity: 0;
+    color: white;
+    transition: all 0.5s;
+    margin-right: 0.5rem;
 }
 .cart:hover {
-    right: 0;
+    width: 240px;
 }
-.cart a:hover {
-    color: var(--primary-color);
+.cart:hover::after {
+    content: 'Zum Warenkorb';
+    opacity: 1;
+    animation: fade 1.8s;
+}
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 .cart img {
     filter: invert(100%);
-    height: 40px;
-    width: 40px;
-    margin-right: 8px;
+    min-height: 40px;
+    min-width: 40px;
 }
-.cart a {
-    color: white;
-    font-size: 1.3rem;
-    text-decoration: none;
-}
-.cart span {
+.cart .qty {
     position: absolute;
     color: white;
-    left: 70px;
-    bottom: 20px;
-    font-size: 26px;
+    left: 56px;
+    bottom: 12px;
+    font-size: 20px;
     font-family: sans-serif;
 }
 @media (max-width: 425px) {
     .cart {
-        right: -220px;
-    }
-    .cart img {
-        height: 30px;
-        width: 30px;
-        margin-right: 4px;
-    }
-    .cart span {
-        font-size: 24px;
-        left: 60px;
+        right: 10px;
+        bottom: 10px;
     }
 }
