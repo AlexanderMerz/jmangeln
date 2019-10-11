@@ -6,11 +6,11 @@
     justify-content: space-between;
     align-items: center;
     background-color: black;
-    height: 80px;
+    height: 90px;
+    width: 90px;
     padding: 1rem;
     cursor: pointer;
     transition: all 0.25s;
-    width: 80px;
     border-radius: 10px;
     transition: all 0.5s;
 }
@@ -38,20 +38,30 @@
 }
 .cart img {
     filter: invert(100%);
-    min-height: 40px;
-    min-width: 40px;
+    min-height: 50px;
+    min-width: 50px;
 }
 .cart .qty {
     position: absolute;
     color: white;
-    left: 56px;
+    left: 64px;
     bottom: 12px;
     font-size: 20px;
     font-family: sans-serif;
 }
 @media (max-width: 425px) {
     .cart {
+        height: 70px;
+        width: 70px;
         right: 10px;
         bottom: 10px;
+    }
+    .cart img {
+        min-height: 32px;
+        min-width: 32px;
+    }
+    .cart .qty {        
+        left: 48px;
+        font-size: 16px;
     }
 }
