@@ -19,10 +19,12 @@
     margin-right: 0.5rem;
     opacity: 0;
 }
-.cart:hover {
+.cart:hover, .cart:active {
     width: 244px;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
-.cart:hover::after {
+.cart:hover::after, .cart:active::after {
     content: 'Zum Warenkorb';
     animation: fade 0.2s;
     animation-delay: 0.45s;

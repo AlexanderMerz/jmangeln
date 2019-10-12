@@ -1,6 +1,6 @@
-const cart = document.querySelector('.cart');
-this.window.addEventListener('click', function({ target }) {
-    if (target !== cart && !(Array.from(cart.children).some(el => el === target))) {
-        cart.blur();
-    }
-});
+// const cartIcon = document.querySelector('.cart img');
+// cartIcon.addEventListener('click', function() {
+//     if (this.parentElement.offsetWidth > 70) {
+//         document.activeElement = null;
+//     }
+// });
