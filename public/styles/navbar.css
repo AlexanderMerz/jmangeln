@@ -1,6 +1,6 @@
 .navbar {
     position: fixed;
-    height: 70px;
+    height: 60px;
     width: 100vw;
     background: black;
     display: flex;
@@ -9,9 +9,9 @@
     z-index: 100;
 }
 .navbar__brand {
-    height: calc(100% - 1.5rem);
+    height: 48px;
     width: auto;
-    margin-left: 0.75rem;
+    margin-left: 6px;
     position: relative;
     cursor: pointer;
 }
@@ -63,12 +63,15 @@
 }
 .bar {
     width: 35px;
-    height: 5px;
+    height: 1px;
     background-color: white;
     margin: 6px 0;
     border-radius: 2px;
+    transition: all 0.2s;
 }
 .change .bar1 {
+    height: 1.5px;
+    margin-bottom: 10px;
     transform: rotate(-45deg) translate(-9px, 6px) ;
     -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
 }
@@ -76,15 +79,12 @@
     opacity: 0;
 }
 .change .bar3 {
+    height: 1.5px;
+    margin-top: 10px;
     -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
     transform: rotate(45deg) translate(-8px, -8px) ;
 }
 @media(max-width: 1200px) {
-    .navbar__brand {
-        height: calc(100% - 1.5rem);
-        width: auto;
-        margin-left: 0.75rem;
-    }
     .navbar__navigation ul li {
         font-size: 1.5rem;
     }
@@ -108,7 +108,7 @@
         overflow: hidden;
         transition: width 0.2s;
         -webkit-transition: width 0.2s;
-        margin: 70px 0 0 0;
+        margin: 60px 0 0 0;
     }
     .navbar__navigation ul {
         height: calc(100vh - 70px);
