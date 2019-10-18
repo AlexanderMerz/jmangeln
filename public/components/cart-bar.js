@@ -6,8 +6,8 @@ class CartBar extends HTMLElement {
         template.innerHTML = `
             <div class="cart">
                 <img src="../images/cart.svg" alt="Shopping Cart">
-                <span class="qty">0</span>
-                <a href="/cart">Zum Warenkorb</a>
+                <span class="qty"></span>
+                <a href="/cart">Zum <span>Warenkorb</span></a>
             </div>
         `;
 
@@ -19,6 +19,8 @@ class CartBar extends HTMLElement {
     }
 
     connectedCallback() {
+        this.shadowRoot.ownerDocument.addEventListener('touchstart', function(){}, true);
+        this.shadowRoot.querySelector('.qty').textContent = this.getAttribute('qty') || 0;
     }
 }
 customElements.define('cart-bar', CartBar);
