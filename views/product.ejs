@@ -13,32 +13,33 @@
         
     <% include includes/navigation %>
 
-    <section class="product">
+    <form class="product" action="/cart" method="POST">
         <div class="product__detail">
+            <input type="hidden" name="productID" value="<%= product._id %>">
             <h1><%= product.name %></h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia repudiandae aliquid reprehenderit, minima ducimus officiis sit dolores corporis, laudantium est saepe quasi itaque autem, culpa porro reiciendis quibusdam perspiciatis atque natus sint aut eveniet! Odit ipsam similique illum aperiam obcaecati, dolores alias dolorum tenetur sed in, debitis, sequi provident dignissimos.</p>
             <div class="price">
                 <%= product.price %> € * <br>
-                <span>*inkl. Mehrwertsteuer</span>
+                <span>*inklusive Mehrwertsteuer</span>
             </div>
             <div class="details">
-                <select name="sizes" id="sizes">
+                <select name="size" id="size" required="required">
                     <option value="" disabled selected>Größe wählen</option>
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
                 </select>
-                <select name="quantity" id="quantity">
+                <select name="quantity" id="quantity" required="required">
                     <option value="" disabled selected>Menge wählen</option>
                     <% for (let i = 1; i <= 20; i++) { %>
                         <option value="<%= i %>"><%= i %></option>
                     <% } %>
                 </select>
             </div>
-            <a class="btn" href="#">In den Warenkorb</a>
+            <button class="btn" type="submit">In den Warenkorb</button>
         </div>
         <img src="https://Placehold.it/500x300">
-    </section>
+    </form>
 
     <script src="/scripts/ui.js"></script>
 
