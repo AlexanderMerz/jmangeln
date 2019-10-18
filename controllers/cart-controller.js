@@ -20,4 +20,12 @@ exports.addToCart = async (req, res) => {
     return res.json({ status: 200, message: 'Success' });
 };
 
-exports.getCart = (req, res) => res.redirect('/');
+exports.getCart = (req, res) => {
+    req.session.cart = 'cart';
+    return res.render('cart');
+};
+
+exports.postCart = (req, res) => {
+    console.log(req.body);
+    return res.redirect('/');
+};
