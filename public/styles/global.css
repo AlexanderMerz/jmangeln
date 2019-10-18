@@ -39,11 +39,11 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 .space {
-    height: 70px;
+    height: 60px;
 }
 .path {
     font-size: 20px;
-    height: 50px;
+    height: 40px;
     font-family: 'Exo';
     width: 100%;
     display: flex;

@@ -16,10 +16,10 @@ div, p {
     cursor: pointer;
     border-radius: 32px;
     background-color: white;
-    opacity: 0.9;
+    opacity: 1;
 }
 .video:hover {
-    transform: scale(1.05);
+    transform: scale(1.025);
 }
 .info {
     text-align: center;

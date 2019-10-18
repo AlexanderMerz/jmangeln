@@ -11,7 +11,7 @@ body {
 }
 #player {
     width: 100vw;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 60px);
 }
 .playlist {
     position: relative;
