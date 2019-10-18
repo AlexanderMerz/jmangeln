@@ -8,6 +8,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+const mongoURL = 'mongodb+srv://'
+  + process.env.MONGO_USER + ':'
+  + process.env.MONGO_PASSWORD
+  + '@cluster0-uhbcz.mongodb.net/'
+  + process.env.MONGO_DB;
+
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
     api_key: process.env.CLOUDINARY_APIKEY,
@@ -24,13 +33,6 @@ const youtubeService = require('./services/youtube-service');
 const { parseText } = require('./middleware/textparser');
 const { capitalizeFirstLetter } = require('./helper/stringModifier');
 
-const mongoURL = 'mongodb+srv://'
-  + process.env.MONGO_USER + ':'
-  + process.env.MONGO_PASSWORD
-  + '@cluster0-uhbcz.mongodb.net/'
-  + process.env.MONGO_DB
-  + '?retryWrites=true';
-
 /* Init App */
 const app = express();
 
@@ -38,7 +40,19 @@ const app = express();
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use(session({
+    saveUninitialized: false,
+    secret: 'my-secret',
+    resave: false,
+    store: new MongoDBStore({
+        uri: mongoURL,
+        collection: 'sessions'
+    })
+}));
+
+if (app.get('env') === 'production') {
+    session.cookie.secure = true;
+}
 
 /* Set Views Folder and Templating Engine */
 app.set('views', 'views');
@@ -103,8 +117,13 @@ app.get('/api/products', productController.getProducts);
 app.get('/api/categories', categoryController.getCategories);
 
 /* Shopping Cart */
-app.post('/cart', parseText, cartController.addToCart);
+app.post('/cart', parseText, cartController.postCart);
 app.get('/cart', cartController.getCart);
+
+app.get('/cookie', (req, res) => {
+    console.log(req.session.isLoggedIn);
+    return res.end('Cookie!');
+});
 
 /* Database Connection + Server Start */
 mongoose.connect(mongoURL, { useNewUrlParser: true })
