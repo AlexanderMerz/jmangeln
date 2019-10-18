@@ -10,7 +10,6 @@
     width: 60px;
     padding: 1rem;
     cursor: pointer;
-    border-radius: 4px;
     transition: all 0.4s;
 }
 .cart:after {
@@ -24,15 +23,19 @@
     -webkit-touch-callout: none;
 }
 .cart:hover a, .cart:active a {
-    opacity: 1;
+    visibility: visible;
     transition-delay: 0.4s;
 }
 .cart a {
-    opacity: 0;
+    visibility: hidden;
     color: white;
     transition-delay: 0;
     text-decoration: none;
     margin-right: 1rem;
+    font-size: 18px;
+}
+.cart a span {
+    color: var(--primary-color);
 }
 .cart img {
     filter: invert(100%);
