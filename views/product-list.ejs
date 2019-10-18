@@ -54,7 +54,6 @@
           <div>
             <div>
               <h1><%= product.name %></h1>
-              <!-- <hr /> -->
               <p><%= product.description %></p>
             </div>
             <div class="test">
@@ -68,12 +67,10 @@
       <% } %>
     </section>
 
-    <div class="cart">
-        <img src="/images/cart.svg" alt="Shopping Cart">
-        <span class="qty">2</span>
-    </div>
+    <cart-bar></cart-bar>
 
     <script src="/scripts/ui.js"></script>
-    
+    <script src="/components/cart-bar.js"></script>
+
   </body>
 </html>
