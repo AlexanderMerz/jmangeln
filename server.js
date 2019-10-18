@@ -16,7 +16,7 @@ const mongoURL = 'mongodb+srv://'
   + process.env.MONGO_PASSWORD
   + '@cluster0-uhbcz.mongodb.net/'
   + process.env.MONGO_DB
-  + '?retryWrites=true&w=majority';
+  + '?retryWrites=true';
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
@@ -50,10 +50,6 @@ app.use(session({
         collection: 'sessions'
     })
 }));
-
-if (app.get('env') === 'production') {
-    session.cookie.secure = true;
-}
 
 /* Set Views Folder and Templating Engine */
 app.set('views', 'views');
