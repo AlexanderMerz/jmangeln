@@ -7,7 +7,7 @@ class CartBar extends HTMLElement {
             <div class="cart">
                 <img src="../images/cart.svg" alt="Shopping Cart">
                 <span class="qty"></span>
-                <a href="/cart">Zum <span>Warenkorb</span></a>
+                <a href="/merch/cart">Zum <span>Warenkorb</span></a>
             </div>
         `;
 
