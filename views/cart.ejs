@@ -6,11 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>J&M Angeln - Warenkorb</title>
     <% include includes/styles %>
+    <style>
+        main { text-align: center }
+    </style>
 </head>
 <body>
     <% include includes/navigation %>
-    <h1>Warenkorb</h1>
+    <% if (cart) { %>
+        <main>
+            <h1>Warenkorb</h1>
+            <% for (const product of cart) { %>
+                <ul>
+                    <li><%= product.id %></li>
+                    <li><%= product.quantity %></li>
+                    <li><%= product.price %></li>
+                    <li><%= product.size %></li>
+                </ul>
+            <% } %>
+            <h1>Anzahl Gegenstände: <%= quantity %></h1>
+            <h1>Gesamtwert: <%= total.toFixed(2) %> €</h1>
+            <button class="delete">Warenkorb leeren</button>
+        </main>
+    <% } %>
 
     <script src="/scripts/ui.js"></script>
+
 </body>
 </html>
