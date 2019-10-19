@@ -39,16 +39,17 @@
 }
 .cart img {
     filter: invert(100%);
-    min-height: 40px;
-    min-width: 40px;
+    min-height: 46px;
+    min-width: 46px;
     margin-left: 4px;
 }
 .cart .qty {
     position: absolute;
     color: white;
-    left: 60px;
-    bottom: 1rem;
-    font-size: 18px;
+    font-style: italic;
+    left: 66px;
+    bottom: 10px;
+    font-size: 24px;
     font-family: sans-serif;
 }
 @media (max-width: 425px) {
@@ -59,11 +60,12 @@
         bottom: 10px;
     }
     .cart img {
-        min-height: 32px;
-        min-width: 32px;
+        min-height: 38px;
+        min-width: 38px;
     }
     .cart .qty {
-        left: 56px;        
-        font-size: 16px;
+        left: 56px;
+        bottom: 8px;   
+        font-size: 20px;
     }
 }
