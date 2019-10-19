@@ -1,31 +1,45 @@
-const productController = require('../controllers/product-controller');
-
-exports.addToCart = async (req, res) => {
-    const { id, quantity, meta } = JSON.parse(req.text);
-    console.log(id, quantity, meta);
-    if ([id, quantity, meta].some(param => param == undefined)) {
-        return res.status(400).json({
-            status: 400,
-            message: 'Bitte eine Größe auswählen'
-        });
-    }
-    // const product = await productController.findProductById(id)
-    // console.log(product);
-    // if (!product) {
-    //     return res.status(404).end('Product not found');
-    // }
-    // Add to Shopping Cart
-    // const cartItems = number
-    // return res.json({ status: 200, data: { cartItems } });
-    return res.json({ status: 200, message: 'Success' });
-};
-
-exports.getCart = (req, res) => {
-    req.session.cart = 'cart';
-    return res.render('cart');
-};
+exports.getCart = (req) => req.session.cart || [];
 
 exports.postCart = (req, res) => {
-    console.log(req.body);
-    return res.redirect('/');
+    const chosenProduct = {
+        id: req.body.productID,
+        quantity: +req.body.quantity,
+        price: +req.body.price,
+        size: req.body.size
+    }
+    if (!req.session.cart) req.session.cart = [chosenProduct];
+    else {
+        const index = req.session.cart.findIndex(({ id }) => id === chosenProduct.id);
+        if (index >= 0 && req.session.cart[index].size === chosenProduct.size) {
+            req.session.cart[index].quantity += chosenProduct.quantity;
+        } else {
+            req.session.cart = [...req.session.cart, chosenProduct];
+        }
+    }
+    res.render('cart', {
+        cart: req.session.cart,
+        quantity: this.getQuantity(req.session.cart),
+        total: this.getTotal(req.session.cart)
+    });
 };
+
+exports.getQuantity = (cart) => {
+    let quantity = 0;
+    if (cart && cart.length > 0) {
+        for (const product of cart) {
+            quantity += product.quantity;
+        }
+    }
+    return quantity;
+}
+
+exports.getTotal = (cart) => {
+    let total = 0;
+    if (cart && cart.length > 0) {
+        for (const product of cart) {
+            total += product.quantity * product.price
+        }
+    }
+    return total;
+}
+
