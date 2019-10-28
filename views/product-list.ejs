@@ -47,7 +47,7 @@
         <div class="product">
           <img
             class="product__image"
-            src="https://Placehold.it/500x300"
+            src="/images/test.jpg"
             alt="Produktbild"
           />
           <div>
@@ -56,13 +56,14 @@
               <p><%= product.description %></p>
             </div>
             <div class="test">
-              <span><%= product.price %> €</span>
+              <span><%= (product.price).toFixed(2) %> €</span>
               <img src="/images/star.svg" />
               <a href="/produkt/<%= product._id %>">
                 Zum Produkt
               </a>
             </div>
           </div>
+        </div>
       <% } %>
     </section>
 
