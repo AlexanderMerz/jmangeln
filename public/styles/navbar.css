@@ -47,11 +47,11 @@
 }
 .navbar__navigation ul li a.active {
     color: var(--primary-color);
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 .navbar__navigation ul li a:hover {
     color: var(--primary-color);
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 .sticky {
     position: fixed;
