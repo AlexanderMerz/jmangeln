@@ -1,10 +1,11 @@
+const { findProductById } = require('../controllers/product-controller');
+
 exports.getCart = (req) => req.session.cart || [];
 
 exports.postCart = (req, res) => {
     const chosenProduct = {
         id: req.body.productID,
         quantity: +req.body.quantity,
-        price: +req.body.price,
         size: req.body.size
     }
     if (!req.session.cart) req.session.cart = [chosenProduct];
@@ -16,14 +17,10 @@ exports.postCart = (req, res) => {
             req.session.cart = [...req.session.cart, chosenProduct];
         }
     }
-    res.render('cart', {
-        cart: req.session.cart,
-        quantity: this.getQuantity(req.session.cart),
-        total: this.getTotal(req.session.cart)
-    });
+    res.redirect('/merch/cart');
 };
 
-exports.getQuantity = (cart) => {
+exports.getQuantity = cart => {
     let quantity = 0;
     if (cart && cart.length > 0) {
         for (const product of cart) {
@@ -33,13 +30,25 @@ exports.getQuantity = (cart) => {
     return quantity;
 }
 
-exports.getTotal = (cart) => {
+exports.getTotal = cart => {
     let total = 0;
     if (cart && cart.length > 0) {
         for (const product of cart) {
-            total += product.quantity * product.price
+            total += product.quantity * product.data.price
         }
     }
     return total;
+}
+
+exports.populateCart = async cart => {
+    return await Promise.all(
+        cart.map(async product => {
+            return {
+                data: await findProductById(product.id),
+                quantity: product.quantity,
+                size: product.size
+            }
+        })
+    );
 }
 
