@@ -26,7 +26,7 @@ cloudinary.config({
 
 /* Controller */
 const categoryController = require('./controllers/category-controller');
-const productController = require('./controllers/product-controller');
+const { getProducts, findProductById, findProductsByCategory } = require('./controllers/product-controller');
 const cartController = require('./controllers/cart-controller');
 const blogController = require('./controllers/blog-controller');
 
@@ -77,21 +77,24 @@ app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'))
 /* Merch & Merch Subpages */
 app.get('/merch*', async (req, res) => {
 
-    const cart = cartController.getCart(req);
+    let cart = cartController.getCart(req);
     const quantity = cartController.getQuantity(cart);
-    const total = cartController.getTotal(cart);
 
     switch (req.url) {
-        case '/merch': res.render('merch', { quantity }); break;
-        case '/merch/cart': res.render('cart', { cart, quantity, total }); break;
+        case '/merch': 
+            res.render('merch', { quantity });
+            break;
+        case '/merch/cart': 
+            cart = await cartController.populateCart(cart);
+            const total = cartController.getTotal(cart);
+            res.render('cart', { cart, quantity, total });
+            break;
         default: 
             const category = capitalizeFirstLetter(req.url.split('/merch/')[1]);
-            const products = await productController
-                .findProductsByCategory(category.toLowerCase());
+            const products = await findProductsByCategory(category.toLowerCase());
             return products.length > 0
-                ? res.status(200).render('product-list', {
-                    category, products, quantity
-                }) : res.status(404).redirect('/');
+                ? res.status(200).render('product-list', { category, products, quantity })
+                : res.status(404).redirect('/');
     }
 
 });
@@ -100,7 +103,7 @@ app.post('/merch/cart', parseText, cartController.postCart);
 
 // app.get('/merch', (req, res) => res.sendFile(pages + path.sep + 'merch.html'));
 app.get('/produkt/:id', async (req, res) => {
-    const product = await productController.findProductById(req.params.id);
+    const product = await findProductById(req.params.id);
     return product
         ? res.status(200).render('product', { product })
         : res.status(400).redirect('/merch');
@@ -123,12 +126,8 @@ app.get('/api/youtube', async (req, res) => {
     }
 });
 app.get('/api/blogs', blogController.getPosts);
-app.get('/api/products', productController.getProducts);
+app.get('/api/products', getProducts);
 app.get('/api/categories', categoryController.getCategories);
-
-app.get('/cookie', (req, res) => {
-    return res.end('Cookie!');
-});
 
 /* Database Connection + Server Start */
 mongoose.connect(mongoURL, { useNewUrlParser: true })
