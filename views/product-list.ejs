@@ -42,9 +42,31 @@
       <%= category %>
     </div>
 
+    <section class="filter">
+      <input id="search" type="text" name="search" placeholder="Suchen...">
+      <div class="filter__price">
+          <div class="price__config">
+              <span>1 €</span>
+              <input id="price" type="range" name="price" min="1" max="100" value="50" step="1">
+              <span>99 €</span>
+          </div>
+          <p class="price__output">Alle Preise</p>
+      </div>
+      <div class="filter__rate">
+        <% for (let i = 0; i < 5; i++) { %>
+          <img class="star" src="/images/star-regular.svg" alt="Stern" data-place="<%= i %>">
+        <% } %>
+      </div>
+    </section>
+    
+
     <section class="products">
       <% for (const product of products) { %>
-        <div class="product">
+        <div
+          class="product"
+          data-name="<%= product.name %>"
+          data-price="<%= (product.price).toFixed(2) %>"
+        >
           <img
             class="product__image"
             src="/images/test.jpg"
@@ -55,7 +77,7 @@
               <h1><%= product.name %></h1>
               <p><%= product.description %></p>
             </div>
-            <div class="product__action">
+            <div class="product__action" onmouseout="console.log(1)">
               <span><%= (product.price).toFixed(2) %> €</span>
               <img src="/images/star.svg" />
               <a href="/produkt/<%= product._id %>">
@@ -71,6 +93,77 @@
 
     <script src="/scripts/ui.js"></script>
     <script src="/components/cart-bar.js"></script>
+    <script>
+
+      const filterSection = document.querySelector('.filter');
+      const starContainer = document.querySelector('.filter__rate');
+      const searchbar = document.querySelector('#search');
+      const priceFilter = document.querySelector('#price');
+      const priceOutput = document.querySelector('.price__output');
+      const stars = Array.from(document.querySelectorAll('.star'));
+
+      stars.forEach(star => {
+
+        star.addEventListener('mouseover', function() {
+          const { place: thisPlace } = star.dataset;
+          stars
+            .filter(star => star.dataset.place <= thisPlace)
+            .forEach(star => star.src = '/images/star-solid.svg');
+          stars
+            .filter(star => star.dataset.place > thisPlace)
+            .forEach(star => star.src = '/images/star-regular.svg');
+        });
+
+        star.addEventListener('click', function() {
+          minRate = this.dataset.place;
+          selected = true;
+          filter();
+        })
+
+      });
+
+      starContainer.addEventListener('mouseout', function() {
+        if (!selected) {
+          for (const star of stars) {
+            star.src = '/images/star-regular.svg';
+          }
+        } else {
+          selected = false;
+        }
+      });
+
+      let searchTerm = '';
+      let maxPrice = 99;
+      let minRate = 0;
+      let selected = false;
+
+      priceFilter.addEventListener('change', function(e) {
+        maxPrice = this.value;
+        priceOutput.textContent = `max. ${maxPrice} €`;
+        filter();
+      });
+
+      const products = Array.from(document.querySelectorAll('.product'));
+      searchbar.addEventListener('keyup', function({ key }) {
+        if (key == 'Enter') {
+          searchTerm = this.value;
+          filter();
+        }
+      });
+
+      function filter() {
+        for (const product of products) {
+            let { name, price } = product.dataset;
+            [price, maxPrice] = [price, maxPrice].map(value => parseFloat(value));
+            if (name.toLowerCase().includes(searchTerm.toLowerCase()) && price <= maxPrice) {
+              product.style.display = 'flex';
+            } else {
+              product.style.display = 'none';
+            }
+          }
+      }
+
+    </script>
 
   </body>
 </html>
