@@ -50,10 +50,10 @@
 .content__head p {
     font-family: 'Petit Formal Script', cursive;
     letter-spacing: 4px;
-    word-break: keep-all;
     color: rgb(80, 80, 80);
     margin: 0.5rem 2.5rem;
     font-weight: 500;
+    text-align: center;
 }
 
 @media (max-width: 1024px) {
