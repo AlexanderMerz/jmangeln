@@ -54,3 +54,32 @@ body {
 .path img {
     margin: auto 6px;
 }
+.pulsate {
+    animation: pulsate 3s ease-out;
+    animation-iteration-count: infinite;
+    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    opacity: 0.5;
+}
+@keyframes pulsate {
+    0% { 
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% { 
+        opacity: 0.25;
+    }
+}
+@-webkit-keyframes pulsate {
+    0% { 
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% { 
+        opacity: 0.25;
+    }
+}
