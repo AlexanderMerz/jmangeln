@@ -94,6 +94,7 @@
     border: none;
     outline: none;
     box-shadow: 0 0 2px;
+    -webkit-appearance: none;
 }
 .price__config span {
     width: 50px;
