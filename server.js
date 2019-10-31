@@ -25,7 +25,7 @@ cloudinary.config({
 });
 
 /* Controller */
-const categoryController = require('./controllers/category-controller');
+const { getCategories } = require('./controllers/category-controller');
 const { getProducts, findProductById, findProductsByCategory } = require('./controllers/product-controller');
 const cartController = require('./controllers/cart-controller');
 const blogController = require('./controllers/blog-controller');
@@ -82,7 +82,8 @@ app.get('/merch*', async (req, res) => {
 
     switch (req.url) {
         case '/merch': 
-            res.render('merch', { quantity });
+            const categories = await getCategories();
+            res.render('merch', { quantity, categories });
             break;
         case '/merch/cart': 
             cart = await cartController.populateCart(cart);
@@ -127,7 +128,7 @@ app.get('/api/youtube', async (req, res) => {
 });
 app.get('/api/blogs', blogController.getPosts);
 app.get('/api/products', getProducts);
-app.get('/api/categories', categoryController.getCategories);
+app.get('/api/categories', getCategories);
 
 /* Database Connection + Server Start */
 mongoose.connect(mongoURL, { useNewUrlParser: true })

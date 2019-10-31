@@ -51,11 +51,11 @@
             alt="Produktbild"
           />
           <div>
-            <div>
+            <div class="product__info">
               <h1><%= product.name %></h1>
               <p><%= product.description %></p>
             </div>
-            <div class="test">
+            <div class="product__action">
               <span><%= (product.price).toFixed(2) %> €</span>
               <img src="/images/star.svg" />
               <a href="/produkt/<%= product._id %>">

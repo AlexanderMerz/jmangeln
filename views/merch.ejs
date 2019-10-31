@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="/styles/slideshow.css">
     <link rel="stylesheet" href="/styles/cards.css">
     <link rel="stylesheet" href="/styles/merch.css">
-    <link rel="preload" href="/styles/playlist-item.css" as="style">
     <link rel="preload" href="/scripts/lazy-load.mjs" as="script">
 
 </head>
@@ -69,12 +68,24 @@
             <div data-id="1" class="dot current"></div>
             <div data-id="2" class="dot"></div>
         </div>
-        <section class="categories"></section>
+        <section class="categories">
+            <% for (const category of categories) { %>
+                <a class="category" href="/merch<%= category.href %>">
+                    <img class="category__image" src="/images/test.jpg" alt="Kategoriebild">
+                    <div class="category__text"><%= category.name %></div>
+                </a>
+            <% } %>
+            <% for (const category of categories) { %>
+                <a class="category" href="/merch<%= category.href %>">
+                    <img class="category__image" src="/images/test.jpg" alt="Kategoriebild">
+                    <div class="category__text"><%= category.name %></div>
+                </a>
+            <% } %>
+        </section>
     </main>
 
     <cart-bar qty="<%= quantity %>"></cart-bar>
 
-    <script src="/scripts/fetch.js"></script>
     <script defer src="/scripts/ui.js"></script>
     <script defer src="/scripts/slideshow.js"></script>
     <script src="/components/cart-bar.js"></script>
