@@ -36,7 +36,7 @@ div, p {
 }
 .video__image {
     opacity: 0.9;
-    height: auto;
+    height: 100%;
     width: auto;
     border-radius: 32px;
 }

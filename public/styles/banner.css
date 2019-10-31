@@ -27,7 +27,7 @@
 }
 .label__highlight {
     color: var(--primary-color);
-    margin-top: -42px;
+    margin-top: -30px;
     font-size: 5.65rem;
 }
 .social img {
@@ -65,7 +65,7 @@
         font-size: 4.5rem;
     }
     .label__highlight {
-        margin-top: -32px;
+        margin-top: -14px;
         font-size: 3.4rem;
     }
 }
