@@ -53,7 +53,7 @@
           <p class="price__output">Alle Preise</p>
       </div>
       <div class="filter__rate">
-        <% for (let i = 0; i < 5; i++) { %>
+        <% for (let i = 1; i <= 5; i++) { %>
           <img class="star" src="/images/star-regular.svg" alt="Stern" data-place="<%= i %>">
         <% } %>
       </div>
@@ -65,7 +65,8 @@
         <div
           class="product"
           data-name="<%= product.name %>"
-          data-price="<%= (product.price).toFixed(2) %>"
+		  data-price="<%= (product.price).toFixed(2) %>"
+		  data-rate="<%= product.rate || '4.5' %>"
         >
           <img
             class="product__image"
@@ -79,7 +80,8 @@
             </div>
             <div class="product__action" onmouseout="console.log(1)">
               <span><%= (product.price).toFixed(2) %> €</span>
-              <img src="/images/star.svg" />
+			  <img src="/images/star-solid.svg" />
+			  <span>4,5</span>
               <a href="/produkt/<%= product._id %>">
                 Zum Produkt
               </a>
@@ -93,75 +95,79 @@
 
     <script src="/scripts/ui.js"></script>
     <script src="/components/cart-bar.js"></script>
-    <script>
+	<script>
 
-      const filterSection = document.querySelector('.filter');
-      const starContainer = document.querySelector('.filter__rate');
-      const searchbar = document.querySelector('#search');
-      const priceFilter = document.querySelector('#price');
-      const priceOutput = document.querySelector('.price__output');
-      const stars = Array.from(document.querySelectorAll('.star'));
+		const products = Array.from(document.querySelectorAll('.product'));
+      	const filterSection = document.querySelector('.filter');
+      	const starContainer = document.querySelector('.filter__rate');
+      	const searchbar = document.querySelector('#search');
+      	const priceFilter = document.querySelector('#price');
+      	const priceOutput = document.querySelector('.price__output');
+      	const stars = Array.from(document.querySelectorAll('.star'));
 
-      stars.forEach(star => {
+		let searchTerm = '';
+		let maxPrice = 99;
+		let minRate = 0;
+		let selected = false;
 
-        star.addEventListener('mouseover', function() {
-          const { place: thisPlace } = star.dataset;
-          stars
-            .filter(star => star.dataset.place <= thisPlace)
-            .forEach(star => star.src = '/images/star-solid.svg');
-          stars
-            .filter(star => star.dataset.place > thisPlace)
-            .forEach(star => star.src = '/images/star-regular.svg');
-        });
+		function filter() {
+			for (const product of products) {
+				let { name, price, rate } = product.dataset;
+				[price, maxPrice] = [price, maxPrice].map(value => parseFloat(value));
+				[name, searchTerm] = [name, searchTerm].map(str => str.toLowerCase());
+				if (name.includes(searchTerm) && price <= maxPrice && rate >= minRate) {
+					product.style.display = 'flex';
+				} else {
+					product.style.display = 'none';
+				}
+			}
+		}
 
-        star.addEventListener('click', function() {
-          minRate = this.dataset.place;
-          selected = true;
-          filter();
-        })
+		searchbar.addEventListener('keyup', function({ key }) {
+			searchTerm = this.value;
+			filter();
+		});
 
-      });
+		priceFilter.addEventListener('change', function(e) {
+			maxPrice = this.value;
+			priceOutput.textContent = `max. ${maxPrice} €`;
+			filter();
+		});
 
-      starContainer.addEventListener('mouseout', function() {
-        if (!selected) {
-          for (const star of stars) {
-            star.src = '/images/star-regular.svg';
-          }
-        } else {
-          selected = false;
-        }
-      });
+		for (const star of stars) {
 
-      let searchTerm = '';
-      let maxPrice = 99;
-      let minRate = 0;
-      let selected = false;
+			star.addEventListener('mouseover', function() {
+				const { place: thisPlace } = star.dataset;
+				stars
+					.filter(star => star.dataset.place <= thisPlace)
+					.forEach(star => { star.src = '/images/star-solid.svg' });
+				stars
+					.filter(star => star.dataset.place > thisPlace)
+					.forEach(star => { star.src = '/images/star-regular.svg' });
+			});
 
-      priceFilter.addEventListener('change', function(e) {
-        maxPrice = this.value;
-        priceOutput.textContent = `max. ${maxPrice} €`;
-        filter();
-      });
+			star.addEventListener('click', function() {
+				minRate = this.dataset.place;
+				selected = true;
+				filter();
+			});
 
-      const products = Array.from(document.querySelectorAll('.product'));
-      searchbar.addEventListener('keyup', function({ key }) {
-        if (key == 'Enter') {
-          searchTerm = this.value;
-          filter();
-        }
-      });
+		}
 
-      function filter() {
-        for (const product of products) {
-            let { name, price } = product.dataset;
-            [price, maxPrice] = [price, maxPrice].map(value => parseFloat(value));
-            if (name.toLowerCase().includes(searchTerm.toLowerCase()) && price <= maxPrice) {
-              product.style.display = 'flex';
-            } else {
-              product.style.display = 'none';
-            }
-          }
-      }
+		starContainer.addEventListener('mouseout', function() {
+			if (!selected) {
+				stars.map(star => {
+					star.src = '/images/star-regular.svg';
+					return star;
+				}).forEach((star, index) => {
+					if (index < minRate) {
+						star.src = '/images/star-solid.svg';
+					}
+				});
+			} else {
+				selected = false;
+			}
+		});
 
     </script>
 
