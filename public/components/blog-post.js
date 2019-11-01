@@ -1,9 +1,10 @@
 class BlogPost extends HTMLElement {
-    constructor() {
+    constructor () {
         super();
         this.attachShadow({ mode: 'open' });
     }
-    set content(data) {
+
+    set content (data) {
         const { id, title, image } = data;
         const date = new Date(data.date).toLocaleDateString();
 
@@ -16,7 +17,8 @@ class BlogPost extends HTMLElement {
             </div>
         `;
     }
-    connectedCallback() {
+
+    connectedCallback () {
         const { id } = this.shadowRoot.querySelector('.post').dataset;
         this.shadowRoot.addEventListener('click', () => {
             window.location = `/blog/post/${id}`;

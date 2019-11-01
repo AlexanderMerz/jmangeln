@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "pm2-runtime start ecosystem.config.js --env production",
-    "test": "nodemon server.js"
+    "test": "nodemon server.js",
+    "eslint": "eslint ./",
+    "eslint-fix": "eslint ./ --fix"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
     "pug": "^2.0.4"
   },
   "devDependencies": {
+    "eslint": "^6.6.0",
     "nodemon": "^1.19.1"
   }
 }

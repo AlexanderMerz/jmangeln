@@ -1,8 +1,8 @@
-async function onYouTubeIframeAPIReady() {
+async function onYouTubeIframeAPIReady () {
     const playlist = document.querySelector('.playlist');
     const response = await fetch('/api/youtube');
     const json = await response.json();
-    for (let item of json.items) {
+    for (const item of json.items) {
         const playlistItem = document.createElement('playlist-item');
         playlistItem.data = item;
         playlist.appendChild(playlistItem);
@@ -13,10 +13,10 @@ async function onYouTubeIframeAPIReady() {
     });
 }
 
-function onPlayerReady(event) {
+function onPlayerReady (event) {
     event.target.playVideo();
 }
 
-function stopVideo() {
+function stopVideo () {
     window.player.stopVideo();
 }

@@ -1,10 +1,11 @@
 module.exports = {
-  apps : [{
+  apps: [
+{
     name: 'app',
     script: 'server.js',
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
-    instances: "max",
+    instances: 'max',
     autorestart: true,
     watch: true,
     env: {
@@ -13,5 +14,6 @@ module.exports = {
     env_production: {
       NODE_ENV: 'production'
     }
-  }]
+  }
+]
 };

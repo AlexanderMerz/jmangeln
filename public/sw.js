@@ -26,74 +26,68 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('activate', event => {
-    event.waitUntil(
-        caches.keys().then(keys => {
-            return Promise.all(keys
+    event.waitUntil(caches.keys().then(keys => Promise.all(keys
                 .filter(key => key !== staticCache && key !== dynamicCache)
-                .map(key => caches.delete(key))
-            );
-        })
-    );
+                .map(key => caches.delete(key)))));
 });
 
 self.addEventListener('fetch', event => {
     if (event.request.url.indexOf('/api/products') > 0) {
         caches.match(event.request).then(cacheRes => {
-            if (cacheRes) return cacheRes;
-            else return fetch(event.request).then(fetchRes => {
-                return caches.open(dynamicCache).then(cache => {
+            if (cacheRes) {
+ return cacheRes; 
+}
+            return fetch(event.request).then(fetchRes => caches.open(dynamicCache).then(cache => {
                     cache.put(event.request.url, fetchRes.clone());
                     return fetchRes;
-                });
-            });
-        })
+                }));
+        });
     } else if (event.request.url.indexOf('/api/youtube') > 0) {
-        event.respondWith(
-            caches.match(event.request).then(cacheRes => {
-                // Return cached response if it was cached less than 24 hours ago
-                // If cached response has status code of 400 try to fetch again
+        event.respondWith(caches.match(event.request).then(cacheRes => {
+
+                /*
+                 * Return cached response if it was cached less than 24 hours ago
+                 * If cached response has status code of 400 try to fetch again
+                 */
                 if (cacheRes && cacheRes.status !== 400) {
                     const cachedAt = new Date(cacheRes.headers.get('date')).getTime();
                     const now = new Date().getTime();
-                    if (( now - cachedAt ) < 8640000) return cacheRes;
+                    if (now - cachedAt  < 8640000) {
+return cacheRes;
+}
                 }
                 // If response is null or time difference is greater than 24 hours
-                return fetch(event.request).then(fetchRes => {
-                    return caches.open(dynamicCache).then(cache => {
+                return fetch(event.request).then(fetchRes => caches.open(dynamicCache).then(cache => {
                         cache.put(event.request.url, fetchRes.clone());
                         return fetchRes;
-                    });
-                });
-            })
-        );
+                    }));
+            }));
     } else {
-        event.respondWith(
-            caches.match(event.request).then(cacheRes => {
-                return cacheRes || fetch(event.request).then(async fetchRes => {
+        event.respondWith(caches.match(event.request).then(cacheRes => cacheRes || fetch(event.request).then(async fetchRes => {
                     const cache = await caches.open(dynamicCache);
                     cache.put(event.request.url, fetchRes.clone());
                     return fetchRes;
                 }).catch(async () => {
                     const cache = await caches.open(staticCache);
                     return cache.match('/pages/fallback.html');
-                });
-            })
-        );
+                })));
     }
 });
 
-// Network first, then cache strategy
-// event.respondWith(
-//     fetch(event.request.url).then(async fetchRes => {
-//         const cache = await caches.open(dynamicCache);
-//         cache.put(event.request.url, fetchRes.clone());
-//         return fetchRes;
-//     }).catch(() => {
-//         caches.match(event.request).then(async response => {
-//             if (!response) {
-//                 const cache = await caches.open(staticCache);
-//                 return cache.match('/pages/fallback.html');
-//             }
-//         })
-//     })
-// );
+/*
+ * Network first, then cache strategy
+ * event.respondWith(
+ *     fetch(event.request.url).then(async fetchRes => {
+ *         const cache = await caches.open(dynamicCache);
+ *         cache.put(event.request.url, fetchRes.clone());
+ *         return fetchRes;
+ *     }).catch(() => {
+ *         caches.match(event.request).then(async response => {
+ *             if (!response) {
+ *                 const cache = await caches.open(staticCache);
+ *                 return cache.match('/pages/fallback.html');
+ *             }
+ *         })
+ *     })
+ * );
+ */

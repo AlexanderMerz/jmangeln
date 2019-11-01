@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
 
-    switch(this.location.pathname) {
+    switch (this.location.pathname) {
 
         case '/merch': {
             const categorySection = document.querySelector('.categories');
@@ -22,7 +22,7 @@ window.addEventListener('load', async () => {
             const blogSection = document.querySelector('.blog');
             const response = await fetch('/api/blogs');
             const posts = await response.json();
-            for (let post of posts) {
+            for (const post of posts) {
                 const blogPost = document.createElement('blog-post');
                 blogPost.content = post;
                 blogSection.appendChild(blogPost);
@@ -30,7 +30,7 @@ window.addEventListener('load', async () => {
             break;
         }
 
-        default: return;
+        default: 
         
     }
 

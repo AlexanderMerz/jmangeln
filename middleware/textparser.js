@@ -1,4 +1,4 @@
-exports.parseText = function(req, res, next) {
+exports.parseText = function (req, res, next) {
     if (req.is('text/*')) {
         req.text = '';
         req.setEncoding('utf8');

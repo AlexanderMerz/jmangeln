@@ -6,7 +6,7 @@ const auto = true;
 const intervalTime = 10000;
 let slideInterval;
 
-function nextSlide() {
+function nextSlide () {
     const currentSlide = document.querySelector('.slide.current');
     const currentDot = document.querySelector('.dot.current');
     currentSlide.classList.remove('current');
@@ -20,7 +20,7 @@ function nextSlide() {
     }
 }
 
-function prevSlide() {
+function prevSlide () {
     const currentSlide = document.querySelector('.slide.current');
     const currentDot = document.querySelector('.dot.current');
     currentSlide.classList.remove('current');
@@ -34,8 +34,8 @@ function prevSlide() {
     }
 }
 
-for (let dot of dots) {
-    dot.addEventListener('click', function() {
+for (const dot of dots) {
+    dot.addEventListener('click', function () {
         const currentSlide = document.querySelector('.slide.current');
         const currentDot = document.querySelector('.dot.current');
         currentSlide.classList.remove('current');
@@ -49,8 +49,10 @@ for (let dot of dots) {
     });
 }
 
-function startInterval() {
+function startInterval () {
     slideInterval = setInterval(nextSlide, intervalTime);
 }
 
-if (auto) startInterval();
+if (auto) {
+startInterval(); 
+}

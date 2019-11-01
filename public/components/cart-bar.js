@@ -1,5 +1,5 @@
 class CartBar extends HTMLElement {
-    constructor() {
+    constructor () {
         super();
 
         const template = document.createElement('template');
@@ -18,8 +18,8 @@ class CartBar extends HTMLElement {
             .append(template.content.cloneNode(true), style);
     }
 
-    connectedCallback() {
-        this.shadowRoot.ownerDocument.addEventListener('touchstart', function(){}, true);
+    connectedCallback () {
+        this.shadowRoot.ownerDocument.addEventListener('touchstart', () => {}, true);
         this.shadowRoot.querySelector('.qty').textContent = this.getAttribute('qty') || 0;
     }
 }
