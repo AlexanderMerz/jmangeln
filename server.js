@@ -32,7 +32,7 @@ const blogController = require('./controllers/blog-controller');
 
 const youtubeService = require('./services/youtube-service');
 const { parseText } = require('./middleware/textparser');
-const { capitalizeFirstLetter } = require('./helper/stringModifier');
+const { capitalizeFirstLetter } = require('./helper/StringModifier');
 
 /* Init App */
 const app = express();
@@ -91,7 +91,8 @@ app.get('/merch*', async (req, res) => {
             res.render('cart', { cart, quantity, total });
             break;
         default: 
-            const category = capitalizeFirstLetter(req.url.split('/merch/')[1]);
+            const enpoint = req.url.split('/merch/')[1];
+            const category = capitalizeFirstLetter(enpoint);
             const products = await findProductsByCategory(category.toLowerCase());
             return products.length > 0
                 ? res.status(200).render('product-list', { category, products, quantity })
