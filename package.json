@@ -4,7 +4,7 @@
   "description": "The Official Website of the J&M Angeln Crew from YouTube.",
   "main": "server.js",
   "scripts": {
-    "start": "pm2-runtime start ecosystem.config.js --env production",
+    "start": "node server.js",
     "test": "nodemon server.js",
     "eslint": "eslint ./",
     "eslint-fix": "eslint ./ --fix"
