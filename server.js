@@ -83,46 +83,6 @@ app.use('/merch*', merchRoutes);
 /* API Endpoints */
 app.use('/api', apiRoutes);
 
-/* Merch & Merch Subpages */
-// app.get('/merch*', async (req, res) => {
-
-//     let cart = cartController.getCart(req);
-//     const quantity = cartController.getQuantity(cart);
-
-//     switch (req.url) {
-//         case '/merch': 
-//             const categories = await getCategories();
-//             res.render('merch', { quantity, categories });
-//             break;
-//         case '/merch/cart': 
-//             cart = await cartController.populateCart(cart);
-//             const total = cartController.getTotal(cart);
-//             res.render('cart', { cart, quantity, total });
-//             break;
-//         default: 
-//             const enpoint = req.url.split('/merch/')[1];
-//             const category = capitalizeFirstLetter(enpoint);
-//             const products = await findProductsByCategory(category.toLowerCase());
-//             return products.length > 0
-//                 ? res.status(200).render('product-list', { category, products, quantity })
-//                 : res.status(404).redirect('/');
-//     }
-
-// });
-
-// app.get('/produkt/:id', async (req, res) => {
-//     const product = await findProductById(req.params.id);
-//     return product
-//         ? res.status(200).render('product', { product })
-//         : res.status(400).redirect('/merch');
-// });
-
-/* Create Blog Posts */
-// app.get('/create-post', (req, res) => res.sendFile(pages + path.sep + 'create-post.html'));
-// app.post('/create-post', upload.single('image'), blogController.createPost);
-
-
-
 /* Database Connection + Server Start */
 mongoose.connect(mongoURL, { useNewUrlParser: true })
     .then(() => app.listen(process.env.PORT || 8080))
