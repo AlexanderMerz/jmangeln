@@ -3,26 +3,25 @@ const { findProductById } = require('../controllers/product-controller');
 exports.getCart = req => req.session.cart || [];
 
 exports.postCart = (req, res) => {
+    /* url check because any merch related post request will get to this function */
+    if (req.originalUrl !== '/merch/cart') {
+        return res.status(400).redirect('/merch');
+    }
     const chosenProduct = {
         id: req.body.productID,
         quantity: Number(req.body.quantity),
         size: req.body.size
     };
     if (!req.session.cart) {
- req.session.cart = [chosenProduct]; 
-} else {
+        req.session.cart = [chosenProduct];
+    } else {
         const index = req.session.cart.findIndex(({ id }) => id === chosenProduct.id);
-        if (index >= 0 && req.session.cart[index].size === chosenProduct.size) {
-            req.session.cart[index].quantity += chosenProduct.quantity;
-        } else {
-            req.session.cart = [
-...req.session.cart,
-chosenProduct
-];
-        }
+        (index >= 0 && req.session.cart[index].size === chosenProduct.size)
+            ? req.session.cart[index].quantity += chosenProduct.quantity
+            : req.session.cart = [ ...req.session.cart, chosenProduct ];
     }
     res.redirect('/merch/cart');
-};
+ };
 
 exports.getQuantity = cart => {
     let quantity = 0;
@@ -45,8 +44,7 @@ exports.getTotal = cart => {
 };
 
 exports.populateCart = async cart => await Promise.all(cart.map(async product => ({
-                data: await findProductById(product.id),
-                quantity: product.quantity,
-                size: product.size
-            })));
-
+    data: await findProductById(product.id),
+    quantity: product.quantity,
+    size: product.size
+})));

@@ -78,11 +78,11 @@
               <h1><%= product.name %></h1>
               <p><%= product.description %></p>
             </div>
-            <div class="product__action" onmouseout="console.log(1)">
+            <div class="product__action">
               <span><%= (product.price).toFixed(2) %> €</span>
-			  <img src="/images/star-solid.svg" />
-			  <span>4,5</span>
-              <a href="/produkt/<%= product._id %>">
+              <img src="/images/star-solid.svg" />
+              <span>4,5</span>
+              <a href="/merch/produkt/<%= product._id %>">
                 Zum Produkt
               </a>
             </div>
@@ -98,28 +98,26 @@
 	<script>
 
 		const products = Array.from(document.querySelectorAll('.product'));
-      	const filterSection = document.querySelector('.filter');
-      	const starContainer = document.querySelector('.filter__rate');
-      	const searchbar = document.querySelector('#search');
-      	const priceFilter = document.querySelector('#price');
-      	const priceOutput = document.querySelector('.price__output');
-      	const stars = Array.from(document.querySelectorAll('.star'));
+    const filterSection = document.querySelector('.filter');
+    const starContainer = document.querySelector('.filter__rate');
+    const searchbar = document.querySelector('#search');
+    const priceFilter = document.querySelector('#price');
+    const priceOutput = document.querySelector('.price__output');
+    let stars = Array.from(document.querySelectorAll('.star'));
 
 		let searchTerm = '';
 		let maxPrice = 99;
 		let minRate = 0;
-		let selected = false;
-
+    let selected = false;
+    
 		function filter() {
 			for (const product of products) {
-				let { name, price, rate } = product.dataset;
+        let { name, price, rate } = product.dataset;
+        console.table(price, maxPrice, rate, minRate);
 				[price, maxPrice] = [price, maxPrice].map(value => parseFloat(value));
 				[name, searchTerm] = [name, searchTerm].map(str => str.toLowerCase());
-				if (name.includes(searchTerm) && price <= maxPrice && rate >= minRate) {
-					product.style.display = 'flex';
-				} else {
-					product.style.display = 'none';
-				}
+        (name.includes(searchTerm) && price <= maxPrice && rate >= minRate) ?
+          product.style.display = 'flex' : product.style.display = 'none';
 			}
 		}
 
@@ -128,7 +126,7 @@
 			filter();
 		});
 
-		priceFilter.addEventListener('change', function(e) {
+		priceFilter.addEventListener('input', function(e) {
 			maxPrice = this.value;
 			priceOutput.textContent = `max. ${maxPrice} €`;
 			filter();
@@ -137,13 +135,13 @@
 		for (const star of stars) {
 
 			star.addEventListener('mouseover', function() {
-				const { place: thisPlace } = star.dataset;
-				stars
-					.filter(star => star.dataset.place <= thisPlace)
-					.forEach(star => { star.src = '/images/star-solid.svg' });
-				stars
-					.filter(star => star.dataset.place > thisPlace)
-					.forEach(star => { star.src = '/images/star-regular.svg' });
+        const { place: thisPlace } = star.dataset;
+        stars = stars.map(star => {
+          star.dataset.place <= thisPlace
+            ? star.src = '/images/star-solid.svg'
+            : star.src = '/images/star-regular.svg';
+          return star;
+        });
 			});
 
 			star.addEventListener('click', function() {
