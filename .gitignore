@@ -1,4 +1,5 @@
 node_modules/
 nodemon.json
 .todo
-ecosystem.config.js
+.eslintrc.json
+ecosystem.config.json
