@@ -1,0 +1,78 @@
+main {
+    height: calc(100vh - 70px);
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.product {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 100px;
+    border: 1px solid gray;
+    display: flex;
+    margin-bottom: 1rem;
+}
+.product img {
+    height: 100%;
+    width: auto;
+}
+.product__info {
+    width: 50%;
+    height: 100%;;
+    display: flex;
+    padding-left: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+h1, h2 {
+    margin: 0;
+}
+.product__price {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 24px;
+}
+.product__action {
+    width: 50%;
+    height: 100%;
+}
+.quantity {
+    height: 100%;
+    width: 200px;
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.quantity > * {
+    height: 100%;
+    width: 50%;
+    display: flex;
+}
+.quantity__display {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.quantity__modifier {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 0 2px;
+    font-size: 30px;
+}
+.quantity__modifier > div {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quantity__modifier > div:hover {
+    background-color: rgb(240, 240, 240);
+}

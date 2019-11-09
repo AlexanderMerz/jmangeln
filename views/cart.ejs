@@ -11,46 +11,37 @@
 </head>
 <body>
     <% include includes/navigation %>
+    <main>
     <% if (cart) { %>
-        <h1>Under Construction</h1>
-        <!-- <ul>
-            <% for (const product of cart) { %>
-                <li class="item">
-                    <div class="item__details">
-                        <img src="/images/test.jpg" alt="Produktbild">
-                        <h1><%= product.data.name %></h1>
-                        <p><%= product.data.description %></p>
+        <% cart.forEach((product, index) => { %>
+            <div class="product">
+                <img src="/images/test.jpg" alt="Produktbild">
+                <div class="product__info">
+                    <h1><%= product.data.name %></h1>
+                </div>
+                <div class="product__action">
+                    <div class="quantity">
+                        <h2 class="quantity__display">
+                            <div>Menge</div>
+                            <div><%= product.quantity %></div>
+                        </h2>
+                        <div class="quantity__modifier" data-index="<%= index %>">
+                            <div class="plus">+</div>
+                            <div class="minus">-</div>
+                        </div>
                     </div>
-                    <div class="item__actions">
-
-                    </div>
-                    <img src="https://Placehold.it/500x250" alt="Produktbild">
-                    <div class="product__details">
-                        <h1><%= product.data.name %></h1>
-                        <p><%= product.data.description %></p>
-                    </div>
-                    <div>
-                        <span>Einzelpreis</span>
-                        <span><%= (product.data.price).toFixed(2) %> €</span>
-                    </div>
-                    <div>
-                        <span>Menge</span>
-                        <span><%= product.quantity %></span>
-                    </div>
-                    <div>
-                        <span>Größe</span>
-                        <span><%= product.size %></span>
-                    </div>
-                    
-                </li>
-            <% } %>
-        </ul> -->
-        <div class="info">
-            <h1>Anzahl Gegenstände: <%= quantity %></h1>
-            <h1>Gesamtwert: <%= total.toFixed(2) %> €</h1>
-            <button class="delete">Warenkorb leeren</button>
-        </div>
+                </div>
+                <p class="product__price">
+                    <%= (product.data.price).toFixed(2) %> €
+                </p>
+            </div>
+        <% }); %>
     <% } %>
+
+    <div class="info">
+        <h1>Anzahl Gegenstände: <span id="quantity"><%= quantity %></span></h1>
+        <h1>Gesamtwert: <span id="total"><%= total.toFixed(2) %> €</span></h1>
+    </div>
 
     <script src="/scripts/ui.js"></script>
 

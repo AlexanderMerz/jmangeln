@@ -78,7 +78,7 @@ app.get('/videos', (req, res) => res.sendFile(pages + path.sep + 'videos.html'))
 app.get('/blog', (req, res) => res.sendFile(pages + path.sep + 'blog.html'));
 
 /* Merch Routes */
-app.use('/merch*', merchRoutes);
+app.use('/merch', merchRoutes);
 
 /* API Endpoints */
 app.use('/api', apiRoutes);
