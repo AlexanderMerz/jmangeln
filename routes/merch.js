@@ -7,16 +7,15 @@ const { capitalizeFirstLetter } = require('../helper/StringModifier');
 const { parseText } = require('../middleware/textparser');
 
 router.get('*', function (req, res, next) {
-    console.log('In Middleware', req.url);
-    console.log('Method: ', req.method);
     req.cart = cartController.getCart(req);
-    req.quantity = cartController.getQuantity(req.cart);
+    req.quantity = parseInt(cartController.getQuantity(req.cart));
     next();
 });
 
 router.get('*', async function (req, res) {
 
     let {  cart, quantity } = req;
+    quantity = parseInt(quantity);
     const url = req.originalUrl;
 
     switch (url) {
