@@ -27,20 +27,20 @@
             <div class="details">
                 <select name="size" id="size" required="required">
                     <option value="" disabled selected>Größe wählen</option>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
+                    <option value="S">Größe S</option>
+                    <option value="M">Größe M</option>
+                    <option value="L">Größe L</option>
                 </select>
                 <select name="quantity" id="quantity" required="required">
                     <option value="" disabled selected>Menge wählen</option>
-                    <% for (let i = 1; i <= 20; i++) { %>
-                        <option value="<%= i %>"><%= i %></option>
+                    <% for (let i = 1; i < 10; i++) { %>
+                        <option value="<%= i %>"><%= i %> Stück</option>
                     <% } %>
                 </select>
             </div>
             <button class="btn" type="submit">In den Warenkorb</button>
         </div>
-        <img src="/images/test.jpg">
+        <img src="/images/tshirt.png">
     </form>
 
     <script src="/scripts/ui.js"></script>
