@@ -1,6 +1,8 @@
 const { findProductById } = require('../controllers/product-controller');
 
-exports.getCart = req => req.session.cart || [];
+exports.getCart = req => {
+    return req.session.cart ? req.session.cart.filter(product => product != null) : [];
+};
 
 exports.postCart = (req, res) => {
     /* url check because any merch related post request will get to this function */
@@ -9,7 +11,7 @@ exports.postCart = (req, res) => {
     }
     const chosenProduct = {
         id: req.body.productID,
-        quantity: Number(req.body.quantity),
+        quantity: parseInt(req.body.quantity),
         size: req.body.size
     };
     if (!req.session.cart) {
