@@ -2,48 +2,203 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>J&M Angeln - Warenkorb</title>
     <% include includes/styles %>
     <link rel="stylesheet" href="/styles/cart.css">
 
 </head>
-<body>
-    <% include includes/navigation %>
-    <main>
-    <% if (cart) { %>
-        <% cart.forEach((product, index) => { %>
-            <div class="product">
-                <img src="/images/test.jpg" alt="Produktbild">
-                <div class="product__info">
-                    <h1><%= product.data.name %></h1>
-                </div>
-                <div class="product__action">
-                    <div class="quantity">
-                        <h2 class="quantity__display">
-                            <div>Menge</div>
-                            <div><%= product.quantity %></div>
-                        </h2>
-                        <div class="quantity__modifier" data-index="<%= index %>">
-                            <div class="plus">+</div>
-                            <div class="minus">-</div>
-                        </div>
-                    </div>
-                </div>
-                <p class="product__price">
-                    <%= (product.data.price).toFixed(2) %> €
-                </p>
-            </div>
-        <% }); %>
-    <% } %>
 
-    <div class="info">
-        <h1>Anzahl Gegenstände: <span id="quantity"><%= quantity %></span></h1>
-        <h1>Gesamtwert: <span id="total"><%= total.toFixed(2) %> €</span></h1>
+<body>
+
+    <% include includes/navigation %>
+    <div class="heading">
+        <h1>Warenkorb</h1>
+        <img src="/images/cart.svg" alt="Cart">
     </div>
 
+    <main>
+        <% if (cart && cart.length > 0) { %>
+            <section class="left">
+                <div class="lds-dual-ring"></div>
+                <% for (const product of cart) { %>
+                    <div class="product" style="display:none">
+                        <img src="/images/tshirt.png" alt="Produktbild">
+                        <div class="product__details">
+                            <div class="product__info">
+                                <h2 class="details__name"><%= product.data.name %></h2>
+                                <p class="details__category"><%= product.data.description %></p>
+                                <p class="details__price">
+                                    <%= (product.data.price * product.quantity).toFixed(2) %> €
+                                </p>
+                            </div>
+                            <div class="product__action" data-id="<%= product.data._id %>">
+                                <select
+                                    name="size"
+                                    class="size"
+                                    required="required"
+                                    data-size="<%= product.size %>"
+                                >
+                                    <option value="S">Größe S</option>
+                                    <option value="M">Größe M</option>
+                                    <option value="L">Größe L</option>
+                                </select>
+                                <select
+                                    name="quantity"
+                                    class="quantity"
+                                    required="required"
+                                    data-quantity="<%= product.quantity %>"
+                                >
+                                    <option value="0">Entfernen</option>
+                                    <% for (let i = 1; i < 10; i++) { %>
+                                        <option value="<%= i %>"><%= i %> Stück</option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+        </section>
+        <section class="right">
+            <div class="summary">
+                <h3>Hinweise zu Ihrem Einkauf</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Quisquam nemo sunt dolores consequatur corrupti tempore rerum in maiores cum, 
+                    veritatis culpa tenetur tempora aperiam architecto.</p>
+            </div>
+            <div class="checkout">
+                <h2>Gesamtbetrag</h2>
+                <h2 id="total"><%= (total).toFixed(2) %> €</h2>
+                <button>Kasse</button>
+                <button>PayPal</button>
+            </div>
+        </section>
+        <% } else { %>
+            <p class="empty">Es befinden sich keine Produkte im Warenkorb.</p>
+        <% } %>
+    </main>
+    
     <script src="/scripts/ui.js"></script>
+    <script>
+
+        const leftSection = document.querySelector('.left');
+        const totalDisplay = document.querySelector('#total');
+        const spinner = document.querySelector('.lds-dual-ring');
+
+        function preselectOptions() {
+
+            for (const sizeSelect of Array.from(document.querySelectorAll('.size'))) {
+                Array.from(sizeSelect.options)
+                    .find(option => option.value === sizeSelect.dataset.size)
+                    .selected = true;
+                sizeSelect.addEventListener('change', async function() {
+                    const id = this.parentElement.dataset.id;
+                    const quantity = this.nextElementSibling.dataset.quantity;
+                    const oldSize = this.dataset.size;
+                    const newSize = this.value;
+                    let response = await fetch('/api/cart', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id, oldSize, newSize, quantity, change: 'size' })
+                    });
+                    response = await response.json();
+                    repopulateCart(response);
+                });
+            }
+
+            Array.from(document.querySelectorAll('.quantity')).forEach((quantitySelect, index) => {
+                Array.from(quantitySelect.options)
+                    .find(option => option.value === quantitySelect.dataset.quantity)
+                    .selected = true;
+                quantitySelect.addEventListener('change', async function() {
+                    const id = this.parentElement.dataset.id;
+                    const size = this.previousElementSibling.dataset.size;
+                    const quantity = this.value;
+                    let response = await fetch('/api/cart', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id, size, quantity, change: 'quantity' })
+                    });
+                    response = await response.json();
+                    repopulateCart(response);
+                });
+            });
+
+            if (spinner) spinner.classList.remove('lds-dual-ring');
+            Array.from(document.querySelectorAll('.product'))
+                .forEach(product => { product.style = 'block' });
+
+        }
+
+        function repopulateCart(response) {
+
+            if (response.status === 200) {
+
+                if (response.cart.length === 0) {
+                    location.reload();
+                }
+                
+                /* Delete Cart Items */
+                Array.from(document.querySelectorAll('.product'))
+                    .forEach(product => product.remove());
+
+                /* Repopulate Cart */
+                for (const product of response.cart) {
+                    leftSection.innerHTML += `
+                        <div class="product">
+                            <img src="/images/tshirt.png" alt="Produktbild">
+                            <div class="product__details">
+                                <div class="product__info">
+                                    <h2 class="details__name">${product.data.name}</h2>
+                                    <p class="details__category">${product.data.description}</p>
+                                    <p class="details__price">${(product.data.price * product.quantity).toFixed(2)} €</p>
+                                </div>
+                                <div class="product__action" data-id="${product.data._id}">
+                                    <select
+                                        name="size"
+                                        class="size"
+                                        required="required"
+                                        data-size="${product.size}"
+                                    >
+                                        <option value="S">Größe S</option>
+                                        <option value="M">Größe M</option>
+                                        <option value="L">Größe L</option>
+                                    </select>
+                                    <select
+                                        name="quantity"
+                                        class="quantity"
+                                        required="required"
+                                        data-quantity="${product.quantity}"
+                                    >
+                                    <option value="0">Entfernen</option>
+                                    <option value="1">1 Stück</option>
+                                    <option value="2">2 Stück</option>
+                                    <option value="3">3 Stück</option>
+                                    <option value="4">4 Stück</option>
+                                    <option value="5">5 Stück</option>
+                                    <option value="6">6 Stück</option>
+                                    <option value="7">7 Stück</option>
+                                    <option value="8">8 Stück</option>
+                                    <option value="9">9 Stück</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                preselectOptions();
+
+            }
+
+            /* Display new total */
+            totalDisplay.innerHTML = `${(response.total).toFixed(2)} €`;
+
+        }
+        
+        window.addEventListener('load', preselectOptions);
+
+    </script>
 
 </body>
 </html>
