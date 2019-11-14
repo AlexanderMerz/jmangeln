@@ -22,13 +22,14 @@ main {
 }
 .heading {
     display: flex;
+    justify-content: center;
     align-items: center;
     margin: 2rem;
 }
 .heading h1 {
     font-weight: 100;
     letter-spacing: 6px;
-    margin: 0 1rem 0 0;
+    margin: 0 auto;
 }
 .heading img {
     height: 24px;
@@ -109,6 +110,7 @@ select:-moz-focusring {
 .summary h3 {
     font-weight: 100;
     margin-top: 0;
+    font-size: 20px;
 }
 .summary > * {
     text-align: justify;
@@ -118,7 +120,7 @@ select:-moz-focusring {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 }
 .checkout {
@@ -126,6 +128,7 @@ select:-moz-focusring {
     position: relative;
     display: flex;
     flex-direction: column;
+    margin-top: 2rem;
 }
 #total {
     position: absolute;
@@ -137,25 +140,6 @@ select:-moz-focusring {
     margin: 0;
     font-weight: 100;
     font-size: 24px;
-}
-/* width */
-::-webkit-scrollbar {
-    width: 4px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: black; 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #b30000; 
 }
 button {
     font-size: 1rem;

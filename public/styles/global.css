@@ -61,6 +61,19 @@ body {
     -webkit-animation-iteration-count: infinite; 
     opacity: 0.5;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 2px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 5px black; */
+    background-color: #000;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color); 
+}
 @keyframes pulsate {
     0% { 
         opacity: 0.5;
