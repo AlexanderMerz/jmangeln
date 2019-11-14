@@ -3,7 +3,8 @@ const path  = require('path');
 
 /* Third Party Modules */
 const bodyParser = require('body-parser');
-const compression = require('compression');
+const cookieParser = require('cookie-parser');
+// const compression = require('compression');
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
@@ -26,12 +27,6 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_SECRET
 });
 
-/* Controller */
-const { getCategories } = require('./controllers/category-controller');
-const cartController = require('./controllers/cart-controller');
-const blogController = require('./controllers/blog-controller');
-const { findProductById, findProductsByCategory } = require('./controllers/product-controller');
-
 /* Routes */
 const apiRoutes = require('./routes/api');
 const merchRoutes = require('./routes/merch');
@@ -43,8 +38,9 @@ const app = express();
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(session({
-    cookie: { maxAge: 1000* 60 * 60 * 24 * 7 },
+    cookie: { maxAge: 1000* 60 * 60 * 24 },
     saveUninitialized: false,
     secret: 'my-secret',
     resave: false,
@@ -84,7 +80,10 @@ app.use('/merch', merchRoutes);
 app.use('/api', apiRoutes);
 
 /* Database Connection + Server Start */
-mongoose.connect(mongoURL, { useNewUrlParser: true })
+mongoose.connect(mongoURL, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+    })
     .then(() => app.listen(process.env.PORT || 8080))
     .catch(error => {
         console.error(error);

@@ -22,7 +22,14 @@ exports.postCart = (req, res) => {
             ? req.session.cart[index].quantity += chosenProduct.quantity
             : req.session.cart = [ ...req.session.cart, chosenProduct ];
     }
-    res.redirect('/merch/cart');
+    req.session.save(function(error) {
+        if (error) {
+            console.log('Session Error: ', error);
+            // TODO: Redirect to Error Page
+            res.redirect('/');
+        }
+        return res.redirect('/merch/cart');
+    });
  };
 
 exports.getQuantity = cart => {
@@ -45,8 +52,16 @@ exports.getTotal = cart => {
     return total;
 };
 
-exports.populateCart = async cart => await Promise.all(cart.map(async product => ({
-    data: await findProductById(product.id),
-    quantity: product.quantity,
-    size: product.size
-})));
+exports.populateCart = async cart => {
+    try {
+        return await Promise.all(
+            cart.map(async product => ({
+                data: await findProductById(product.id),
+                quantity: product.quantity,
+                size: product.size
+            })
+        ));
+    } catch (error) {
+        console.log(error);
+    }
+};
