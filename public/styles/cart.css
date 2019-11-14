@@ -280,20 +280,21 @@ button:hover {
         width: 100%;
         justify-content: center;
         align-items: center;
-        margin-bottom: 2rem;
+        margin: 0;
     }
     .checkout button {
         margin: 0;
-        width: 200px;
+        width: 150px;
         height: fit-content;
+        padding: 4px;
     }
     .checkout h2:first-of-type {
-        visibility: visible;
+        display: none;
     }
     #total {
         position: relative;
-        margin-bottom: 1rem;
         font-size: 36px;
+        margin-bottom: 6px;
     }
     .heading {
         width: 100%;
@@ -331,6 +332,9 @@ button:hover {
     }
     select:first-child {
         margin-bottom: 4px;
+    }
+    .summary {
+        margin: 1rem 2rem;
     }
     .summary p {
         font-size: 13px;
