@@ -17,6 +17,7 @@
 }
 .navbar__brand source, .navbar__brand img {
     height: 100%;
+    width: auto;
 }
 .navbar__navigation {
     width: 80%;
@@ -119,7 +120,7 @@
         margin-top: 2.5rem;
     }
     .navbar__navigation ul li {
-        font-size: 1.2rem;
+        font-size: 20px;
         height: 60px;
         transition: opacity 0.125s;
     }

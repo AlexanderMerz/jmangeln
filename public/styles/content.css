@@ -41,9 +41,9 @@
 
 .content__text {
     text-align: justify;
-    line-height: 1.8;
+    line-height: 2;
     text-justify: inter-word;
-    font-size: 18px;
+    font-size: 20px;
     margin-top: 1.5rem;
 }
 
@@ -63,7 +63,7 @@
         font-size: 5vw;
     }
     .content__text {
-        font-size: 16px;
+        font-size: 18px;
     }
 }
 
@@ -94,7 +94,8 @@
         margin: 0.5rem 1rem;
     }
     .content__text {
-        font-size: 0.85rem;
+        text-align: left;
+        font-size: 16px;
     }
 }
 
