@@ -2,14 +2,14 @@
 <html lang="de">
 <head>
 
+    <title>J&M Angeln</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#000">
-    <meta name="description" content="Die offizielle Webseite des J&M Angel-Team">
-    <title>J&M Angeln</title>
-    
+    <meta name="description" content="Die offizielle Webseite des J&M Angel Team von Youtube">
+
     <link rel="manifest" href="./manifest.json">
     <link rel="apple-touch-icon" sizes="72x72" href="./icons/icon-72x72.png">
     <link rel="apple-touch-icon" sizes="96x96" href="./icons/icon-96x96.png">
@@ -19,17 +19,20 @@
     <link rel="apple-touch-icon" sizes="192x192" href="./icons/icon-192x192.png">
     <link rel="apple-touch-icon" sizes="384x384" href="./icons/icon-384x384.png">
     <link rel="apple-touch-icon" sizes="512x512" href="./icons/icon-512x512.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
     <link rel="stylesheet" href="./styles/global.css">
-    <link rel="stylesheet" href="./styles/banner.css">
     <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="./styles/banner.css">
 
 </head>
 <body>
 
     <header class="navbar">
         <picture class="navbar__brand">
-            <img src="./images/brand.jpg" alt="J&M Angeln Logo">
+            <source srcset="images/brand_small.webp" type="image/webp">
+            <source srcset="images/brand_small.jpg" type="image/jpeg">
+            <img src="./images/brand_small.jpg" alt="J&M Angeln Brand">
         </picture>
         <nav class="navbar__navigation">
             <ul>
@@ -57,13 +60,25 @@
         </section>
 
         <section class="social">
-            <a href="https://www.facebook.com/JM-Angeln-303379709797317" target="_blank">
+            <a
+                href="https://www.facebook.com/JM-Angeln-303379709797317"
+                target="_blank"
+                rel="noopener"
+            >
                 <img src="./images/facebook.svg" alt="Facebook Icon">
             </a>
-            <a href="https://www.youtube.com/user/jonas9192" target="_blank">
+            <a
+                href="https://www.youtube.com/user/jonas9192"
+                target="_blank"
+                rel="noopener"
+            >
                 <img src="./images/youtube.svg" alt="Youtube Icon">
             </a>
-            <a href="https://www.instagram.com/jm_angeln/" target="_blank">
+            <a
+                href="https://www.instagram.com/jm_angeln/"
+                target="_blank"
+                rel="noopener"
+            >
                 <img src="./images/instagram.svg" alt="Instagram Icon">
             </a>
         </section>
@@ -98,63 +113,39 @@
 
         <section class="cards">
             <div class="card-wrapper">
-                <info-card
-                    title="Merch" 
-                    image="./images/merch.jpg"
-                    href="/merch"
-                >
+                <info-card title="Merch" image="./images/merch.jpg" href="/merch">
                     Egal ob am Wasser mit Freunden oder in der Schule durch die 
                     neongrünen Schrift stichst du auf jeden Fall heraus, so ein 
                     cooles Design fällt auf und passt überall hin. Von T-Shirts 
                     über Hoodies bis hin zur Snapback haben wir für jeden was am 
                     Start.
                 </info-card>
-                <info-card
-                    title="Team"
-                    image="./images/team.jpg"
-                    href="/team"
-                >
+                <info-card title="Team" image="./images/team.jpg" href="/team">
                     J&M Angeln besteht im Grunde aus Jonas und Nico die du als 
                     Gesichter des Kanals kennst. Im Hintergrund stehen noch einige 
                     weitere Personen ohne deren Hilfe wir nicht dort wären wo wir 
                     heute sind.
                 </info-card>
-                <info-card
-                    title="Social Media"
-                    image="./images/social.jpg"
-                    href="/social"
-                >
+                <info-card title="Social Media" image="./images/social.jpg" href="/social">
                     Erlebnisse,  Erfahrungen und Eindrücke unserer Abenteuer am 
                     Wasser teilen wir mit euch auf verschiedenen Social Media 
                     Plattformen. Auf unserem YouTube-Kanal veröffentlichen wir 
                     regelmäßig neue Angelvideos mit Tipps, Tricks und tollen 
                     Naturaufnahmen. 
                 </info-card>
-                <info-card
-                    title="Unser Tackle"
-                    image="./images/tackle.jpg"
-                    href="/blog"
-                >
+                <info-card title="Unser Tackle" image="./images/tackle.jpg" href="/blog">
                     Jeder von uns hat im Laufe seiner Anglerlaufbahn diverses 
                     Tackle getestet. Finde heraus, welches Material uns überzeugen 
                     konnte und auf welches Equipment wir bei unseren Karpfen-, 
                     Spinnfisch- oder Ansitz-Sessions zurückgreifen.
                 </info-card>
-                <info-card
-                    title="Testberichte"
-                    image="./images/testberichte.jpg"
-                    href="/blog"
-                >
+                <info-card title="Testberichte" image="./images/testberichte.jpg" href="/blog">
                     Gerade bei jungen Anglern ist oftmals der Preis kaufentscheidend 
                     für ein Produkt. Um dich vor dem bekannten „Billig kauft doppelt“ 
                     zu schützen möchten wir dir über unsere Testberichte einen Eindruck 
                     vermitteln welche Produkte uns überzeugen konnten und warum.
                 </info-card>
-                <info-card
-                    title="Sessionberichte"
-                    image="./images/sessionberichte.jpg"
-                    href="/blog"
-                >
+                <info-card title="Sessionberichte" image="./images/sessionberichte.jpg" href="/blog">
                     Um die Ruhe der Natur und die Zeit mit seinen Freunden am Wasser 
                     noch intensiver genießen zu können verzichten wir manchmal auf 
                     die aufwendige Produktion eines Videos. Damit du unsere Abenteuer 
@@ -162,16 +153,15 @@
                 </info-card>
             </div>
         </section>
-        <cart-bar></cart-bar>
 
     </main>
 
     <link rel="stylesheet" href="./styles/content.css">
     <link rel="stylesheet" href="./styles/cards.css">
 
-    <!-- <script src="./scripts/init.js"></script> -->
-    <script type="module" src="./components/info-card.mjs"></script>
     <script src="./scripts/ui.js"></script>
+    <!-- <script src="./scripts/init-sw.js"></script> -->
+    <script type="module" src="./components/info-card.mjs"></script>
 
 </body>
 </html>
