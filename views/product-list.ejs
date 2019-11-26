@@ -43,7 +43,7 @@
     </div>
 
     <section class="filter">
-      <input id="search" type="text" name="search" placeholder="Suchen...">
+      <input id="search" type="text" id="search" name="search" placeholder="Suchen...">
       <div class="filter__price">
           <div class="price__config">
               <span>1 €</span>
@@ -68,7 +68,12 @@
           data-price="<%= (product.price).toFixed(2) %>"
           data-rate="4.5"
         >
-          <img
+          <!-- <img
+            class="product__image"
+            src="<%= product.image %>"
+            alt="Produktbild"
+          /> -->
+            <img
             class="product__image"
             src="/images/tshirt.png"
             alt="Produktbild"
@@ -80,63 +85,7 @@
             </div>
             <div class="product__action">
               <span><%= (product.price).toFixed(2) %> €</span>
-              <img src="/images/star-solid.svg" />
-              <span>4,5</span>
-              <a href="/merch/produkt/<%= product._id %>">
-                Zum Produkt
-              </a>
-            </div>
-          </div>
-        </div>
-      <% } %>
-      <% for (const product of products) { %>
-        <div
-          class="product"
-          data-name="<%= product.name %>"
-          data-price="<%= (product.price).toFixed(2) %>"
-          data-rate="4.5"
-        >
-          <img
-            class="product__image"
-            src="/images/tshirt.png"
-            alt="Produktbild"
-          />
-          <div>
-            <div class="product__info">
-              <h1><%= product.name %></h1>
-              <p><%= product.description %></p>
-            </div>
-            <div class="product__action">
-              <span><%= (product.price).toFixed(2) %> €</span>
-              <img src="/images/star-solid.svg" />
-              <span>4,5</span>
-              <a href="/merch/produkt/<%= product._id %>">
-                Zum Produkt
-              </a>
-            </div>
-          </div>
-        </div>
-      <% } %>
-      <% for (const product of products) { %>
-        <div
-          class="product"
-          data-name="<%= product.name %>"
-          data-price="<%= (product.price).toFixed(2) %>"
-          data-rate="4.5"
-        >
-          <img
-            class="product__image"
-            src="/images/tshirt.png"
-            alt="Produktbild"
-          />
-          <div>
-            <div class="product__info">
-              <h1><%= product.name %></h1>
-              <p><%= product.description %></p>
-            </div>
-            <div class="product__action">
-              <span><%= (product.price).toFixed(2) %> €</span>
-              <img src="/images/star-solid.svg" />
+              <img src="/images/star-solid.svg" alt="Bewertung" />
               <span>4,5</span>
               <a href="/merch/produkt/<%= product._id %>">
                 Zum Produkt

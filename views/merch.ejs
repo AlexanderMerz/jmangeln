@@ -71,13 +71,11 @@
         <section class="categories">
             <% for (const category of categories) { %>
                 <a class="category" href="/merch<%= category.href %>">
-                    <img class="category__image" src="/images/test.jpg" alt="Kategoriebild">
-                    <div class="category__text"><%= category.name %></div>
-                </a>
-            <% } %>
-            <% for (const category of categories) { %>
-                <a class="category" href="/merch<%= category.href %>">
-                    <img class="category__image" src="/images/test.jpg" alt="Kategoriebild">
+                    <img
+                        class="category__image"
+                        src="https://Placehold.it/500x300"
+                        alt="Kategoriebild"
+                    >
                     <div class="category__text"><%= category.name %></div>
                 </a>
             <% } %>
