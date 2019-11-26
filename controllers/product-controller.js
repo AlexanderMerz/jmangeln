@@ -8,10 +8,23 @@ exports.addProduct = async (req, res) => {
 };
 
 exports.getProducts = async (req, res) => {
-    const products = await Product.find();
-    return res.status(200).json(products);
+    return Array.from(await Product.find())
+        .map((product) => loadImageAndReturn(product));
 };
 
-exports.findProductById = async _id => await Product.findOne({ _id });
+exports.findProductById = async _id => {
+    return loadImageAndReturn(await Product.findOne({ _id }));
+}
 
-exports.findProductsByCategory = async category => await Product.find({ category });
+exports.findProductsByCategory = async category => {
+    return Array.from(await Product.find({ category }))
+        .map((product) => loadImageAndReturn(product));
+}
+
+function loadImageAndReturn(product) {
+    product.image = cloudinary
+        .url(product.image)
+        .replace('http', 'https')
+        .trim();
+    return product;
+}
