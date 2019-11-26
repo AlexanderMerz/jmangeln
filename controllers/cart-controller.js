@@ -43,6 +43,14 @@ exports.getQuantity = cart => {
 };
 
 exports.getTotal = cart => {
+    for (const product of cart) {
+        if (!product.data) {
+            throw new Error(
+                'Cart needs to be populated. Please call ' +
+                'cartController.populateCart() first.'
+            );
+        }
+    }
     let total = 0;
     if (cart && cart.length > 0) {
         for (const product of cart) {
@@ -52,7 +60,7 @@ exports.getTotal = cart => {
     return total;
 };
 
-exports.populateCart = async cart => {
+exports.populateCart = async cart => { 
     try {
         return await Promise.all(
             cart.map(async product => ({
@@ -62,6 +70,6 @@ exports.populateCart = async cart => {
             })
         ));
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 };
