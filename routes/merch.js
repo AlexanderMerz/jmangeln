@@ -27,10 +27,11 @@ router.get('*', async function (req, res) {
             cart = await cartController.populateCart(cart);
             const total = cartController.getTotal(cart);
             res.render('cart', { cart, quantity, total });
-            break;
+            break; 
         default:
             if (url.includes('produkt')) {
-                const product = await productController.findProductById(url.split('/produkt/')[1]);
+                const productId = req.params[0].split('/produkt/')[1];
+                const product = await productController.findProductById(productId);
                 if (product) return res.status(200).render('product', { product });
                 else return res.status(400).redirect('/merch');
             }

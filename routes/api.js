@@ -30,7 +30,9 @@ router.post('/cart', parseText, async function(req, res) {
                 const newQuantity = parseInt(payload.quantity);
                 if (foundIndex >= 0 && req.session.cart[foundIndex].quantity != newQuantity) {
                     if (newQuantity == 0) {
-                        req.session.cart = req.session.cart.filter((product, index) => index !== foundIndex);
+                        req.session.cart = req.session.cart.filter((product, index) => {
+                            return index !== foundIndex;
+                        });
                     } else if (newQuantity > 0 && newQuantity < 10) {
                         req.session.cart = req.session.cart.map(function(product, index) {
                             if (index === foundIndex) {
@@ -61,7 +63,9 @@ router.post('/cart', parseText, async function(req, res) {
                 if (identicalProduct >= 0 && foundIndex !== identicalProduct) {
                     const quantity = req.session.cart[foundIndex].quantity;
                     req.session.cart[identicalProduct].quantity += quantity;
-                    req.session.cart = req.session.cart.filter((product, index) => index !== foundIndex);
+                    req.session.cart = req.session.cart.filter((product, index) => {
+                        return index !== foundIndex;
+                    });
                 } else {
                     req.session.cart[foundIndex].size = payload.newSize;
                 }
