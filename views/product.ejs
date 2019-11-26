@@ -16,32 +16,39 @@
 
     <form class="product" action="/merch/cart" method="POST">
         <div class="product__detail">
-            <input type="hidden" name="productID" value="<%= product._id %>">
+            <input type="hidden" name="productID" value="<%= product._id %>" alt="Produktbild">
             <input type="hidden" name="price" value="<%= product.price %>">
             <h1><%= product.name %></h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia repudiandae aliquid reprehenderit, minima ducimus officiis sit dolores corporis, laudantium est saepe quasi itaque autem, culpa porro reiciendis quibusdam perspiciatis atque natus sint aut eveniet! Odit ipsam similique illum aperiam obcaecati, dolores alias dolorum tenetur sed in, debitis, sequi provident dignissimos.</p>
             <div class="price">
                 <span><%= (product.price).toFixed(2) %> € * </span>
-                <br>
+                <br>    
                 <span>*inklusive Mehrwertsteuer</span>
             </div>
             <div class="details">
-                <select name="size" id="size" required="required">
-                    <option value="" disabled selected>Größe wählen</option>
-                    <option value="S">Größe S</option>
-                    <option value="M">Größe M</option>
-                    <option value="L">Größe L</option>
-                </select>
-                <select name="quantity" id="quantity" required="required">
-                    <option value="" disabled selected>Menge wählen</option>
-                    <% for (let i = 1; i < 10; i++) { %>
-                        <option value="<%= i %>"><%= i %> Stück</option>
-                    <% } %>
-                </select>
+                <div>
+                    <label for="size">Größe</label>
+                    <select name="size" id="size" required="required">
+                        <option value="" disabled selected>Größe wählen</option>
+                        <option value="S" selected>Größe S</option>
+                        <option value="M">Größe M</option>
+                        <option value="L">Größe L</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="quantity">Menge</label>
+                    <select name="quantity" id="quantity" required="required">
+                        <option value="1" selected>1 Stück</option>
+                        <% for (let i = 2; i < 10; i++) { %>
+                            <option value="<%= i %>"><%= i %> Stück</option>
+                        <% } %>
+                    </select>
+                </div>
             </div>
             <button class="btn" type="submit">In den Warenkorb</button>
         </div>
-        <img src="/images/tshirt.png">
+        <!-- <img src="<%= product.image %>"> -->
+        <img src="/images/tshirt.png" alt="Produktbild">
     </form>
 
     <script src="/scripts/ui.js"></script>
