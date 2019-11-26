@@ -1,7 +1,7 @@
 /**
- * Instantiates an **IntersectionObserver** if available to detect the
- * **imageElement** entering the viewport to eventually lazy load it.
- * The element therefore needs to reference the source via the **data-src** attribute.
+ * Instantiates an **IntersectionObserver**, if supported, to load 
+ * **imageElement** when it appears on the screen.
+ * Therefore, the element needs to reference the source via the **data-src** attribute.
  * @param {string} querySelector query selector to get images to lazy load
  * @param {ShadowRoot} shadowRoot passed in shadow root when called within web component
  */
@@ -36,7 +36,7 @@ export function lazyLoad(selector, shadowRoot) {
 
 function addIntersectionObservers(images) {
 
-    for (let image of images) {
+    for (const image of images) {
 
         if ('IntersectionObserver' in window) {
 
