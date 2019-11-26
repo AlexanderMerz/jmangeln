@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>J&M Angeln - Checkout</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe('pk_test_I6udDS8bLacJgu9OMoP2U94k00FQcF153E');
+    </script>
+    <% include includes/styles %>
+    <style>
+        h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .flex-row {
+            max-width: 500px;
+            height: 40px;
+        }
+        .quantity {
+            font-size: 24px;
+            font-weight: 200;
+            font-family: sans-serif;
+        }
+        @media (max-width: 768px) {
+            .flex-row {
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <% include includes/navigation %>
+
+    <main class="centered">
+
+        <h1 class="light">Checkout</h1>
+
+        <hr>
+
+        <section class="flex-column">
+            <% for (const product of cart) { %>
+                <div class="flex-row max-width">
+                    <h2 class="light">
+                        <span class="quantity"><%= product.quantity %></span>
+                        <span>&nbsp;x&nbsp;</span>
+                        <span><%= product.data.name %></span>
+                        <span class="sans-serif"><%= product.size %></span>
+                    </h2>
+                    <h2 class="light price">
+                        <%= (product.data.price * product.quantity).toFixed(2) %> €
+                    </h2>
+                </div>
+            <% } %>
+        </section>
+
+        <hr>
+
+        <section class="flex-column">
+            <div class="flex-row max-width">
+                <h2 class="light">Gesamtwert</h2>
+                <h2 class="light price"><%= (total).toFixed(2) %> €</h2>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/scripts/ui.js"></script>
+    <script>
+        document.getElementById('stripe-checkout').addEventListener('click', function() {
+            stripe.redirectToCheckout({ sessionId: '<%= sessionId %>' });
+        });
+    </script>
+
+</body>
+</html>

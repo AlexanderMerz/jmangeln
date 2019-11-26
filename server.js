@@ -1,5 +1,5 @@
 /* Core Modules */
-const path  = require('path');
+const path = require('path');
 
 /* Third Party Modules */
 const bodyParser = require('body-parser');
@@ -21,6 +21,11 @@ const mongoURL = 'mongodb+srv://'
   + process.env.MONGO_DB
   + '?retryWrites=true';
 
+const mongoConfig = {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+};
+
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
     api_key: process.env.CLOUDINARY_APIKEY,
@@ -30,9 +35,14 @@ cloudinary.config({
 /* Routes */
 const apiRoutes = require('./routes/api');
 const merchRoutes = require('./routes/merch');
+const checkoutRoutes = require('./routes/checkout');
 
 /* Init App */
 const app = express();
+
+function startServer(port) {
+    app.listen(process.env.PORT || port);
+}
 
 /* App Configuration */
 app.use(express.static('public'));
@@ -79,12 +89,13 @@ app.use('/merch', merchRoutes);
 /* API Endpoints */
 app.use('/api', apiRoutes);
 
+/* Checkout Routes */
+app.get('/checkout', checkoutRoutes);
+app.post('/checkout', checkoutRoutes);
+
 /* Database Connection + Server Start */
-mongoose.connect(mongoURL, {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-    })
-    .then(() => app.listen(process.env.PORT || 8080))
+mongoose.connect(mongoURL, mongoConfig)
+    .then(() => startServer(8080))
     .catch(error => {
         console.error(error);
         process.exit(1);

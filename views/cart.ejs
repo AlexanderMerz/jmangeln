@@ -7,7 +7,6 @@
     <title>J&M Angeln - Warenkorb</title>
     <% include includes/styles %>
     <link rel="stylesheet" href="/styles/cart.css">
-
 </head>
 
 <body>
@@ -23,6 +22,7 @@
                 <div class="lds-dual-ring"></div>
                 <% for (const product of cart) { %>
                     <div class="product" style="display:none">
+                        <!-- <img src="<%= product.data.image %>" alt="Produktbild"> -->
                         <img src="/images/tshirt.png" alt="Produktbild">
                         <div class="product__details">
                             <div class="product__info">
@@ -69,8 +69,7 @@
             <div class="checkout">
                 <h2>Gesamtbetrag</h2>
                 <h2 id="total"><%= (total).toFixed(2) %> €</h2>
-                <button>Kasse</button>
-                <button>PayPal</button>
+                <a class="btn" href="/checkout">Kasse</a>
             </div>
         </section>
         <% } else { %>
