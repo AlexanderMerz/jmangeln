@@ -15,18 +15,45 @@
             margin: 0;
             font-size: 20px;
         }
+        .btn {
+            box-sizing: border-box;
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            margin: 5px 10px;
+            border: none;
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            box-shadow: 0 0 3px;
+        }
+        .btn:hover {
+            background-color: white;
+            box-shadow: none;
+        }
         .flex-row {
             max-width: 500px;
             height: 40px;
         }
-        .quantity {
-            font-size: 24px;
-            font-weight: 200;
-            font-family: sans-serif;
+        .payment {
+            display: flex;
+            width: 500px;
+            margin: 0 auto;
         }
         @media (max-width: 768px) {
             .flex-row {
                 max-width: 300px;
+            }
+        }
+        @media (max-width: 500px) {
+            .payment {
+                width: 100%;
+                flex-direction: column;
+            }
+            .btn {
+                width: 320px;
+                margin: 2px auto;
             }
         }
     </style>
@@ -45,10 +72,10 @@
             <% for (const product of cart) { %>
                 <div class="flex-row max-width">
                     <h2 class="light">
-                        <span class="quantity"><%= product.quantity %></span>
+                        <span><%= product.quantity %></span>
                         <span>&nbsp;x&nbsp;</span>
                         <span><%= product.data.name %></span>
-                        <span class="sans-serif"><%= product.size %></span>
+                        <span><%= product.size %></span>
                     </h2>
                     <h2 class="light price">
                         <%= (product.data.price * product.quantity).toFixed(2) %> €
@@ -64,6 +91,16 @@
                 <h2 class="light">Gesamtwert</h2>
                 <h2 class="light price"><%= (total).toFixed(2) %> €</h2>
             </div>
+        </section>
+
+        <br>
+
+        <section class="payment">
+            <button id="stripe-checkout" class="btn">
+                <img src="/images/credit_card-24px.svg" alt="Kreditkarte">
+                <span>&nbsp;Karte</span>
+            </button>
+            <button class="btn">Paypal</button>
         </section>
 
     </main>
