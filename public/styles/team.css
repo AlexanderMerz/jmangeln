@@ -1,0 +1,92 @@
+body {
+    background-color: black;
+    overflow-y: hidden;
+}
+
+main {
+    position: relative;
+    height: calc(100vh - 60px);
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+main a {
+    position: inherit;
+    height: 100%;
+    width: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: black;
+    text-decoration: none;
+    border: 4px solid black;
+    transition: width 450ms;
+    filter: saturate(60%);
+}
+
+main a h1 {
+    font-size: 40px;
+    padding: 2vw;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    margin-bottom: 120px;
+    transition: background-color 1s;
+}
+
+.team-primary {
+    background-image: url('../images/landing.jpeg');
+    background-position: 30% 30%;
+    border-right: 2px solid black;
+}
+
+.team-secondary {
+    background-image: url('../images/landing.jpeg');
+    background-position: 30% 30%;
+    border-left: 2px solid black;
+}
+
+.team-primary:hover, .team-secondary:hover {
+    width: 75%;
+}
+
+.team-primary:hover ~ .team-secondary,
+main:hover a {
+    filter: grayscale(100%);
+}
+
+main a:hover,
+main a:hover ~ a {
+    filter: none;
+}
+
+.team-primary:hover h1, .team-secondary:hover h1 {
+    background-color: black;
+}
+
+@media (max-width: 1024px) {
+    .team-primary:hover, .team-secondary:hover {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    main a {
+        height: 42.5%;
+        width: 100%;
+        border: 2px solid black;
+    }
+    main a h1 {
+        font-size: 24px;
+        margin-bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .team-primary:hover, .team-secondary:hover {
+        width: unset;
+    }
+}
