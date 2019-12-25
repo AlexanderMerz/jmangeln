@@ -112,7 +112,7 @@ select:-moz-focusring {
     font-size: 20px;
 }
 .summary > * {
-    text-align: justify;
+    text-align: center;
 }
 .right {
     padding: 2px 2rem;
@@ -142,9 +142,6 @@ select:-moz-focusring {
 }
 .btn:first-of-type {
     margin-top: 10px;
-}
-.btn:hover {
-    background-color: rgb(248, 248, 248);
 }
 .lds-dual-ring {
     display: inline-block;
@@ -277,6 +274,10 @@ select:-moz-focusring {
         width: calc(100% - 4rem);
         margin: 2rem;
     }
+    .summary p {
+        font-size: 14px;
+        line-height: 2;
+    }
     .checkout {
         width: 100%;
         justify-content: center;
@@ -285,8 +286,10 @@ select:-moz-focusring {
     }
     .checkout .btn {
         margin: 0;
-        width: 150px;
+        width: 100%;
         height: fit-content;
+        border-radius: 0;
+        padding: 20px;
     }
     .checkout h2:first-of-type {
         display: none;
@@ -331,12 +334,6 @@ select:-moz-focusring {
     }
     select:first-child {
         margin-bottom: 4px;
-    }
-    .summary {
-        margin: 1rem 2rem;
-    }
-    .summary p {
-        font-size: 13px;
     }
 }
 

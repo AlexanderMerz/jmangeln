@@ -17,15 +17,15 @@
     align-items: center;
     width: 100%;
     margin: 0 auto;
-    font-size: 2.4vw;
+    font-size: 2.5vw;
     text-align: center;
-    padding: 0.5rem 0;
+    padding: 1rem 0;
     line-height: 1.5;
 }
 
 .content__head img {
-    min-width: 80px;
-    width: 20vw;
+    width: 35vw;
+    min-width: 100px;
     height: auto;
     object-fit: contain;
     filter: brightness(0%);
@@ -48,11 +48,11 @@
 }
 
 .content__head p {
-    font-family: 'Petit Formal Script', cursive;
+    font-family: 'Syncopate', Verdana, Geneva, Tahoma, sans-serif;
     letter-spacing: 4px;
     color: rgb(80, 80, 80);
-    margin: 0.5rem 2.5rem;
-    font-weight: 500;
+    margin: 0.5rem 3rem;
+    font-weight: 300;
     text-align: center;
     text-align: -moz-center;
     text-align: -webkit-center;
@@ -102,5 +102,11 @@
 @media (max-width: 400px) {
     .content__text {
         margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 350px) {
+    .content__head {
+        font-size: 1.1rem;
     }
 }

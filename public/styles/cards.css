@@ -1,6 +1,7 @@
 .cards {
     width: 100%;
     height: fit-content;
+    margin-bottom: 2rem;
 }
 
 .card-wrapper {
@@ -11,21 +12,62 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(400px, fit-content));
-    grid-gap: 10px;
+    grid-gap: 20px;
 }
 
 .card-wrapper info-card {
+    position: relative;
     margin: 0 auto;
     cursor: pointer;
     text-align: center;
-    transition: all 0.2s;
 }
 
-.card-wrapper info-card:hover {
-    transform: scale(1.033);
+.card-wrapper info-card:nth-child(2),
+.card-wrapper info-card:nth-child(5) {
+    top: 8px;
 }
 
-@media (max-width: 400px) {
+.card-wrapper info-card:nth-child(3),
+.card-wrapper info-card:nth-child(6) {
+    top: 16px;
+}
+
+.card-wrapper info-card:nth-child(4),
+.card-wrapper info-card:nth-child(5),
+.card-wrapper info-card:nth-child(6) {
+    left: 8px;
+}
+
+@media (max-width: 1282px) {
+    .card-wrapper info-card:nth-child(2),
+    .card-wrapper info-card:nth-child(3),
+    .card-wrapper info-card:nth-child(4),
+    .card-wrapper info-card:nth-child(5),
+    .card-wrapper info-card:nth-child(6) {
+        top: 0;
+        left: 0;
+    }
+    .card-wrapper info-card:nth-child(even) {
+        top: 8px;
+    }
+    .card-wrapper info-card:nth-child(3),
+    .card-wrapper info-card:nth-child(4) {
+        left: 8px;
+    }
+    .card-wrapper info-card:nth-child(5),
+    .card-wrapper info-card:nth-child(6) {
+        left: 16px;
+    }
+}
+
+@media (max-width: 846px) {
+    .card-wrapper info-card {
+        top: 0 !important;
+        left: 0 !important;
+    }
+}
+
+@media (max-width: 425px) {
     .card-wrapper {
         width: 100%;
         margin: 0;
