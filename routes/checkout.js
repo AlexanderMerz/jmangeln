@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const cartController = require('../controllers/cart-controller')
+const cartController = require('../controllers/cart-controller');
 const stripe = require('stripe')('sk_test_MZUId1dfwRb4tDYGmN3HJUWa00Rk55bpO2');
 
 router.get('/checkout', async function(req, res) {
