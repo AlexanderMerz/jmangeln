@@ -59,7 +59,6 @@
       </div>
     </section>
     
-
     <section class="products">
       <% for (const product of products) { %>
         <div
@@ -81,14 +80,172 @@
           <div>
             <div class="product__info">
               <h1><%= product.name %></h1>
-              <p><%= product.description %></p>
             </div>
             <div class="product__action">
-              <span><%= (product.price).toFixed(2) %> €</span>
+              <span class="price"><%= (product.price).toFixed(2) %> €</span>
               <img src="/images/star-solid.svg" alt="Bewertung" />
               <span>4,5</span>
               <a href="/merch/produkt/<%= product._id %>">
-                Zum Produkt
+                Detailansicht
+              </a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+      <% for (const product of products) { %>
+        <div
+          class="product"
+          data-name="<%= product.name %>"
+          data-price="<%= (product.price).toFixed(2) %>"
+          data-rate="4.5"
+        >
+          <!-- <img
+            class="product__image"
+            src="<%= product.image %>"
+            alt="Produktbild"
+          /> -->
+            <img
+            class="product__image"
+            src="/images/tshirt.png"
+            alt="Produktbild"
+          />
+          <div>
+            <div class="product__info">
+              <h1><%= product.name %></h1>
+            </div>
+            <div class="product__action">
+              <span class="price"><%= (product.price).toFixed(2) %> €</span>
+              <img src="/images/star-solid.svg" alt="Bewertung" />
+              <span>4,5</span>
+              <a href="/merch/produkt/<%= product._id %>">
+                Detailansicht
+              </a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+      <% for (const product of products) { %>
+        <div
+          class="product"
+          data-name="<%= product.name %>"
+          data-price="<%= (product.price).toFixed(2) %>"
+          data-rate="4.5"
+        >
+          <!-- <img
+            class="product__image"
+            src="<%= product.image %>"
+            alt="Produktbild"
+          /> -->
+            <img
+            class="product__image"
+            src="/images/tshirt.png"
+            alt="Produktbild"
+          />
+          <div>
+            <div class="product__info">
+              <h1><%= product.name %></h1>
+            </div>
+            <div class="product__action">
+              <span class="price"><%= (product.price).toFixed(2) %> €</span>
+              <img src="/images/star-solid.svg" alt="Bewertung" />
+              <span>4,5</span>
+              <a href="/merch/produkt/<%= product._id %>">
+                Detailansicht
+              </a>
+            </div>
+          </div>
+        </div>
+      <% } %><% for (const product of products) { %>
+        <div
+          class="product"
+          data-name="<%= product.name %>"
+          data-price="<%= (product.price).toFixed(2) %>"
+          data-rate="4.5"
+        >
+          <!-- <img
+            class="product__image"
+            src="<%= product.image %>"
+            alt="Produktbild"
+          /> -->
+            <img
+            class="product__image"
+            src="/images/tshirt.png"
+            alt="Produktbild"
+          />
+          <div>
+            <div class="product__info">
+              <h1><%= product.name %></h1>
+            </div>
+            <div class="product__action">
+              <span class="price"><%= (product.price).toFixed(2) %> €</span>
+              <img src="/images/star-solid.svg" alt="Bewertung" />
+              <span>4,5</span>
+              <a href="/merch/produkt/<%= product._id %>">
+                Detailansicht
+              </a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+      <% for (const product of products) { %>
+        <div
+          class="product"
+          data-name="<%= product.name %>"
+          data-price="<%= (product.price).toFixed(2) %>"
+          data-rate="4.5"
+        >
+          <!-- <img
+            class="product__image"
+            src="<%= product.image %>"
+            alt="Produktbild"
+          /> -->
+            <img
+            class="product__image"
+            src="/images/tshirt.png"
+            alt="Produktbild"
+          />
+          <div>
+            <div class="product__info">
+              <h1><%= product.name %></h1>
+            </div>
+            <div class="product__action">
+              <span class="price"><%= (product.price).toFixed(2) %> €</span>
+              <img src="/images/star-solid.svg" alt="Bewertung" />
+              <span class="stars">4,5</span>
+              <a href="/merch/produkt/<%= product._id %>">
+                Detailansicht
+              </a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+      <% for (const product of products) { %>
+        <div
+          class="product"
+          data-name="<%= product.name %>"
+          data-price="<%= (product.price).toFixed(2) %>"
+          data-rate="4.5"
+        >
+          <!-- <img
+            class="product__image"
+            src="<%= product.image %>"
+            alt="Produktbild"
+          /> -->
+            <img
+            class="product__image"
+            src="/images/tshirt.png"
+            alt="Produktbild"
+          />
+          <div>
+            <div class="product__info">
+              <h1><%= product.name %></h1>
+            </div>
+            <div class="product__action">
+              <span class="price"><%= (product.price).toFixed(2) %> €</span>
+              <img src="/images/star-solid.svg" alt="Bewertung" />
+              <span class="stars">4,5</span>
+              <a href="/merch/produkt/<%= product._id %>">
+                Detailansicht
               </a>
             </div>
           </div>
@@ -124,7 +281,7 @@
         (name.includes(searchTerm) && price <= maxPrice && rate >= minRate) ?
           product.style.display = 'flex' : product.style.display = 'none';
 			}
-		}
+    }
 
 		searchbar.addEventListener('keyup', function({ key }) {
 			searchTerm = this.value;
