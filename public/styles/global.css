@@ -46,10 +46,10 @@
 html, body, ul, p {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 body {
     font-family: 'Exo', sans-serif;
-    overflow-x: hidden;
     user-select: none;
     /* -webkit-touch-callout: none; iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -63,23 +63,35 @@ body {
     font-family: Verdana, sans-serif;
     position: relative;
     text-decoration: none;
-    color: black;
     background-color: white;
+    color: rgb(100, 100, 100);
     cursor: pointer;
-    border: 1px solid black;
-    outline: none;
-    padding: 10px 20px;
+    border: 1.5px solid rgb(140, 140, 140);
+    padding: 16px;
     border-radius: 0;
     font-size: 20px;
     text-align: center;
-    transition: all 500ms;
-}
-.btn:hover {
     background-color: white;
-    box-shadow: 0 0 2px;
+    transition: all 300ms;
+}
+.btn:hover,
+.btn:active {
+    color: #000;
+    border: 1.5px solid #000;
+    letter-spacing: 2px;
+    outline: none;
 }
 .sans-serif {
     font-family: sans-serif;
+}
+.hero img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
+.verdana {
+    font-weight: 100;
+    font-family: Verdana;
 }
 .centered {
     text-align: center;
@@ -137,4 +149,74 @@ body {
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: var(--primary-color); 
+}
+select {
+    border: 1px solid rgb(100, 100, 100);
+    box-sizing: border-box;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    text-indent: 6px;
+    background-color: white;
+    width: 150px;
+    height: 40px;
+    padding-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    outline: none;
+}
+select:focus {
+    border: 1px solid #000;
+}
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+footer {
+    background-color: #000;
+    padding: 2rem;
+    font-family: Verdana, sans-serif;
+    border-top: 1px solid white;
+}
+footer h1,
+footer h2 {
+    color: #fff;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+footer .legal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer .legal a {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+footer .legal a:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+}
+@media (max-width: 425px) {
+    footer h1,
+    footer h2 {
+        font-size: 26px;
+    }
+    footer .legal a {
+        font-size: 14px;
+        margin: 0 10px;
+    }
+    .btn {
+        border-left: 0;
+        border-right: 0;
+        width: 100%;
+    }
+    .btn:hover,
+    .btn:active {
+        background-position: bottom;
+    }
 }

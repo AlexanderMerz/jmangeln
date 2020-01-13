@@ -3,6 +3,7 @@
     overflow: hidden;
     height: calc(100vh - 140px);
     width: 100%;
+    box-shadow: 0 0 5px #000;
 }
 
 .slide {
@@ -13,7 +14,6 @@
     width: 100%;
     opacity: 0;
     transition: opacity 0.65s ease-in-out;
-    box-shadow: inset 0 0 20px 0 black;
 }
 
 .slide.current {
@@ -24,8 +24,8 @@
     position: absolute;
     right: 40px;
     bottom: 40px;
-    width: 320px;
-    background-color: rgba(255, 255, 255, 0.8);
+    width: 50vw;
+    background-color: rgba(255, 255, 255, 0.65);
     color: #333;
     padding: 1.5rem;
     opacity: 0;
@@ -46,9 +46,8 @@
 }
 
 .slide:nth-child(2) {
-    background: url('../images/merch_many.jpg');
+    background: url('https://Placehold.it/1000x1000');
     background-size: cover;
-    background-position: 85% 50%;
 }
 
 .slide:first-child {
@@ -81,9 +80,10 @@
     transform: scale(1.4);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .slider {
         width: 100vw;
+        height: 70vh;
     }
     .buttons button {
         width: 50%;
@@ -101,10 +101,10 @@
     }
 
     .slide__content h1 {
-        font-size: 16px;
+        font-size: 20px;
     }
     
     .slide__content p {
-        font-size: 12px;
+        font-size: 14px;
     }
 }

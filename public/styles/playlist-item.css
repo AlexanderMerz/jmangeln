@@ -3,8 +3,8 @@ div, p {
     padding: 0;
 }
 .video {
-    width: 90%;
-    max-width: 840px;
+    width: 100%;
+    /* max-width: 840px; */
     height: 180px;
     margin: 0.5rem auto;
     display: flex;

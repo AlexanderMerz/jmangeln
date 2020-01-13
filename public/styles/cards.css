@@ -1,7 +1,7 @@
 .cards {
     width: 100%;
     height: fit-content;
-    margin-bottom: 2rem;
+    margin: 1rem 0;
 }
 
 .card-wrapper {
@@ -22,60 +22,14 @@
     text-align: center;
 }
 
-.card-wrapper info-card:nth-child(2),
-.card-wrapper info-card:nth-child(5) {
-    top: 8px;
-}
-
-.card-wrapper info-card:nth-child(3),
-.card-wrapper info-card:nth-child(6) {
-    top: 16px;
-}
-
-.card-wrapper info-card:nth-child(4),
-.card-wrapper info-card:nth-child(5),
-.card-wrapper info-card:nth-child(6) {
-    left: 8px;
-}
-
-@media (max-width: 1282px) {
-    .card-wrapper info-card:nth-child(2),
-    .card-wrapper info-card:nth-child(3),
-    .card-wrapper info-card:nth-child(4),
-    .card-wrapper info-card:nth-child(5),
-    .card-wrapper info-card:nth-child(6) {
-        top: 0;
-        left: 0;
-    }
-    .card-wrapper info-card:nth-child(even) {
-        top: 8px;
-    }
-    .card-wrapper info-card:nth-child(3),
-    .card-wrapper info-card:nth-child(4) {
-        left: 8px;
-    }
-    .card-wrapper info-card:nth-child(5),
-    .card-wrapper info-card:nth-child(6) {
-        left: 16px;
-    }
-}
-
-@media (max-width: 846px) {
-    .card-wrapper info-card {
-        top: 0 !important;
-        left: 0 !important;
-    }
-}
-
 @media (max-width: 425px) {
+    .cards {margin: 0;}
+    .card-wrapper info-card:hover {transform: none;}
     .card-wrapper {
         width: 100%;
         margin: 0;
         grid-gap: 0;
         padding: 0;
         grid-template-columns: repeat(auto-fit, minmax(312px, 1fr));
-    }
-    .card-wrapper info-card:hover {
-        transform: none;
     }
 }
