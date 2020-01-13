@@ -5,7 +5,7 @@ const channelID = 'UCMq-1kxw85KCwgmiwuuP4iQ';
 
 exports.getVideos = async (req, res) => {
     const url = baseUrl + `?part=snippet&channelId=${channelID}`
-        + `&maxResults=10&order=date&type=video&key=${apiKey}`;
+        + `&maxResults=20&order=date&type=video&key=${apiKey}`;
     const response = await fetch(url);
     return res.json(await response.json());
 };
