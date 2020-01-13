@@ -1,10 +1,14 @@
-const { findProductById } = require('../controllers/product-controller');
+const { findProductById } = require('./product-controller');
 
-exports.getCart = req => {
-    return req.session.cart ? req.session.cart.filter(product => product != null) : [];
+exports.getCart = function(req) {
+    return (
+        req.session.cart
+        ? req.session.cart.filter(product => product != null)
+        : []
+    );
 };
 
-exports.postCart = (req, res) => {
+exports.postCart = function(req, res) {
     /* url check because any merch related post request will get to this function */
     if (req.originalUrl !== '/merch/cart') {
         return res.status(400).redirect('/merch');
@@ -17,10 +21,12 @@ exports.postCart = (req, res) => {
     if (!req.session.cart) {
         req.session.cart = [chosenProduct];
     } else {
-        const index = req.session.cart.findIndex(({ id }) => id === chosenProduct.id);
-        (index >= 0 && req.session.cart[index].size === chosenProduct.size)
-            ? req.session.cart[index].quantity += chosenProduct.quantity
-            : req.session.cart = [ ...req.session.cart, chosenProduct ];
+        const index = req.session.cart.findIndex(
+            ({ id }) => id === chosenProduct.id
+        );
+        index >= 0 && req.session.cart[index].size === chosenProduct.size
+            ? (req.session.cart[index].quantity += chosenProduct.quantity)
+            : (req.session.cart = [...req.session.cart, chosenProduct]);
     }
     req.session.save(function(error) {
         if (error) {
@@ -30,9 +36,9 @@ exports.postCart = (req, res) => {
         }
         return res.redirect('/merch/cart');
     });
- };
+};
 
-exports.getQuantity = cart => {
+exports.getQuantity = function(cart) {
     let quantity = 0;
     if (cart && cart.length > 0) {
         for (const product of cart) {
@@ -42,12 +48,12 @@ exports.getQuantity = cart => {
     return quantity;
 };
 
-exports.getTotal = cart => {
+exports.getTotal = function(cart) {
     for (const product of cart) {
         if (!product.data) {
             throw new Error(
                 'Cart needs to be populated. Please call ' +
-                'cartController.populateCart() first.'
+                    'cartController.populateCart() first.'
             );
         }
     }
@@ -60,15 +66,15 @@ exports.getTotal = cart => {
     return total;
 };
 
-exports.populateCart = async cart => { 
+exports.populateCart = async function(cart) {
     try {
         return await Promise.all(
             cart.map(async product => ({
                 data: await findProductById(product.id),
                 quantity: product.quantity,
                 size: product.size
-            })
-        ));
+            }))
+        );
     } catch (error) {
         throw error;
     }
