@@ -11,36 +11,38 @@
     </script>
     <% include includes/styles %>
     <style>
+        h1 {font-weight: 100;}
         h2 {
             margin: 0;
             font-size: 20px;
         }
         .btn {
-            box-sizing: border-box;
-            width: 500px;
+            width: 100%;
+            margin: 0 auto !important;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: white;
-            margin: 5px 10px;
-            border: none;
-            border-radius: 10px;
-            padding: 1rem 2rem;
-            box-shadow: 0 0 3px;
+            transition: none;
+            color: #000;
+            border: 1.5px solid #000;
         }
-        .btn:hover {
-            background-color: white;
-            box-shadow: none;
+        .btn:hover,
+        .btn:active {
+            letter-spacing: 0;
+            color: #000;
+            border: 1.5px solid #000;
         }
+        .btn:first-child {border-bottom: 0;}
+        .btn:last-child {border-top: 0;}
         .flex-row {
             max-width: 500px;
             height: 40px;
         }
         .payment {
-            display: flex;
             width: 500px;
             margin: 0 auto;
         }
+        .total {font-size: 32px;}
         @media (max-width: 768px) {
             .flex-row {
                 max-width: 300px;
@@ -52,8 +54,10 @@
                 flex-direction: column;
             }
             .btn {
-                width: 320px;
+                width: 100%;
                 margin: 2px auto;
+                border-right: 0;
+                border-left: 0;
             }
         }
     </style>
@@ -64,7 +68,7 @@
 
     <main class="centered">
 
-        <h1 class="light">Checkout</h1>
+        <h1 class="light">Bestellübersicht</h1>
 
         <hr>
 
@@ -89,13 +93,14 @@
         <section class="flex-column">
             <div class="flex-row max-width">
                 <h2 class="light">Gesamtwert</h2>
-                <h2 class="light price"><%= (total).toFixed(2) %> €</h2>
+                <h2 class="light total price"><%= (total).toFixed(2) %> €</h2>
             </div>
         </section>
 
         <br>
 
         <section class="payment">
+            <h1>Zahlungsmethode wählen</h1>
             <button id="stripe-checkout" class="btn">
                 <img src="/images/credit_card-24px.svg" alt="Kreditkarte">
                 <span>&nbsp;Karte</span>
