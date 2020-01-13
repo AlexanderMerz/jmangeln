@@ -1,5 +1,5 @@
 const Product = require('../models/Product');
-const cloudinary = require('cloudinary').v2;
+// const cloudinary = require('cloudinary').v2;
 
 exports.addProduct = async (req, res) => {
     const { name, price, description, image } = req.params;
@@ -8,8 +8,8 @@ exports.addProduct = async (req, res) => {
 };
 
 exports.getProducts = async (req, res) => {
-    return Array.from(await Product.find())
-        .map((product) => loadImageAndReturn(product));
+    return await Product.find();
+        // .map((product) => loadImageAndReturn(product));
 };
 
 exports.findProductById = async _id => {
@@ -22,9 +22,9 @@ exports.findProductsByCategory = async category => {
 }
 
 function loadImageAndReturn(product) {
-    product.image = cloudinary
-        .url(product.image)
-        .replace('http', 'https')
-        .trim();
+    // product.image = cloudinary
+    //     .url(product.image)
+    //     .replace('http', 'https')
+    //     .trim();
     return product;
 }
