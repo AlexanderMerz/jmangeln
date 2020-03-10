@@ -6,13 +6,14 @@ body {
 main {
     position: relative;
     height: calc(100vh - 60px);
-    width: 100%;
+    max-height: fit-content;
+    width: 100vw;
     display: flex;
     overflow: hidden;
 }
 
 main a {
-    position: inherit;
+    position: relative;
     height: 100%;
     width: 50%;
     cursor: pointer;
@@ -23,27 +24,44 @@ main a {
     text-decoration: none;
     transition: all 600ms;
     filter: saturate(50%);
+    border: 20px solid black;
+    transform: scale(0.8);
 }
 
-main a h1 {
-    font-size: 40px;
-    padding: 2vw;
-    background-color: rgba(0, 0, 0, 0.5);
+main a img {
+    object-fit: cover;
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+    transition: transform 500ms;
+}
+
+main a:hover {
+    transform: scale(0.9);
+}
+
+main a:hover h1 {
+    opacity: 0.8;
+}
+
+h1 {
+    letter-spacing: -4px;
+    background-color: transparent;
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    width: 100%;
     color: white;
-    margin-bottom: 150px;
-    transition: background-color 1s;
+    padding: 8px;
+    opacity: 0.35;
+    font-size: 60px;
+    transition: all 500ms;
+    background-color: black;
 }
 
 .team-primary {
-    background-image: url('../images/landing.jpeg');
-    background-position: 30% 30%;
-    border-right: 1px solid black;
-}
-
-.team-secondary {
-    background-image: url('../images/landing.jpeg');
-    background-position: 30% 30%;
-    border-left: 1px solid black;
+    border-right: 10px;
 }
 
 .team-primary:hover ~ .team-secondary,
@@ -54,26 +72,21 @@ main:hover a {
 main a:hover,
 main a:hover ~ a {filter: none;}
 
-.team-primary:hover h1, .team-secondary:hover h1 {background-color: rgba(0, 0, 0, 1);}
-
 @media (max-width: 1024px) {
     .team-primary:hover, .team-secondary:hover {width: 50%;}
 }
 
 @media (max-width: 768px) {
+    h1 {
+        font-size: 40px;
+    }
     main {
         flex-direction: column;
     }
     main a {
-        height: 42.5%;
+        height: 50%;
         width: 100%;
         border: 2px solid black;
-    }
-    main a h1 {
-        font-size: 24px;
-        margin-bottom: 0;
-        width: 100%;
-        text-align: center;
     }
     .team-primary:hover, .team-secondary:hover {width: unset;}
 }

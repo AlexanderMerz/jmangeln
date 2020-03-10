@@ -1,5 +1,5 @@
 .content {
-    width: 85%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -41,9 +41,9 @@
 
 .content__text {
     text-align: justify;
-    line-height: 2;
+    line-height: 1.8;
     text-justify: inter-word;
-    font-size: 20px;
+    font-size: 22px;
     margin-top: 1.5rem;
 }
 
@@ -95,7 +95,7 @@
     }
     .content__text {
         text-align: left;
-        font-size: 16px;
+        font-size: 18px;
     }
 }
 

@@ -1,4 +1,7 @@
-require('dotenv').config({ debug: true });
+/* Check NODE_ENV */
+if (process.env.NODE_ENV === 'production') {
+    require('dotenv').config();
+}
 
 /* Core Modules */
 const path = require('path');
@@ -10,22 +13,16 @@ const compression = require('compression');
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
-// const cloudinary = require('cloudinary').v2;
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
-
-const MONGO_CONFIG = require('./database/mongo.config');
-
-// cloudinary.config({
-//     cloud_name: process.env.CLOUDINARY_NAME,
-//     api_key: process.env.CLOUDINARY_APIKEY,
-//     api_secret: process.env.CLOUDINARY_SECRET
-// });
 
 /* Routes */
 const apiRoutes = require('./routes/api.routes');
 const merchRoutes = require('./routes/merch.routes');
 const checkoutRoutes = require('./routes/checkout.routes');
+
+/* Config */
+const MONGO_CONFIG = require('./database/mongo.config');
 
 /* Init Server */
 const server = express();
@@ -100,8 +97,11 @@ mongoose.connect(
     MONGO_CONFIG.URI,
     MONGO_CONFIG.OPTIONS
 ).then(function () {
-    server.listen(process.env.PORT || 8080);
-    console.log('Server is up and running');
+    server.listen(
+        process.env.PORT || 8080,
+        process.env.HOST || '0.0.0.0',
+        () =>  console.log('Server is up and running')
+    );
 }).catch(function (error) {
     console.error(error);
     process.exit(1);

@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="theme-color" content="#000">
     <meta name="description" content="Die offizielle Webseite des J&M Angel Team von Youtube">
 
     <link rel="manifest" href="./manifest.json">
@@ -19,44 +18,30 @@
     <link rel="apple-touch-icon" sizes="192x192" href="./icons/icon-192x192.png">
     <link rel="apple-touch-icon" sizes="384x384" href="./icons/icon-384x384.png">
     <link rel="apple-touch-icon" sizes="512x512" href="./icons/icon-512x512.png">
+
+    <meta name="theme-color" content="#000">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <link rel="stylesheet" href="./styles/global.css">
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/banner.css">
 
+    <script defer src="./components/nav-bar.js"></script>
+    <script type="module" src="./components/info-card.mjs"></script>
+
 </head>
 <body>
 
-    <header class="navbar">
-        <picture class="navbar__brand">
-            <source srcset="images/brand_small.webp" type="image/webp">
-            <source srcset="images/brand_small.jpg" type="image/jpeg">
-            <img src="./images/brand_small.jpg" alt="J&M Angeln Brand">
-        </picture>
-        <nav class="navbar__navigation">
-            <ul>
-                <li><a href="/team">Team</a></li>
-                <li><a href="/videos">Videos</a></li>
-                <li><a href="/social">Social</a></li>
-                <li><a href="/merch">Merch</a></li>
-                <li><a href="/blog">Blog</a></li>
-            </ul>
-        </nav>
-        <div class="menu-icon">
-            <div class="bar bar1"></div>
-            <div class="bar bar2"></div>
-            <div class="bar bar3"></div>
-        </div>
-    </header>
-
+    <nav-bar></nav-bar>
+    
     <main>
 
         <section class="banner"></section>
 
         <section class="label">
             <h1 class="label__text">Angeln</h1><br/>
-            <h1 class="label__highlight pulsate">verbindet</h1>
+            <h1 class="label__highlight">verbindet</h1>
         </section>
 
         <section class="social">
@@ -156,7 +141,6 @@
                 </info-card>
             </div>
         </section>
-
     </main>
 
     <footer>
@@ -170,9 +154,7 @@
     <link rel="stylesheet" href="./styles/content.css">
     <link rel="stylesheet" href="./styles/cards.css">
 
-    <script src="./scripts/ui.js"></script>
     <!-- <script src="./scripts/init-sw.js"></script> -->
-    <script type="module" src="./components/info-card.mjs"></script>
 
 </body>
 </html>

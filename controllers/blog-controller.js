@@ -1,7 +1,6 @@
 const BlogPost = require('../models/BlogPost');
 const { readFileSync, writeFile } = require('fs');
 const { join } = require('path');
-// const { uploader } = require('cloudinary').v2;
 
 exports.getPosts = async (req, res) => 
 

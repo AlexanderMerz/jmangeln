@@ -14,27 +14,7 @@
 </head>
 <body>
     
-    <header class="navbar">
-        <picture class="navbar__brand">
-            <!-- <source  srcset="./images/brand.webp" type="image/webp"> -->
-            <source srcset="./images/brand_small.jpg" type="image/jpeg"> 
-            <img src="./images/brand.jpg" alt="J&M Angeln Logo">
-        </picture>
-        <nav class="navbar__navigation">
-            <ul>
-                <li><a href="/team">Team</a></li>
-                <li><a href="/videos">Videos</a></li>
-                <li><a href="/social" class="active">Social</a></li>
-                <li><a href="/merch">Merch</a></li>
-                <li><a href="/blog">Blog</a></li>
-            </ul>
-        </nav>
-        <div class="menu-icon">
-            <div class="bar bar1"></div>
-            <div class="bar bar2"></div>
-            <div class="bar bar3"></div>
-        </div>
-    </header>
+    <nav-bar></nav-bar>
 
     <div class="space"></div>
 
@@ -69,8 +49,7 @@
         </section>
     </main>
 
-    <script defer src="./scripts/ui.js"></script>
     <script type="module" src="../components/info-card.mjs"></script>
-
+    <script src="../components/nav-bar.js"></script>
 </body>
 </html>

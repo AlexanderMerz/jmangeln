@@ -110,7 +110,6 @@
 
     </main>
 
-    <script src="/scripts/ui.js"></script>
     <script>
         document.getElementById('stripe-checkout').addEventListener('click', function() {
             stripe.redirectToCheckout({ sessionId: '<%= sessionId %>' });

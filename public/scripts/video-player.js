@@ -2,7 +2,7 @@ async function onYouTubeIframeAPIReady () {
     const playlist = document.querySelector('.playlist');
     const response = await fetch('/api/youtube');
     const json = await response.json();
-    for (const item of json.items) {
+    for (const item of Array.from(json.items)) {
         const playlistItem = document.createElement('playlist-item');
         playlistItem.data = item;
         playlist.appendChild(playlistItem);

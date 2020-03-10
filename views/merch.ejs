@@ -17,25 +17,8 @@
 </head>
 <body>
     
-    <header class="navbar">
-        <picture class="navbar__brand">
-            <img src="/images/brand.jpg" alt="J&M Angeln Logo">
-        </picture>
-        <nav class="navbar__navigation">
-            <ul>
-                <li><a href="/team">Team</a></li>
-                <li><a href="/videos">Videos</a></li>
-                <li><a href="/social">Social</a></li>
-                <li><a href="/merch" class="active">Merch</a></li>
-                <li><a href="/blog">Blog</a></li>
-            </ul>
-        </nav>
-        <div class="menu-icon">
-            <div class="bar bar1"></div>
-            <div class="bar bar2"></div>
-            <div class="bar bar3"></div>
-        </div>
-    </header>
+    <nav-bar></nav-bar>
+
     <div class="space"></div>
 
     <div class="path">
@@ -120,9 +103,8 @@
     <% include includes/footer %>
 
     <cart-bar qty="<%= quantity %>"></cart-bar>
-
-    <script defer src="/scripts/ui.js"></script>
     <script defer src="/scripts/slideshow.js"></script>
+    <script src="/components/nav-bar.js"></script>
     <script src="/components/cart-bar.js"></script>
     <script src="/scripts/product-filter.js"></script>
 

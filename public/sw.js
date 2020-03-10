@@ -11,7 +11,6 @@ const assets = [
     '/styles/cards.css',
     '/fonts/Syncopate-Bold.ttf',
     '/fonts/Exo-Regular.ttf',
-    '/scripts/ui.js',
     '/components/info-card.mjs',
     '/images/brand.webp',
     '/images/brand.jpg'

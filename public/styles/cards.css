@@ -5,14 +5,14 @@
 }
 
 .card-wrapper {
-    width: 85%;
+    width: 90%;
     max-width: 1374px;
     margin: 0 auto;
     padding: 2.5rem 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(400px, fit-content));
-    grid-gap: 20px;
+    grid-gap: 40px;
 }
 
 .card-wrapper info-card {
