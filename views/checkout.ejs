@@ -56,7 +56,8 @@
             let total = 0;
 
             const descriptions = '<%= descriptions %>'.split(',');
-            const prices = '<%= prices %>'.split(',');
+            const prices = ('<%= prices %>'.split(',').map(price => parseFloat(price)));
+            console.log('Prices:', prices);
             const quantities = '<%= quantities %>'.split(',');
 
             for (let i = 0; i < descriptions.length; i++) {
@@ -69,9 +70,9 @@
                     },
                     quantity: quantities[i]
                 });
-                console.log(prices[i]*quantities[i]);
-                total += (prices[i] * quantities[i]).toFixed(2);
-                console.log(total);
+                console.log('times:', prices[i]*quantities[i]);
+                total += prices[i] * quantities[i];
+                console.log('total', total);
             }
 
             const purchase_units = [{
