@@ -71,7 +71,7 @@
                     quantity: quantities[i]
                 });
                 console.log('times:', prices[i]*quantities[i]);
-                total += prices[i] * quantities[i];
+                total += (prices[i] * quantities[i]).toFixed(2);
                 console.log('total', total);
             }
 
