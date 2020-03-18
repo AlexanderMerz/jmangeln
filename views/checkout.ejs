@@ -5,62 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>J&M Angeln - Checkout</title>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script>
-        const stripe = Stripe('pk_test_I6udDS8bLacJgu9OMoP2U94k00FQcF153E');
-    </script>
+    <script src="https://www.paypal.com/sdk/js?client-id=<%= clientID %>&currency=EUR&disable-funding=sofort"></script>
     <% include includes/styles %>
-    <style>
-        h1 {font-weight: 100;}
-        h2 {
-            margin: 0;
-            font-size: 20px;
-        }
-        .btn {
-            width: 100%;
-            margin: 0 auto !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: none;
-            color: #000;
-            border: 1.5px solid #000;
-        }
-        .btn:hover,
-        .btn:active {
-            letter-spacing: 0;
-            color: #000;
-            border: 1.5px solid #000;
-        }
-        .btn:first-child {border-bottom: 0;}
-        .btn:last-child {border-top: 0;}
-        .flex-row {
-            max-width: 500px;
-            height: 40px;
-        }
-        .payment {
-            width: 500px;
-            margin: 0 auto;
-        }
-        .total {font-size: 32px;}
-        @media (max-width: 768px) {
-            .flex-row {
-                max-width: 300px;
-            }
-        }
-        @media (max-width: 500px) {
-            .payment {
-                width: 100%;
-                flex-direction: column;
-            }
-            .btn {
-                width: 100%;
-                margin: 2px auto;
-                border-right: 0;
-                border-left: 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/styles/checkout.css">
 </head>
 <body>
 
@@ -79,7 +26,8 @@
                         <span><%= product.quantity %></span>
                         <span>&nbsp;x&nbsp;</span>
                         <span><%= product.data.name %></span>
-                        <span><%= product.size %></span>
+                        <span><%= product.size || '' %></span>
+                        <span><%= product.color || '' %></span>
                     </h2>
                     <h2 class="light price">
                         <%= (product.data.price * product.quantity).toFixed(2) %> €
@@ -92,29 +40,37 @@
 
         <section class="flex-column">
             <div class="flex-row max-width">
-                <h2 class="light">Gesamtwert</h2>
+                <h2 class="light total">Gesamtwert</h2>
                 <h2 class="light total price"><%= (total).toFixed(2) %> €</h2>
             </div>
         </section>
 
         <br>
 
-        <section class="payment">
-            <h1>Zahlungsmethode wählen</h1>
-            <button id="stripe-checkout" class="btn">
-                <img src="/images/credit_card-24px.svg" alt="Kreditkarte">
-                <span>&nbsp;Karte</span>
-            </button>
-            <button class="btn">Paypal</button>
-        </section>
+        <div id="paypal-button-container"></div>
 
-    </main>
-
-    <script>
-        document.getElementById('stripe-checkout').addEventListener('click', function() {
-            stripe.redirectToCheckout({ sessionId: '<%= sessionId %>' });
-        });
-    </script>
+        <script>
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    // This function sets up the details of the transaction, including the amount and line item details.
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: parseFloat('<%= total %>').toFixed(2)
+                            }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    console.log(data);
+                    // This function captures the funds from the transaction.
+                    return actions.order.capture().then(function(details) {
+                        // This function shows a transaction success message to your buyer.
+                        window.location = '/order/confirmation';
+                    });
+                }
+            }).render('#paypal-button-container');
+        </script>
 
 </body>
 </html>

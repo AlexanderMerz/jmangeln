@@ -1,42 +1,52 @@
+console.log(process.env.NODE_ENV);
+
 /* Check NODE_ENV */
 if (process.env.NODE_ENV === 'production') {
     require('dotenv').config();
 }
 
-/* Core Modules */
+// Global logging function
+global.log = console.log;
+
+// Core Modules
 const path = require('path');
 
-/* Third Party Modules */
+// Third Party Modules
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const cors = require('cors');
+const helmet = require('helmet')
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 /* Routes */
 const apiRoutes = require('./routes/api.routes');
 const merchRoutes = require('./routes/merch.routes');
-const checkoutRoutes = require('./routes/checkout.routes');
+const orderRoutes = require('./routes/order.routes');
 
 /* Config */
-const MONGO_CONFIG = require('./database/mongo.config');
+const MONGO_CONFIG = require('./config/mongo.config');
 
 /* Init Server */
 const server = express();
 
 /* Server Configuration */
 server.use(express.static('public'));
-server.use(bodyParser.json());
+server.use(bodyParser.json());  
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser());
 server.use(compression());
+server.use(cors());
+server.use(helmet());
+server.use(helmet.hidePoweredBy());
 server.use(session({
-    cookie: { maxAge: 1000* 60 * 60 * 24 },
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
     saveUninitialized: false,
-    secret: 'my-secret',
+    secret: process.env.SESSION_SECRET || 'my-secret',
     resave: false,
     store: new MongoDBStore({
         uri: MONGO_CONFIG.URI,
@@ -49,16 +59,16 @@ server.set('views', 'views');
 server.set('view engine', 'ejs');
 
 /* File Upload Destination */
-const getDefaultFilename = function(mimetype) {
-    return new Date().getTime().toString() + '.' + mimetype;
-}
-const upload = multer({
-    storage: multer.diskStorage({
-        filename: (req, file, cb) => {
-            cb(null, getDefaultFilename(file.mimetype.split('/')[1]));
-        }
-    })
-});
+// const getDefaultFilename = function(mimetype) {
+//     return new Date().getTime().toString() + '.' + mimetype;
+// }
+// const upload = multer({
+//     storage: multer.diskStorage({
+//         filename: (req, file, cb) => {
+//             cb(null, getDefaultFilename(file.mimetype.split('/')[1]));
+//         }
+//     })
+// });
 
 /* Path to Pages Folder */
 const pages = path.join(__dirname, 'public', 'pages');
@@ -89,8 +99,7 @@ server.use('/merch', merchRoutes);
 server.use('/api', apiRoutes);
 
 /* Checkout Routes */
-server.get('/checkout', checkoutRoutes);
-server.post('/checkout', checkoutRoutes);
+server.use('/order', orderRoutes);
 
 /* Database Connection + Server Start */
 mongoose.connect(
@@ -100,7 +109,7 @@ mongoose.connect(
     server.listen(
         process.env.PORT || 8080,
         process.env.HOST || '0.0.0.0',
-        () =>  console.log('Server is up and running')
+        log('Server is up and running')
     );
 }).catch(function (error) {
     console.error(error);

@@ -25,10 +25,7 @@ class Navbar extends HTMLElement {
         `;
 
         const style = document.createElement('style');
-        style.textContent = '@import "../styles/navbar.css"';
-
-        const script = document.createElement('script');
-        script.src = '../scripts/ui.js';
+        style.textContent = '@import "/styles/navbar.css"';
 
         this.attachShadow({ mode: 'open' }).append(
             template.content.cloneNode(true),
@@ -44,8 +41,7 @@ class Navbar extends HTMLElement {
         const menuIcon = navbar.querySelector('.menu-icon');
 
         function setActiveState() {
-            let path = this.ownerDocument.location.pathname;
-            path = path.substr(1, path.length);
+            let path = this.ownerDocument.location.pathname.split('/')[1];
             for (const li of ul.children) {
                 if (li.firstElementChild instanceof HTMLAnchorElement) {
                     const href = li.firstElementChild.href;

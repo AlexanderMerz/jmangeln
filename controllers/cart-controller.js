@@ -16,25 +16,24 @@ exports.postCart = function(req, res) {
     const chosenProduct = {
         id: req.body.productID,
         quantity: parseInt(req.body.quantity),
-        size: req.body.size
+        size: req.body.size,
+        color: req.body.color
     };
-    if (!req.session.cart) {
+    if (!req.session.cart || req.session.cart.length === 0) {
         req.session.cart = [chosenProduct];
     } else {
         const index = req.session.cart.findIndex(
             ({ id }) => id === chosenProduct.id
         );
-        index >= 0 && req.session.cart[index].size === chosenProduct.size
+        index >= 0 
+        && req.session.cart[index].size === chosenProduct.size
+        && req.session.cart[index].color === chosenProduct.color
             ? (req.session.cart[index].quantity += chosenProduct.quantity)
             : (req.session.cart = [...req.session.cart, chosenProduct]);
     }
-    req.session.save(function(error) {
-        if (error) {
-            console.log('Session Error: ', error);
-            // TODO: Redirect to Error Page
-            res.redirect('/');
-        }
-        return res.redirect('/merch/cart');
+    req.session.save(function(error){
+        if (error) res.redirect('/')
+        else res.redirect('/merch/cart');
     });
 };
 
@@ -49,17 +48,15 @@ exports.getQuantity = function(cart) {
 };
 
 exports.getTotal = function(cart) {
-    for (const product of cart) {
-        if (!product.data) {
-            throw new Error(
-                'Cart needs to be populated. Please call ' +
-                    'cartController.populateCart() first.'
-            );
-        }
-    }
     let total = 0;
     if (cart && cart.length > 0) {
         for (const product of cart) {
+            if (!product.data) {
+                throw Error(
+                    'Cart needs to be populated. Please call '
+                    + 'cartController.populateCart() first.'
+                );
+            }
             total += product.quantity * product.data.price;
         }
     }
@@ -72,10 +69,21 @@ exports.populateCart = async function(cart) {
             cart.map(async product => ({
                 data: await findProductById(product.id),
                 quantity: product.quantity,
-                size: product.size
+                size: product.size,
+                color: product.color
             }))
         );
     } catch (error) {
         throw error;
     }
 };
+
+exports.emptyCart = async function(req, res, next) {
+    req.session.cart = [];
+    await req.session.save();
+    next();
+}
+
+exports.remove = async function({ id, size, color }) {
+
+}

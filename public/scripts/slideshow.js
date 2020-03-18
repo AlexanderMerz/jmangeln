@@ -1,4 +1,11 @@
 const slides = Array.from(document.querySelectorAll('.slide'));
+const numberOfSlides = slides.length;
+const dotContainer = document.querySelector('.dots');
+for (let i = 0; i < numberOfSlides; i++) {
+    dotContainer.innerHTML += `
+        <div data-id="${i+1}" class="dot ${i === 0 ? 'current' : ''}"></div>
+    `;
+}
 const dots = document.querySelectorAll('.dot');
 const prev = document.querySelector('button#prev');
 const next = document.querySelector('button#next');

@@ -7,49 +7,80 @@
     <title>J&M Angeln - <%= product.name %></title>
     <% include includes/styles %>
     <link rel="stylesheet" href="/styles/product.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 <body>
         
     <% include includes/navigation %>
 
-    <form class="product" action="/merch/cart" method="POST">
-        <div class="product__detail">
-            <input type="hidden" name="productID" value="<%= product._id %>" alt="Produktbild">
-            <input type="hidden" name="price" value="<%= product.price %>">
-            <h1><%= product.name %></h1>
-            <summary>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, quod alias! Minima aspernatur in cupiditate debitis earum, maxime quos perspiciatis.</summary>
-            <div class="price">
-                <span><%= (product.price).toFixed(2) %> € * </span>
-                <br>    
-                <span>*inklusive Mehrwertsteuer</span>
-            </div>
-            <div class="details">
-                <div>
-                    <label for="size">Größe</label>
-                    <select name="size" id="size" required="required">
-                        <option value="" disabled selected>Größe wählen</option>
-                        <option value="S" selected>Größe S</option>
-                        <option value="M">Größe M</option>
-                        <option value="L">Größe L</option>
-                    </select>
+    <main>
+        <section class="product">
+            <div class="product__left">
+                <img class="image__primary" src="/images/merch_many.jpg" alt="Produktbild">
+                <div class="gallery">
+                    <img class="active" src="/images/merch_many.jpg" alt="Galeriebild">
+                    <img src="/images/jonas.jpg" alt="Galeriebild">
+                    <img src="/images/merch_muetze.jpg" alt="Galeriebild">
                 </div>
-                <div>
-                    <label for="quantity">Menge</label>
-                    <select name="quantity" id="quantity" required="required">
-                        <option value="1" selected>1 Stück</option>
-                        <% for (let i = 2; i < 10; i++) { %>
-                            <option value="<%= i %>"><%= i %> Stück</option>
+            </div>
+            <div class="product__right">
+                <h1 class="name"><%= product.name %></h1>
+                <summary>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque perferendis hic quod in! Quibusdam laborum culpa nihil est eaque porro perspiciatis, optio inventore at quasi sapiente deserunt earum nemo deleniti aliquid voluptates omnis? Eligendi at vero nemo veritatis, illum explicabo repudiandae perspiciatis quae ratione enim, quos, minus voluptatum incidunt ea?</summary>
+                <div class="product__details">
+                    <div class="details__info">
+                        <strong>Lieferzeitraum</strong>
+                        <p>bis zu 10 Werktagen.</p>
+                        <strong>Anmerkung</strong>
+                        <p>Lieferung nur innerhalb Deutschlands</p>
+                    </div>
+                    <div class="details__price">
+                        <h1><%= (product.price).toFixed(2).toString().replace('.', ',') %> €</h1>
+                    </div>
+                </div>
+                <form method="POST" action="/merch/cart" class="product__action">
+                    <input type="hidden" name="productID" value="<%= product._id %>">
+                    <div class="selects">
+                        <select name="quantity" id="quantity" required>
+                            <option value="1" selected>1 Stück</option>
+                            <% for (let i = 2; i < 10; i++) { %>
+                                <option value="<%= i %>"><%= i %> Stück</option>
+                            <% } %>
+                        </select>
+                        <% if (product.sizes.length > 0) { %>
+                            <select name="size" id="size" required>
+                            <% for (const size of product.sizes) { %>
+                                <option value="<%= size %>">Größe <%= size %></option>
+                            <% } %>
+                            </select>
                         <% } %>
-                    </select>
-                </div>
+                        <% if (product.colors.length > 0) { %>
+                            <select name="color" id="color" required>
+                            <% for (const color of product.colors) { %>
+                                <option value="<%= color %>"><%= color %></option>
+                            <% } %>
+                            </select>
+                        <% } %>
+                    </div>
+                    <button type="submit" class="btn">Hinzufügen</button>
+                </form>
             </div>
-            <button class="btn" type="submit">In den Warenkorb</button>
-        </div>
-        <!-- <img src="<%= product.image %>"> -->
-        <img src="/images/tshirt.png" alt="Produktbild">
-    </form>
+        </section>
+    </main>
+
+    <script>
+        const primaryImage = document.querySelector('.image__primary');
+        const images = Array.from(document.querySelectorAll('.gallery img'));
+        for (const image of images) {
+            image.addEventListener('click', function() {
+                if (!this.classList.contains('active')) {
+                    this.classList.add('active');
+                    images.filter(img => img !== this)
+                        .forEach(img => img.classList.remove('active'));
+                }
+                primaryImage.src = this.src;
+            });
+        }
+    </script>
 
 </body>
 </html>

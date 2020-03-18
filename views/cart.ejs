@@ -1,203 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>J&M Angeln - Warenkorb</title>
-    <% include includes/styles %>
-    <link rel="stylesheet" href="/styles/cart.css">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>J&M Angeln - Warenkorb</title>
+        <% include includes/styles %>
+        <link rel="stylesheet" href="/styles/cart.css" />
+    </head>
 
-<body>
+    <body>
+        <% include includes/navigation %>
 
-    <% include includes/navigation %>
-    <div class="heading">
-        <h1>Warenkorb</h1>
-    </div>
-
-    <main>
-        <% if (cart && cart.length > 0) { %>
-            <section class="left">
-                <div class="lds-dual-ring"></div>
+        <main>
+            <div class="heading">
+                <h1>Warenkorb</h1>
+            </div>
+            <% if (cart && cart.length > 0) { %>
                 <% for (const product of cart) { %>
-                    <div class="product" style="display:none">
-                        <!-- <img src="<%= product.data.image %>" alt="Produktbild"> -->
-                        <img src="/images/tshirt.png" alt="Produktbild">
-                        <div class="product__details">
-                            <div class="product__info">
-                                <h2 class="details__name"><%= product.data.name %></h2>
-                                <p class="details__category"><%= product.data.description %></p>
-                                <p class="details__price">
-                                    <%= (product.data.price * product.quantity).toFixed(2) %> €
-                                </p>
-                            </div>
-                            <div class="product__action" data-id="<%= product.data._id %>">
-                                <select
-                                    name="size"
-                                    class="size"
-                                    required="required"
-                                    data-size="<%= product.size %>"
-                                >
-                                    <option value="S">Größe S</option>
-                                    <option value="M">Größe M</option>
-                                    <option value="L">Größe L</option>
-                                </select>
-                                <select
-                                    name="quantity"
-                                    class="quantity"
-                                    required="required"
-                                    data-quantity="<%= product.quantity %>"
-                                >
-                                    <option value="0">Entfernen</option>
-                                    <% for (let i = 1; i < 10; i++) { %>
-                                        <option value="<%= i %>"><%= i %> Stück</option>
-                                    <% } %>
-                                </select>
-                            </div>
+                    <div
+                        class="product"
+                        data-id="<%= product.data._id %>"
+                        data-size="<%= product.size %>"
+                        data-color="<%= product.color %>"
+                        data-quantity="<%= product.quantity %>"
+                    >
+                        <img src="/images/merch_many.jpg" alt="Produktbild" />
+                        <div class="product__info">
+                            <h1><%= product.data.name %></h1>
+                            <br />
+                            <h2 class="price">
+                                <%= (product.quantity * product.data.price).toFixed(2)
+                                %> €
+                            </h2>
+                            <% if (product.size) { %>
+                            <h2>Größe: <%= product.size %></h2>
+                            <% } %> <% if (product.color) { %>
+                            <h2>Farbe: <%= product.color %></h2>
+                            <% } %>
+                            <h2>Anzahl: <%= product.quantity %></h2>
                         </div>
+                        <span class="remove">&#10006;</span>
                     </div>
-                <% } %>
-        </section>
-        <section class="right">
-            <div class="summary">
-                <h3>Hinweise zu Ihrem Einkauf</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Quisquam nemo sunt dolores consequatur corrupti tempore rerum in maiores cum, 
-                    veritatis culpa tenetur tempora aperiam architecto.</p>
+            <% } %>
+            <div class="total flex-column">
+                <h1><%= total.toFixed(2) %> €</h1>
+                <a href="/order/checkout" class="btn">JETZT KAUFEN</a>
             </div>
-            <div class="checkout">
-                <h2>Zwischensumme</h2>
-                <h2 id="total"><%= (total).toFixed(2) %> €</h2>
-                <a class="btn" href="/checkout">Zur Kasse</a>
-            </div>
-        </section>
-        <% } else { %>
-            <p class="empty">Es befinden sich keine Produkte im Warenkorb.</p>
-        <% } %>
-    </main>
-    
+            <% } else { %>
+                <div class="flex-column">
+                    <p class="empty">Es befinden sich keine Produkte im Warenkorb.</p>
+                    <br>
+                    <a href="/merch" class="btn">Zum Shop</a>
+                </div>
+            <% } %>
+        </main>
+    </body>
     <script>
-
-        const leftSection = document.querySelector('.left');
-        const totalDisplay = document.querySelector('#total');
-        const spinner = document.querySelector('.lds-dual-ring');
-
-        function preselectOptions() {
-
-            for (const sizeSelect of Array.from(document.querySelectorAll('.size'))) {
-                Array.from(sizeSelect.options)
-                    .find(option => option.value === sizeSelect.dataset.size)
-                    .selected = true;
-                sizeSelect.addEventListener('change', async function() {
-                    const id = this.parentElement.dataset.id;
-                    const quantity = this.nextElementSibling.dataset.quantity;
-                    const oldSize = this.dataset.size;
-                    const newSize = this.value;
-                    let response = await fetch('/api/cart', {
+        Array.from(document.querySelectorAll('.remove')).forEach(remove => {
+            remove.addEventListener('click', async function() {
+                const response = await fetch(
+                    `/api/cart/remove/${this.parentElement.dataset.id}`,
+                    {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ id, oldSize, newSize, quantity, change: 'size' })
-                    });
-                    response = await response.json();
-                    repopulateCart(response);
-                });
-            }
-
-            Array.from(document.querySelectorAll('.quantity')).forEach((quantitySelect, index) => {
-                Array.from(quantitySelect.options)
-                    .find(option => option.value === quantitySelect.dataset.quantity)
-                    .selected = true;
-                quantitySelect.addEventListener('change', async function() {
-                    const id = this.parentElement.dataset.id;
-                    const size = this.previousElementSibling.dataset.size;
-                    const quantity = this.value;
-                    let response = await fetch('/api/cart', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ id, size, quantity, change: 'quantity' })
-                    });
-                    response = await response.json();
-                    repopulateCart(response);
-                });
+                        body: JSON.stringify(this.parentElement.dataset)
+                    }
+                );
+                const { status } = await response.json();
+                if (status === 200) {
+                    console.log(200);
+                    window.location.reload();
+                }
             });
-
-            if (spinner) spinner.classList.remove('lds-dual-ring');
-            Array.from(document.querySelectorAll('.product'))
-                .forEach(product => { product.style = 'block' });
-
-        }
-
-        function repopulateCart(response) {
-
-            if (response.status === 200) {
-
-                if (response.cart.length === 0) {
-                    location.reload();
-                }
-                
-                /* Delete Cart Items */
-                Array.from(document.querySelectorAll('.product'))
-                    .forEach(product => product.remove());
-
-                /* Repopulate Cart */
-                for (const product of response.cart) {
-                    leftSection.innerHTML += `
-                        <div class="product">
-                            <img height="100" width="100" src="/images/tshirt.png" alt="Produktbild">
-                            <div class="product__details">
-                                <div class="product__info">
-                                    <h2 class="details__name">${product.data.name}</h2>
-                                    <p class="details__category">${product.data.description}</p>
-                                    <p class="details__price">
-                                        ${(product.data.price * product.quantity).toFixed(2)} €
-                                    </p>
-                                </div>
-                                <div class="product__action" data-id="${product.data._id}">
-                                    <select
-                                        name="size"
-                                        class="size"
-                                        required="required"
-                                        data-size="${product.size}"
-                                    >
-                                        <option value="S">Größe S</option>
-                                        <option value="M">Größe M</option>
-                                        <option value="L">Größe L</option>
-                                    </select>
-                                    <select
-                                        name="quantity"
-                                        class="quantity"
-                                        required="required"
-                                        data-quantity="${product.quantity}"
-                                    >
-                                    <option value="0">Entfernen</option>
-                                    <option value="1">1 Stück</option>
-                                    <option value="2">2 Stück</option>
-                                    <option value="3">3 Stück</option>
-                                    <option value="4">4 Stück</option>
-                                    <option value="5">5 Stück</option>
-                                    <option value="6">6 Stück</option>
-                                    <option value="7">7 Stück</option>
-                                    <option value="8">8 Stück</option>
-                                    <option value="9">9 Stück</option>
-                                </select>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-                preselectOptions();
-
-            }
-
-            /* Display new total */
-            totalDisplay.innerHTML = `${(response.total).toFixed(2)} €`;
-
-        }
-        
-        window.addEventListener('load', preselectOptions);
-
+        });
     </script>
-
-</body>
 </html>

@@ -1,0 +1,126 @@
+body {
+    background-color: black;
+}
+main {
+    height: auto;
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.profile {
+    position: relative;
+    display: flex;
+    height: calc(100vh - 60px);
+    width: 100%;
+    margin: auto;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    letter-spacing: -1px;
+
+}
+
+.profile__section {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transition: height 500ms;
+}
+
+.profile__section .name {
+    cursor: pointer;
+}
+
+.profile__section:first-of-type {
+    border-top: none;
+}
+
+.profile__section img {
+    height: 100%;
+    width: 100%;
+    transform: scale(0.95);
+    object-fit: cover;
+    object-position: center;
+}
+
+.profile__section {
+    height: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.profile__section .name h1 {
+    margin: 0;
+    font-size: 32px;
+    opacity: 0.7;
+    letter-spacing: -2px;
+}
+
+.profile__section:hover .name h1 {
+    opacity: 0.8;
+}
+
+.name {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile__section ul {
+    line-height: 2;
+}
+
+.bio {
+    height: 100%;
+    padding: 12px 24px;
+    line-height: 1.2;
+    overflow: scroll;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.profile__section ul li {
+    font-size: 24px;
+}
+
+.active {
+    height: calc(100% - 120px);
+}
+
+.profile__section:not(.active) {
+    height: 60px;
+}
+
+@media (max-width: 768px) {
+    .profile {
+        height: 77.5vh;
+    }
+    .profile__section .name h1 {
+        font-size: 24px;
+    }
+    .profile__section ul li {
+        font-size: 20px;
+    }
+    main {
+        grid-template-columns: 1fr;
+    }
+    .name {
+        height: 52px;
+    }
+    .active {
+        height: calc(100% - 104px);
+    }
+    .profile__section:not(.active) {
+        height: 52px;
+    }
+    .bio {
+        font-size: 15px;
+    }
+}

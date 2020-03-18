@@ -24,7 +24,7 @@ export default class InfoCard extends HTMLElement {
 
     connectedCallback() {
         const card = this.shadowRoot.querySelector('.card');
-        const title = this.shadowRoot.querySelector('h1');
+        const title = this.shadowRoot.querySelector('h1') || '';
         const image = this.shadowRoot.querySelector('img');
         const href = this.getAttribute('href');
         card.addEventListener('click', () => {

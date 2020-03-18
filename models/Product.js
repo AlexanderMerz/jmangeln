@@ -4,7 +4,8 @@ const productSchema = new Schema({
     _id: Schema.Types.ObjectId,
     name: String,
     price: Number,
-    meta: Array,
+    sizes: Array,
+    colors: Array,
     image: String,
     description: String,
     category: String
