@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getCart, populateCart, getTotal, emptyCart } = require('../controllers/cart-controller');
+const cartController = require('../controllers/cart-controller');
 const clientID = process.env.PAYPAL_CLIENT_ID;
 
 router.use(function(req, res, next) {
@@ -8,13 +8,18 @@ router.use(function(req, res, next) {
 });
 
 router.get('/checkout', async function(req, res) {
-    let cart = getCart(req);
-    cart = await populateCart(cart);
-    const total = getTotal(cart);
-    res.render('checkout', { cart, total, clientID });
+    let cart = cartController.getCart(req);
+    cart = await cartController.populateCart(cart);
+    const total = cartController.getTotal(cart);
+    const descriptions = cart.map(
+        product => `${product.data.name} ${product.size || ''} ${product.color || ''}`
+    );
+    const prices = cart.map(product => product.data.price);
+    const quantities = cart.map(prodct => prodct.quantity);
+    res.render('checkout', { cart, total, clientID, descriptions, prices, quantities });
 });
 
-router.get('/confirmation', emptyCart, function (req, res) {
+router.get('/confirmation', cartController.emptyCart, function(req, res) {
     res.render('confirmation');
 });
 

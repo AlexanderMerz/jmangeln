@@ -50,26 +50,64 @@
         <div id="paypal-button-container"></div>
 
         <script>
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    // This function sets up the details of the transaction, including the amount and line item details.
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: parseFloat('<%= total %>').toFixed(2)
-                            }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    console.log(data);
-                    // This function captures the funds from the transaction.
-                    return actions.order.capture().then(function(details) {
-                        // This function shows a transaction success message to your buyer.
-                        window.location = '/order/confirmation';
-                    });
+
+            // Create Purchase Units
+            let items = [];
+            let total = 0;
+
+            const descriptions = '<%= descriptions %>'.split(',');
+            const prices = '<%= prices %>'.split(',');
+            const quantities = '<%= quantities %>'.split(',');
+
+            for (let i = 0; i < descriptions.length; i++) {
+                console.log(prices[i]);
+                items.push({
+                    name: descriptions[i],
+                    unit_amount: {
+                        value: prices[i],
+                        currency_code: 'EUR'
+                    },
+                    quantity: quantities[i]
+                });
+                console.log(prices[i]*quantities[i]);
+                total += prices[i] * quantities[i];
+                console.log(total);
+            }
+
+            const purchase_units = [{
+                items,
+                amount: {
+                    value: total,
+                    currency_code: 'EUR',
+                    breakdown: {
+                        item_total: {
+                            value: total,
+                            currency_code: 'EUR'
+                        }
+                    }
                 }
-            }).render('#paypal-button-container');
+            }];
+
+            console.log(purchase_units);
+
+            // Define Paypal Callback Functions
+            function createOrder(data, actions) {
+                return actions.order.create({ purchase_units });
+            }
+
+            function onApprove(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                });
+            }
+
+            function onError(error) {
+                console.error(error);
+            }
+
+            // Render Paypal Buttons
+            paypal.Buttons({ createOrder, onApprove, onError }).render('#paypal-button-container');
+
         </script>
 
 </body>

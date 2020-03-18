@@ -83,7 +83,3 @@ exports.emptyCart = async function(req, res, next) {
     await req.session.save();
     next();
 }
-
-exports.remove = async function({ id, size, color }) {
-
-}

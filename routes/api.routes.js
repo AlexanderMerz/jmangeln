@@ -3,7 +3,7 @@ const categoryController = require('../controllers/category-controller');
 const productController = require('../controllers/product-controller');
 const blogController = require('../controllers/blog-controller');
 const cartController = require('../controllers/cart-controller');
-const youtubeService = require('../services/youtube-service');
+const youtubeService = require('../services/youtube');
 const { parseText } = require('../middleware/textparser');
 const { objectsAreEqual } = require('../utils/utils');
 

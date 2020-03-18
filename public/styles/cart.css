@@ -17,6 +17,7 @@ h1, h2 {
     margin-bottom: 20px;
     padding: 20px;
     box-shadow: 0 0 3px;
+    border-radius: 8px;
 }
 .product img {
     width: 150px;
@@ -41,14 +42,14 @@ h1, h2 {
 }
 .remove {
     position: absolute;
-    top: 16px;
+    top: 6px;
     right: 16px;
     border-radius: 50%;
     font-size: 30px;
     cursor: pointer;
 }
 .remove:hover {
-    color: red;
+    color: rgba(255, 0, 0, 0.8);
 }
 .empty {
     text-align: center;
