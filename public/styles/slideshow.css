@@ -4,6 +4,7 @@
     height: calc(100vh - 60px);
     top: 60px;
     width: 100%;
+    z-index: -1;
 }
 
 .slide {

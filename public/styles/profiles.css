@@ -16,6 +16,7 @@ main {
     position: relative;
     display: flex;
     width: 100%;
+    height: auto;
     margin: auto;
     background-color: transparent;
     display: flex;
@@ -63,7 +64,7 @@ main {
     width: 100%;
     position: inherit;
     object-fit: cover;
-    object-position: top;
+    object-position: 50% 20%;
     opacity: 1;
     padding: 2px;
     z-index: 0;
@@ -85,6 +86,7 @@ main {
     cursor: pointer;
     transition: opacity 100ms ease-out;
     line-height: 100%;
+    background-color: black;
 }
 
 .arrow img {
@@ -95,12 +97,10 @@ main {
 
 .arrow__left {
     left: 0;
-    border-radius: 0 10px 10px 0;
 }
 
 .arrow__right {
     right: 0;
-    border-radius: 10px 0 0 10px;
 }
 
 @keyframes scale { from { transform: scale(1); } to { transform: scale(1.5); } }
@@ -140,7 +140,7 @@ main {
 
 .profile__section ul,
 .bio {
-    padding: 5vh;
+    padding: 2.5vh 6vh;
     font-size: 24px;
 }
 
@@ -152,7 +152,7 @@ main {
     height: 100%;
     line-height: 1.5;
     overflow: scroll;
-    text-align: justify;
+    text-align: left;
 }
 
 .active {
