@@ -57,7 +57,6 @@
 
             const descriptions = '<%= descriptions %>'.split(',');
             const prices = ('<%= prices %>'.split(',').map(price => parseFloat(price)));
-            console.log('Prices:', prices);
             const quantities = '<%= quantities %>'.split(',');
 
             for (let i = 0; i < descriptions.length; i++) {
@@ -70,10 +69,9 @@
                     },
                     quantity: quantities[i]
                 });
-                console.log('times:', prices[i]*quantities[i]);
-                total += (prices[i] * quantities[i]).toFixed(2);
-                console.log('total', total);
+                total += prices[i] * quantities[i];
             }
+            total = Math.round(total * 100) / 100;
 
             const purchase_units = [{
                 items,
@@ -107,7 +105,9 @@
             }
 
             // Render Paypal Buttons
-            paypal.Buttons({ createOrder, onApprove, onError }).render('#paypal-button-container');
+            paypal.Buttons(
+                { createOrder, onApprove, onError, style: { color: 'blue' }
+            }).render('#paypal-button-container');
 
         </script>
 

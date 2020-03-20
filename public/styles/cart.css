@@ -23,7 +23,6 @@ h1, h2 {
     width: 150px;
     height: 150px;
     object-fit: cover;
-    border-radius: 8px;
 }
 .product__info {
     padding-left: 40px;
@@ -32,6 +31,9 @@ h1, h2 {
 }
 .product__info > * {
     margin: 0;
+}
+.product__info h1 {
+    margin-bottom: 10px;
 }
 .price {
     position: absolute;
@@ -87,7 +89,7 @@ main a {
 }
 @media (max-width: 600px) {
     main {
-        padding: 0;
+        padding: 0 10px;
     }
     .product {
         height: 200px;

@@ -57,9 +57,7 @@ body {
     z-index: 50;
 }
 strong {
-    font-family: sans-serif;
     font-weight: 100;
-    font-size: 24px;
 }
 hr {
     border: none;
@@ -130,6 +128,13 @@ hr {
 }
 .max-height {
     height: 100%;
+}
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 .space {
     height: 60px;

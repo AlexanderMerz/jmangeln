@@ -15,20 +15,30 @@ main {
 .profile {
     position: relative;
     display: flex;
-    height: calc(100vh - 60px);
     width: 100%;
     margin: auto;
     background-color: transparent;
     display: flex;
     flex-direction: column;
     letter-spacing: -1px;
+}
 
+@media (orientation: landscape) {
+    .profile {
+        height: calc(100vh - 60px);
+    }
+}
+
+@media (orientation: portrait) {
+    .profile {
+        height: 47.5vh;
+    }
 }
 
 .profile__section {
+    position: inherit;
     height: 100%;
     width: 100%;
-    position: relative;
     transition: height 500ms;
 }
 
@@ -40,13 +50,61 @@ main {
     border-top: none;
 }
 
-.profile__section img {
+.images {
+    position: inherit;
     height: 100%;
     width: 100%;
-    transform: scale(0.95);
-    object-fit: cover;
-    object-position: center;
+    display: flex;
+    flex-direction: row;
 }
+
+.images img {
+    height: 100%;
+    width: 100%;
+    position: inherit;
+    object-fit: cover;
+    object-position: top;
+    opacity: 1;
+    padding: 2px;
+    z-index: 0;
+}
+
+.images img.show {
+    display: block;
+    opacity: 0;
+    animation: fadeIn 300ms forwards;
+}
+
+.images img:not(.show) {
+    display: none;
+}
+
+.arrow {
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    transition: opacity 100ms ease-out;
+    line-height: 100%;
+}
+
+.arrow img {
+    filter: invert(44%) sepia(20%) saturate(4585%) hue-rotate(88deg) brightness(126%) contrast(118%) opacity(0.7);
+    height: 60px;
+    width: 60px;
+}
+
+.arrow__left {
+    left: 0;
+    border-radius: 0 10px 10px 0;
+}
+
+.arrow__right {
+    right: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+@keyframes scale { from { transform: scale(1); } to { transform: scale(1.5); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .profile__section {
     height: 100%;
@@ -59,6 +117,7 @@ main {
     font-size: 32px;
     opacity: 0.7;
     letter-spacing: -2px;
+    font-weight: 100;
 }
 
 .profile__section:hover .name h1 {
@@ -74,20 +133,26 @@ main {
 }
 
 .profile__section ul {
-    line-height: 2;
+    line-height: 1.5;
+    text-align: left;
+    list-style-type: none;
+}
+
+.profile__section ul,
+.bio {
+    padding: 5vh;
+    font-size: 24px;
+}
+
+.profile__section ul li strong {
+    color: var(--primary-color);
 }
 
 .bio {
     height: 100%;
-    padding: 12px 24px;
-    line-height: 1.2;
+    line-height: 1.5;
     overflow: scroll;
-    font-size: 20px;
     text-align: justify;
-}
-
-.profile__section ul li {
-    font-size: 24px;
 }
 
 .active {
@@ -98,16 +163,7 @@ main {
     height: 60px;
 }
 
-@media (max-width: 768px) {
-    .profile {
-        height: 77.5vh;
-    }
-    .profile__section .name h1 {
-        font-size: 24px;
-    }
-    .profile__section ul li {
-        font-size: 20px;
-    }
+@media (max-width: 800px) {
     main {
         grid-template-columns: 1fr;
     }
@@ -117,10 +173,36 @@ main {
     .active {
         height: calc(100% - 104px);
     }
+    .arrow__left {
+        left: 0;
+    }
+    .arrow__right {
+        right: 0;
+    }
+    .arrow img {
+        height: 50px;
+        width: 50px;
+    }
     .profile__section:not(.active) {
         height: 52px;
     }
+    .images img {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 425px) and (orientation: portrait) {
+    .profile {
+        height: 77.5vh;
+    }
+    .profile__section .name h1 {
+        font-size: 26px;
+    }
+    .profile__section ul li {
+        font-size: 17px;
+    }
     .bio {
-        font-size: 15px;
+        font-size: 16px;
     }
 }

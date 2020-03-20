@@ -8,19 +8,22 @@ main {
     margin: auto;
 }
 .image__primary {
-    height: 300px;
-    width: 100%;
-    min-width: 320px;
+    height: 400px;
+    width: 400px;
     object-fit: cover;
     border-radius: 8px;
+    cursor: zoom-in;
+}
+.image__primary:hover {
+    opacity: 0.9;
 }
 .gallery {
     position: relative;
-    height: 100px;
+    height: 120px;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 14px;
+    margin-top: 4px;
     padding: 0;
     column-gap: 4px;
 }
@@ -121,16 +124,13 @@ main {
         width: 100%;
         text-align: right;
     }
-}
-
-@media (max-width: 768px) {
     .product__action {
         margin: 0 10px;
     }
     .product {
         flex-direction: column;
         padding: 0;
-        max-width: 500px;
+        max-width: 768px;
     }
     .image__primary {
         width: 100%;
@@ -185,5 +185,64 @@ main {
     }
     .gallery {
         padding: 0 20px;
+        height: 100px;
     }
 }
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  }
+  
+  .modal-content {
+    margin: 100px auto 0;
+    display: block;
+    width: auto;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+  }
+  
+  .modal-content {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+  
+  @keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    right: 16px;
+    font-size: 50px;
+    color: #f1f1f1;
+    font-size: px;
+    transition: 0.3s;
+    
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 700px){
+    .modal-content {
+      width: 100%;
+    }
+  }
