@@ -2,10 +2,11 @@ const router = require('express').Router();
 const cartController = require('../controllers/cart-controller');
 
 let clientID;
-if (env === 'production')
-    clientID === process.env.PAYPAL_LIVE_CLIENT_ID;
-else if (env === 'development')
-    clientID === process.env.PAYPAL_SANDBOX_CLIENT_ID;
+if (env.NODE_ENV === 'production') {
+    clientID = env.PAYPAL_LIVE_CLIENT_ID;
+} else if (env.NODE_ENV === 'development') {
+    clientID = env.PAYPAL_SANDBOX_CLIENT_ID;
+}
 
 router.get('/checkout', async function(req, res) {
     let cart = cartController.getCart(req);
