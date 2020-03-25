@@ -12,7 +12,8 @@ exports.login = async function(req, res) {
 
 exports.logout = function(req, res) {
     delete req.session['isLoggedIn'];
-    res.redirect('/admin/login');
+    req.session.save(); 
+    return res.redirect('/admin/login');
 }
 
 exports.isAuth = function(req, res, next) {
@@ -22,7 +23,7 @@ exports.isAuth = function(req, res, next) {
     next();
 }
 
-exports.redirectWhenAuth = function(req, res, next) {
+exports.redirectWhenAuthenticated = function(req, res, next) {
     if (req.session.isLoggedIn) {
         return res.redirect('/admin/products');
     }

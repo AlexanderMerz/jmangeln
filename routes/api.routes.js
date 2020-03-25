@@ -4,8 +4,6 @@ const productController = require('../controllers/product-controller');
 const blogController = require('../controllers/blog-controller');
 const cartController = require('../controllers/cart-controller');
 const youtubeService = require('../services/youtube');
-const { parseText } = require('../middleware/textparser');
-const { objectsAreEqual } = require('../utils/utils');
 
 router.get('/youtube', youtubeService.getVideos);
 

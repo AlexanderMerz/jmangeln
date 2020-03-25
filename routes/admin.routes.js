@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const productController = require('../controllers/product-controller');
-const { isAuth, login, logout, redirectWhenAuth } = require('../middleware/auth');
+const { isAuth, login, logout, redirectWhenAuthenticated } = require('../middleware/auth');
 
 router.get('/', (req, res) => res.redirect('/admin/login'));
 
-router.get('/login', redirectWhenAuth, (req, res) => res.render('login'));
+router.get('/login', redirectWhenAuthenticated, (req, res) => res.render('login'));
 
 router.post('/login', login);
 

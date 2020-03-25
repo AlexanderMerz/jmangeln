@@ -22,14 +22,18 @@ exports.postCart = function(req, res) {
     if (!req.session.cart || req.session.cart.length === 0) {
         req.session.cart = [chosenProduct];
     } else {
-        const index = req.session.cart.findIndex(
-            ({ id }) => id === chosenProduct.id
-        );
-        index >= 0 
-        && req.session.cart[index].size === chosenProduct.size
-        && req.session.cart[index].color === chosenProduct.color
-            ? (req.session.cart[index].quantity += chosenProduct.quantity)
-            : (req.session.cart = [...req.session.cart, chosenProduct]);
+        const alreadyInCart = req.session.cart.findIndex(({ id }) => id === chosenProduct.id) >= 0;
+        if (alreadyInCart) {
+            const sameSize = req.session.cart[index].size == chosenProduct.size;
+            const sameColor = req.session.cart[index].color == chosenProduct.color;
+            if (sameSize && sameColor) {
+                req.session.cart[index].quantity += chosenProduct.quantity;
+            } else {
+                req.session.cart = [...req.session.cart, chosenProduct];
+            }
+        } else {
+            req.session.cart = [...req.session.cart, chosenProduct];
+        }
     }
     req.session.save(function(error){
         if (error) res.redirect('/')
@@ -78,8 +82,8 @@ exports.populateCart = async function(cart) {
     }
 };
 
-exports.emptyCart = async function(req, res, next) {
+exports.emptyCart = function(req, res, next) {
     req.session.cart = [];
-    await req.session.save();
+    req.session.save();
     next();
 }
