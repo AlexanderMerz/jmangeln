@@ -18,25 +18,34 @@
 
         <section class="product">
             <div class="product__left">
-                <img class="image__primary" src="/images/merch_many.jpg" alt="Produktbild">
+                <img
+                    class="image__primary"
+                    src="<%= product.images[0] ? product.images[0] : 'https://placehold.it/400x400' %>" 
+                    alt="Produktbild"
+                >
                 <div class="gallery">
-                    <img class="active" src="/images/merch_many.jpg" alt="Galeriebild">
-                    <img src="/images/jonas.jpg" alt="Galeriebild">
-                    <img src="/images/merch_muetze.jpg" alt="Galeriebild">
+                    <% for (const image of product.images) { %>
+                        <img src="<%= image %>" alt="Galeriebild">
+                    <% } %>
                 </div>
             </div>
             <div class="product__right">
                 <h1 class="name"><%= product.name %></h1>
-                <summary>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque perferendis hic quod in! Quibusdam laborum culpa nihil est eaque porro perspiciatis, optio inventore at quasi sapiente deserunt earum nemo deleniti aliquid voluptates omnis? Eligendi at vero nemo veritatis, illum explicabo repudiandae perspiciatis quae ratione enim, quos, minus voluptatum incidunt ea?</summary>
+                <summary>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas officia, deserunt, perspiciatis nihil excepturi accusantium rerum veniam delectus maiores enim, in tempore qui hic ducimus ad mollitia suscipit voluptate vitae.</summary>
                 <div class="product__details">
                     <div class="details__info">
                         <strong>Lieferzeitraum</strong>
-                        <p>bis zu 10 Werktagen.</p>
-                        <strong>Anmerkung</strong>
+                        <p>bis zu 10 Werktagen</p>
+                        <br>
+                        <strong>Anmerkungen</strong>
                         <p>Lieferung nur innerhalb Deutschlands</p>
+                        <p>Gratis Stickerset und Autogrammkarte</p>
+                        <p>Versandkosten: 4,75€</p>
                     </div>
                     <div class="details__price">
-                        <h1><%= (product.price).toFixed(2).toString().replace('.', ',') %> €</h1>
+                        <h1>
+                            <%= (product.price).toFixed(2).toString().replace('.', ',') %> €
+                        </h1>
                     </div>
                 </div>
                 <form method="POST" action="/merch/cart" class="product__action">
@@ -67,6 +76,8 @@
                 </form>
             </div>
         </section>
+
+
 
         <div id="modal" class="modal">
             <div class="close">&#10006;</div>

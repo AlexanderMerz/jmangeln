@@ -27,6 +27,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const apiRoutes = require('./routes/api.routes');
 const merchRoutes = require('./routes/merch.routes');
 const orderRoutes = require('./routes/order.routes');
+const adminRoutes = require('./routes/admin.routes');
 
 /* Config */
 const MONGO_CONFIG = require('./config/mongo.config');
@@ -100,6 +101,8 @@ server.use('/api', apiRoutes);
 
 /* Checkout Routes */
 server.use('/order', orderRoutes);
+
+server.use('/admin', adminRoutes);
 
 /* Database Connection + Server Start */
 mongoose.connect(

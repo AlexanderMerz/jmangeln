@@ -28,17 +28,16 @@
                         data-color="<%= product.color %>"
                         data-quantity="<%= product.quantity %>"
                     >
-                        <img src="/images/merch_many.jpg" alt="Produktbild" />
+                        <img src="/images/tshirt.png" alt="Produktbild" />
                         <div class="product__info">
                             <h1><%= product.data.name %></h1>
                             <h2 class="price">
-                                <%= (product.quantity * product.data.price).toFixed(2)
-                                %> €
+                                <%= (product.quantity * product.data.price).toFixed(2).replace('.', ',') %> €
                             </h2>
                             <% if (product.size) { %>
-                            <h2>Größe: <%= product.size %></h2>
+                                <h2>Größe: <%= product.size %></h2>
                             <% } %> <% if (product.color) { %>
-                            <h2>Farbe: <%= product.color %></h2>
+                                <h2>Farbe: <%= product.color %></h2>
                             <% } %>
                             <h2>Anzahl: <%= product.quantity %></h2>
                         </div>
@@ -46,7 +45,7 @@
                     </div>
             <% } %>
             <div class="total flex-column">
-                <h1><%= total.toFixed(2) %> €</h1>
+                <h1><%= total.toFixed(2).replace('.', ',') %> €</h1>
                 <a href="/order/checkout" class="btn">JETZT KAUFEN</a>
             </div>
             <% } else { %>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>J&M Angeln - Checkout</title>
-    <script src="https://www.paypal.com/sdk/js?client-id=<%= clientID %>&currency=EUR&disable-funding=sofort,giro-pay,card"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=<%= clientID %>&currency=EUR&disable-funding=sofort,giropay"></script>
     <% include includes/styles %>
     <link rel="stylesheet" href="/styles/checkout.css">
 </head>
@@ -29,8 +29,8 @@
                         <span><%= product.size || '' %></span>
                         <span><%= product.color || '' %></span>
                     </h2>
-                    <h2 class="light price">
-                        <%= (product.data.price * product.quantity).toFixed(2) %> €
+                    <h2 class="light">
+                        <%= (product.data.price * product.quantity).toFixed(2).replace('.', ',') %> €
                     </h2>
                 </div>
             <% } %>
@@ -40,11 +40,27 @@
 
         <section class="flex-column">
             <div class="flex-row max-width">
-                <h2 class="light total">Gesamtwert</h2>
-                <h2 class="light total price"><%= (total).toFixed(2) %> €</h2>
+                <h2 class="light">Zwischensumme</h2>
+                <h2 class="light"><%= (total).toFixed(2).replace('.', ',') %> €</h2>
             </div>
         </section>
 
+        <section class="flex-column">
+            <div class="flex-row max-width">
+                <h2 class="light">&plus; Versandkosten</h2>
+                <h2 class="light"><%= (4.75).toFixed(2).replace('.', ',') %> €</h2>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="flex-column">
+            <div class="flex-row max-width">
+                <h2 class="light total">Gesamtbetrag</h2>
+                <h2 class="light total price"><%= (total + 4.75).toFixed(2).replace('.', ',') %> €</h2>
+            </div>
+        </section>
+        
         <br>
 
         <div id="paypal-button-container"></div>
@@ -70,17 +86,26 @@
                     quantity: quantities[i]
                 });
                 total += prices[i] * quantities[i];
+                if (i === descriptions.length - 1) {
+                    total = Math.round((total) * 100) / 100;
+                }
             }
-            total = Math.round(total * 100) / 100;
+
+            console.log('Zwischensumme: ', total);
+            console.log('Gesamtbetrag: ', total + 4.75);
 
             const purchase_units = [{
                 items,
                 amount: {
-                    value: total,
+                    value: total + 4.75,
                     currency_code: 'EUR',
                     breakdown: {
                         item_total: {
                             value: total,
+                            currency_code: 'EUR'
+                        },
+                        shipping: {
+                            value: 4.75,
                             currency_code: 'EUR'
                         }
                     }
@@ -104,10 +129,32 @@
                 console.error(error);
             }
 
+            function onShippingChanges(data, actions) {
+                console.log(data.shipping_address.country_code);
+                if (data.shipping_address.country_code !== 'DE') {
+                    return actions.reject();
+                }
+                return actions.resolve();
+            }
+
+            const style = {
+                color: 'blue',
+                shape: 'pill',
+                layout: 'vertical'
+            };
+
             // Render Paypal Buttons
-            paypal.Buttons(
-                { createOrder, onApprove, onError, style: { color: 'blue' }
-            }).render('#paypal-button-container');
+            paypal
+                .Buttons({
+                    createOrder,
+                    onApprove,
+                    onError,
+                    onShippingChanges,
+                    style
+                })
+                .render('#paypal-button-container');
+
+                
 
         </script>
 

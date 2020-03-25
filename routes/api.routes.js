@@ -15,7 +15,7 @@ router.get('/products', productController.getProducts);
 
 router.get('/categories', categoryController.getCategories);
 
-router.post('/cart/remove/:id', async function(req, res){
+router.post('/cart/remove/:id', async function(req, res) {
     let status = 400;
     const product = req.body;
     Object.entries(product).forEach(function([key, value]) {
@@ -36,6 +36,16 @@ router.post('/cart/remove/:id', async function(req, res){
         }
     }
     res.status(status).json({ status });
+});
+
+router.post('/product/update/:id', async function(req, res) {
+    try {
+        await productController.updateProduct({ id: req.params.id, ...req.body });
+    } catch (error) {
+        console.log(error);
+        return res.status(401).end('Bad Request');
+    }
+    res.status(200).redirect('/admin/products');
 });
 
 module.exports = router;

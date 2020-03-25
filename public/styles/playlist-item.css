@@ -5,8 +5,8 @@ div, p {
 .video {
     width: 100%;
     /* max-width: 840px; */
-    height: 180px;
-    margin: 0.5rem auto;
+    height: 200px;
+    margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,6 +50,7 @@ div, p {
     .video {
         border: none;
         width: 320px;
+        margin: auto;
         height: fit-content;
         flex-direction: column-reverse;
     }
@@ -78,8 +79,5 @@ div, p {
 @media screen and (max-width: 340px) {
     .video, .video__image {
         width: 304px;
-    }
-    .video {
-        margin: 0.5rem auto;
     }
 }

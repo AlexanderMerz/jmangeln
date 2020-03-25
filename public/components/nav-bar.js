@@ -10,10 +10,9 @@ class Navbar extends HTMLElement {
                 </picture>
                 <nav class="navbar__navigation">
                     <ul>
-                        <li><a href="/team">Team</a></li>
+                        <li><a href="/team">Das Team</a></li>
                         <li><a href="/videos">Videos</a></li>
-                        <li><a href="/merch">Merch</a></li>
-                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/merch">Merchandise</a></li>
                     </ul>
                 </nav>
                 <div class="menu-icon">

@@ -24,7 +24,7 @@ main a {
     text-decoration: none;
     transition: all 600ms;
     filter: saturate(40%);
-    border: 2px solid black;
+    padding: 1px;
 }
 
 main a img {

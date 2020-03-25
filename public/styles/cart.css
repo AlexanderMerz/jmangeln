@@ -13,6 +13,7 @@ h1, h2 {
     width: 100%;
     max-width: 600px;
     height: auto;
+    min-height: 220px;
     display: flex;
     margin-bottom: 20px;
     padding: 20px;
@@ -49,9 +50,17 @@ h1, h2 {
     border-radius: 50%;
     font-size: 30px;
     cursor: pointer;
+    transition: color 300ms;
 }
 .remove:hover {
     color: rgba(255, 0, 0, 0.8);
+}
+.remove:hover::before {
+    content: 'Entfernen ';
+    animation: fadeIn 100ms;
+    position: absolute;
+    right: 30px;
+    top: 2px;
 }
 .empty {
     text-align: center;
@@ -87,6 +96,12 @@ main a {
     letter-spacing: -1px;
     color: darkred;
 }
+@media (max-width: 768px) {
+    .remove:hover::before {
+        content: '';
+        animation: none;
+    }
+}
 @media (max-width: 600px) {
     main {
         padding: 0 10px;
@@ -112,7 +127,7 @@ main a {
         font-size: 20px;
     }
     .price {
-        font-size: 24px;
+        font-size: 30px;
     }
 }
 @media (max-width: 350px) {

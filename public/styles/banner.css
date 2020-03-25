@@ -47,8 +47,8 @@
     margin: 0 5px;
     opacity: 1;
 }
-.social img:hover {
-    opacity: 1;
+.social__icon:hover img {
+    filter: invert(52%) sepia(81%) saturate(2774%) hue-rotate(85deg) brightness(117%) contrast(124%);
 }
 .social {
     padding: 0 2.5rem;

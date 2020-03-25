@@ -70,7 +70,7 @@
             <% for (const product of products) { %>
               <info-card
                 class="product"
-                image="/images/merch_many.jpg"
+                image="<%= product.images[0] ? product.images[0] : 'https://placehold.it/400x400'  %>"
                 href="/merch/produkt/<%= product._id %>"
                 data-name="<%= product.name %>"
                 data-price="<%= (product.price).toFixed(2) %>"
@@ -78,7 +78,7 @@
               >
                 <div class="product__info">
                   <h1><%= product.name %></h1>
-                  <h1 class="price"><%= (product.price).toFixed(2) %> €</h1>
+                  <h1 class="price"><%= (product.price).toFixed(2).replace('.', ',') %> €</h1>
                 </div>
               </info-card>
             <% } %>

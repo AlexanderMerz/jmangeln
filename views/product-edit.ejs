@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>J&M Angeln - Produkte bearbeiten</title>
+    <% include includes/styles %>
+    <style>
+        .btn {
+            width: 200px;
+            margin: 10px 0 20px;
+        }
+        main {
+            height: auto;
+            width: 100%;
+            margin: auto;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            column-gap: 20px;
+            padding: 10px;
+        }
+        .product {
+            height: auto;
+            width: auto;
+            padding: 20px;
+        }
+        h3 {
+            margin: 0;
+        }
+        .field {
+            text-align: left;
+        }
+        input {
+            font-family: 'Maven Pro', sans-serif;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid black;
+        }
+        .log-out {
+            width: 100%;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        .log-out button {
+            text-align: center;
+        }
+        .flex-row {
+            margin: 16px;
+        }
+        .flex-row > * {
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+        
+    <% include includes/navigation %>
+
+    <main class="centered">
+        <section class="products">
+            <% for (const product of products) { %>
+                <form action="/api/product/update/<%= product._id %>" method="POST" class="product">
+                    <h1><%= product.name %></h1>
+                    <div class="flex-row">
+                        <h3>Stückzahl</h3>
+                        <select name="stock" id="stock">
+                            <% for (let i = 1; i <= 50; i++) { %>
+                                <option value="<%= i %>"
+                                    class="<%= i === product.stock ? 'selected' : '' %>">
+                                    <%= i %> Stück
+                                </option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="flex-row">
+                        <h3>Preis</h3>
+                        <input type="number" name="price" id="price" step="0.01" value="<%= product.price.toFixed(2) %>">
+                    </div>
+                    <h3>Größen</h3>
+                    <div class="flex-row">
+                        <fieldset>
+                            <div class="field">
+                                <input type="checkbox" id="XS" name="sizes" value="XS"
+                                    class="<%= product.sizes.includes('XS') ? 'checked' : '' %>">
+                                <label for="XS" >Größe XS</label>
+                            </div>
+                            <div class="field">
+                                <input type="checkbox" id="S" name="sizes" value="S"
+                                    class="<%= product.sizes.includes('S') ? 'checked' : '' %>">
+                                <label for="S" >Größe S</label>
+                            </div>
+                            <div class="field">
+                                <input type="checkbox" id="M" name="sizes" value="M"
+                                    class="<%= product.sizes.includes('M') ? 'checked' : '' %>">
+                                <label for="M" >Größe M</label>
+                            </div>
+                            <div class="field">
+                                <input type="checkbox" id="L" name="sizes" value="L"
+                                    class="<%= product.sizes.includes('L') ? 'checked' : '' %>">
+                                <label for="L" >Größe L</label>
+                            </div>
+                            <div class="field">
+                                <input type="checkbox" id="XL" name="sizes" value="XL"
+                                    class="<%= product.sizes.includes('XL') ? 'checked' : '' %>">
+                                <label for="XL" >Größe XL</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <h3>Farben</h3>
+                    <div class="flex-row">
+                        <fieldset>
+                            <div class="field">
+                                <input type="checkbox" id="Grün" name="colors" value="Grün"
+                                    class="<%= product.colors.includes('Grün') ? 'checked' : '' %>">
+                                <label for="XS" >Grün</label>
+                            </div>
+                            <div class="field">
+                                <input type="checkbox" id="Pink" name="colors" value="Pink"
+                                    class="<%= product.colors.includes('Pink') ? 'checked' : '' %>">
+                                <label for="S" >Pink</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button class="btn" type="submit">Aktualisieren</button>
+                </form>
+            <% } %>
+        </section>
+    </main>
+
+    <div class="log-out">
+        <button class="btn">Ausloggen</button>
+    </div>
+
+    <script>
+        document.querySelectorAll('.checked').forEach(checkbox => checkbox.checked = true);
+        document.querySelectorAll('.selected').forEach(option => option.selected = true);
+        document.querySelector('.log-out button').addEventListener('click', async function() {
+            await fetch('/admin/logout');
+            window.location.reload();
+        });
+    </script>
+
+</body>
+</html>

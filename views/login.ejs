@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>J&M Angeln - Login</title>
+    <% include includes/styles %>
+    <style>
+        form {
+            width: 300px;
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            margin: 35vh auto;
+        }
+        form > * {
+            margin: 8px 0;
+        }
+        input {
+            font-family: 'Maven Pro', sans-serif;
+            padding: 1rem;
+            font-size: 20px;
+            transition: outline 300ms;
+        }
+        input:focus {
+            outline: var(--primary-color) solid 4px;
+        }
+    </style>
+
+</head>
+<body>
+        
+    <% include includes/navigation %>
+
+    <form class="centered" action="/admin/login" method="POST">
+        <input type="password" name="password" id="password" placeholder="Passwort" autofocus>
+        <button class="btn" type="submit">Anmelden</button>
+    </form>
+
+</body>
+</html>

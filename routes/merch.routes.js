@@ -25,6 +25,7 @@ router.get('/cart', async function(req, res) {
 
 router.get('/produkt/:id', async function(req, res) {
     const product = await productController.findProductById(req.params.id);
+    console.log(product);
     if (product) return res.status(200).render('product', { product });
 });
 

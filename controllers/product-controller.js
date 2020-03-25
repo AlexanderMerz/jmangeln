@@ -18,3 +18,8 @@ exports.findProductsByCategory = async function (category) {
     return Array.from(await Product.find({ category }))
         .map((product) => loadImageAndReturn(product));
 }
+
+exports.updateProduct = async function(product) {
+    try { await Product.findOneAndUpdate({ _id: product.id }, product); }
+    catch (error) { throw error; }
+}
