@@ -1,11 +1,9 @@
 require('./config/global.config')();
 
-if (env.NODE_ENV === 'production') {
+if (env.NODE_ENV === 'production' || env.NODE_ENV === 'development')
     require('dotenv').config();
-} else if (env.NODE_ENV !== 'development') {
-    log(errorMessageFor('environment'));
-    process.exit(1);
-}
+else
+    errorMessageFor('environment');
 
 // Core Modules
 const path = require('path');
