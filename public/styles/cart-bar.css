@@ -11,8 +11,8 @@
     padding: 1rem;
     cursor: pointer;
     transition: all 500ms;
-    border: 1px solid white;
     border-radius: 50px;
+    border: 1px solid white;
 }
 .cart:after {
     color: white;
@@ -57,8 +57,8 @@
     .cart {
         height: 40px;
         width: 40px;
-        right: 5px;
-        top: 65px;
+        right: 15x;
+        top: 75px;
     }
     .cart img {
         min-height: 28px;

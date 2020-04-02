@@ -11,8 +11,9 @@ class Navbar extends HTMLElement {
                 <nav class="navbar__navigation">
                     <ul>
                         <li><a href="/team">Das Team</a></li>
-                        <li><a href="/videos">Videos</a></li>
                         <li><a href="/merch">Merchandise</a></li>
+                        <li><a href="/videos">Videos</a></li>
+                        <li><a href="/impressum">Kontakt</a></li>
                     </ul>
                 </nav>
                 <div class="menu-icon">

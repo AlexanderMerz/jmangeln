@@ -26,9 +26,20 @@ router.get('/cart', async function(req, res) {
 router.get('/produkt/:id', async function(req, res) {
     const product = await productController.findProductById(req.params.id);
     console.log(product);
-    if (product) return res.status(200).render('product', { product });
+    if (!product) return res.status(404).render('404');
+    (product.stock)
+        ? res.status(200).render('product', { product })
+        : res.status(204).redirect('/merch');
 });
 
-router.post('/cart', parseText, cartController.postCart);
+router.post('/cart', parseText, async function(req, res) {
+    try {
+        await cartController.postCart(req);
+        res.redirect('/merch/cart');
+    } catch (error) {
+        console.error(error);
+        res.redirect('/merch');
+    }
+});
 
 module.exports = router;

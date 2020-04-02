@@ -6,7 +6,7 @@
   "scripts": {
     "prod": "NODE_ENV=production pm2 server.js",
     "dev": "NODE_ENV=development pm2 server.js",
-    "test": "NODE_ENV=development nodemon server.js"
+    "test": "nodemon server.js"
   },
   "repository": {
     "type": "git",

@@ -96,6 +96,11 @@ server.use('/api', apiRoutes);
 server.use('/order', orderRoutes);
 server.use('/admin', adminRoutes);
 
+server.get('/datenschutz', (req, res) => res.render('datenschutz'));
+server.get('/impressum', (req, res) => res.render('impressum'));
+
+server.use((req, res) => res.render('404'));
+
 mongoose
     .connect(MONGO_CONFIG.URI, MONGO_CONFIG.OPTIONS)
     .then(function() {

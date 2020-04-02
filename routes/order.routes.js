@@ -10,6 +10,9 @@ if (env.NODE_ENV === 'production') {
 
 router.get('/checkout', async function(req, res) {
     let cart = cartController.getCart(req);
+    if (cart.length === 0) {
+        return res.redirect('/merch');
+    }
     cart = await cartController.populateCart(cart);
     const total = cartController.getTotal(cart);
     const descriptions = cart.map(product => {

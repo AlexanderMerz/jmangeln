@@ -1,4 +1,4 @@
-.banner {
+/* .banner {
     position: relative;
     background-color: black;
     height: 100vh;
@@ -40,71 +40,83 @@
     margin-top: -40px;
     font-size: 5.65rem;
     text-shadow: -3px 3px 0 rgba(0, 100, 0, 1);
+} */
+.banner {
+    position: relative;
+    height: calc(80vh - 60px);
+    width: 100%;
+    background-color: #000;
 }
-.social img {
+.banner img {
+    position: inherit;
+    height: calc(80vh - 60px);
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+}
+.banner__text {
+    position: absolute;
+    background-color: #000;
+    bottom: 0;
+    color: #fff;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-family: 'Syncopate', cursive;
+    font-size: 6vw;
+    margin: 0;
+    line-height: normal;
+}
+.banner__text span:not(.highlight) {
+    width: 100%;
+    margin-left: 2.5vw;
+}
+.banner__text .highlight {
+    color: var(--primary-color);
+}
+.social__icon img {
     height: 110px;
     width: auto;
     margin: 0 5px;
-    opacity: 1;
+    opacity: 0.8;
 }
 .social__icon:hover img {
-    filter: invert(52%) sepia(81%) saturate(2774%) hue-rotate(85deg) brightness(117%) contrast(124%);
+    opacity: 1;
 }
 .social {
     padding: 0 2.5rem;
-    position: absolute;
-    bottom: 10px;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: fit-content;
+    height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-@media (max-width: 1400px) {
-    .label__text {
-        font-size: 5.5rem;
-    }
-    .label__highlight {
-        font-size: 4.2rem;
+@media (max-width: 1024px) {
+    .banner__text {
+        font-size: 80px;
     }
 }
 @media (max-width: 768px) {
-    .label__text {
-        font-size: 4.5rem;
-    }
-    .label__highlight {
-        margin-top: -30px;
-        font-size: 3.4rem;
+    .banner__text {
+        font-size: 70px;
     }
 }
-@media (max-width: 575px) {
-    .banner {
-        top: -40vh;
+@media (max-width: 600px) {
+    .banner__text {
+        font-size: 52px;
     }
-    .label__text {
-        font-size: 4.25rem;
-    }
-    .label__highlight {
-        font-size: 3.25rem;
-    }
-    .social {
-        bottom: 1rem;
-    }
-    .social img {
-        height: 100px;
+    .social__icon img {
+        height: 90px;
+        width: auto;
+        margin: 0 5px;
+        opacity: 1;
     }
 }
 @media (max-width: 425px) {
-    .label__text {
-        font-size: 3.5rem;
-    }
-    .label__highlight {
-        font-size: 2.7rem;
-    }
-    .social i {
-        font-size: 70px;
+    .banner__text {
+        font-size: 40px;
     }
 }
 @media (max-width: 375px) {

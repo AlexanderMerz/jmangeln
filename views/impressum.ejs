@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>J&M Angeln - Datenschutz</title>
+        <% include includes/styles %>
+        <style>
+            main {padding: 0 2rem;}
+            p {
+                margin: 0;
+                font-size: 20px;
+            }
+            h1 {margin-bottom: 0;}
+            h2 {
+                margin-top: 0;
+                color: #555;
+            }
+            section {
+                display: flex;
+                align-items: flex-start;
+                width: 300px;
+                margin: 10px 0;
+            }
+            section > div {
+                width: 100%;
+                padding-left: 20px;
+            }
+            img {margin-top: 4px;}
+        </style>
+    </head>
+    <body>
+        <% include includes/navigation %>
+        <main>
+            <h1>Jonas Happle</h1>
+            <h2>J&M Angelshop</h2>
+            <section class="address">
+                <img src="/images/icons/home.svg" alt="Address Icon" />
+                <div>
+                    <p>Kirchstraße 33</p>
+                    <p>78176 Blumberg</p>
+                    <p>Deutschland</p>
+                </div>
+            </section>
+            <section class="phone">
+                <img src="/images/icons/phone.svg" alt="Phone Icon" />
+                <div>
+                    <p>Telefon: 07702 5641</p>
+                    <p>Telefax: 07702 2344</p>
+                </div>
+            </section>
+            <section class="mail">
+                <img src="/images/icons/mail.svg" alt="Mail Icon" />
+                <div>
+                    <p>
+                        <a href="mailto:jm.angelshop@web.de"
+                            >jm.angelshop@web.de</a
+                        >
+                    </p>
+                </div>
+            </section>
+            <div class="business">
+                <br>
+                <p>Gemeindekennzahl Betriebsstätte <br>(Sitz) 08326005</p>
+                <br>
+                <p>GewA1 201900000006</p>
+            </div>
+        </main>
+    </body>
+</html>

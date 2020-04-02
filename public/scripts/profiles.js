@@ -4,9 +4,17 @@ for (const profile of profiles) {
 
     for (const section of profile.children) {
         section.addEventListener('click', function() {
+            profiles
+                .filter(p => !Array.from(p.children).includes(this))
+                .forEach(otherProfile => {
+                    otherProfile.firstElementChild.classList.add('active');
+                    Array.from(otherProfile.children).slice(1, 3)
+                        .forEach(children => children.classList.remove('active'));
+                });
             if (!this.classList.contains('active')) {
                 this.classList.add('active');
-                Array.from(profile.children).filter(children => children !== this)
+                Array.from(profile.children)
+                    .filter(children => children !== this)
                     .forEach(children => children.classList.remove('active'));
             }
         });
@@ -14,11 +22,10 @@ for (const profile of profiles) {
 
     const images = Array.from(profile.querySelectorAll('.images img'));
     images[0].classList.add('show');
-    let currentImageIndex = images.findIndex(image => image.classList.contains('show')) || 0;
+    let currentImageIndex = images.findIndex(({ classList }) => classList.contains('show')) || 0;
     const arrows = Array.from(profile.querySelectorAll('.arrow'));
 
     if (arrows.length > 0) {
-
         arrows[0].style.setProperty('display', 'none');
 
         for (const arrow of arrows) {
@@ -37,11 +44,13 @@ for (const profile of profiles) {
                         currentImageIndex++;
                     }
                 }
-                arrows[0].style.setProperty('display', currentImageIndex === 0 ? 'none' : 'block');
-                arrows[1].style.setProperty('display', currentImageIndex === (images.length - 1) ? 'none' : 'block');
+                const showLeftArrow =
+                    currentImageIndex === 0 ? 'none' : 'block';
+                const showRightArrow =
+                    currentImageIndex === images.length - 1 ? 'none' : 'block';
+                arrows[0].style.setProperty('display', showLeftArrow);
+                arrows[1].style.setProperty('display', showRightArrow);
             });
         }
-        
     }
-
 }

@@ -5,7 +5,7 @@ class CartBar extends HTMLElement {
         const template = document.createElement('template');
         template.innerHTML = `
             <div class="cart">
-                <img src="../images/cart.svg" alt="Shopping Cart">
+                <img src="../images/icons/cart.svg" alt="Shopping Cart">
                 <span class="qty"></span>
                 <a href="/merch/cart">Zum <span>Warenkorb</span></a>
             </div>

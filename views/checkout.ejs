@@ -13,18 +13,15 @@
 
     <% include includes/navigation %>
 
-    <main class="centered">
+    <main class="centered overview">
 
         <h1 class="light">Bestellübersicht</h1>
-
-        <hr>
 
         <section class="flex-column">
             <% for (const product of cart) { %>
                 <div class="flex-row max-width">
                     <h2 class="light">
                         <span><%= product.quantity %></span>
-                        <span>&nbsp;x&nbsp;</span>
                         <span><%= product.data.name %></span>
                         <span><%= product.size || '' %></span>
                         <span><%= product.color || '' %></span>
@@ -75,10 +72,11 @@
             const prices = ('<%= prices %>'.split(',').map(price => parseFloat(price)));
             const quantities = '<%= quantities %>'.split(',');
 
+            console.log(descriptions);
+
             for (let i = 0; i < descriptions.length; i++) {
-                console.log(prices[i]);
                 items.push({
-                    name: descriptions[i],
+                    name: descriptions[i].replace('&amp;', '&'),
                     unit_amount: {
                         value: prices[i],
                         currency_code: 'EUR'
@@ -121,7 +119,7 @@
 
             function onApprove(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
+                    window.location = '/order/confirmation';
                 });
             }
 
@@ -129,17 +127,8 @@
                 console.error(error);
             }
 
-            function onShippingChanges(data, actions) {
-                console.log(data.shipping_address.country_code);
-                if (data.shipping_address.country_code !== 'DE') {
-                    return actions.reject();
-                }
-                return actions.resolve();
-            }
-
             const style = {
                 color: 'blue',
-                shape: 'pill',
                 layout: 'vertical'
             };
 
@@ -149,7 +138,6 @@
                     createOrder,
                     onApprove,
                     onError,
-                    onShippingChanges,
                     style
                 })
                 .render('#paypal-button-container');

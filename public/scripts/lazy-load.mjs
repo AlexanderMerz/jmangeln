@@ -45,6 +45,7 @@ function addIntersectionObservers(images) {
                 if (element.isIntersecting) {
                     target.src = target.dataset.src;
                     this.unobserve(image);
+                    console.log('Image lazy loaded');
                 }
             }).observe(image);
         

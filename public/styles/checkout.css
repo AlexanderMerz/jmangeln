@@ -1,8 +1,15 @@
 main {
-    width: 50%;
+    width: 60%;
+    height: 80%;
     min-width: 300px;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 768px;
+    margin: 20px auto;
+    height: auto;
+}
+.overview {
+    position: relative;
+    padding-top: 20px;
+    border-radius: 0 0 -50px 0;
 }
 h1 {font-weight: 100;}
 h2 {
@@ -11,7 +18,7 @@ h2 {
 }
 #paypal-button-container {
     width: 100%;
-    margin: 20px auto;
+    margin: 10px auto 0 auto;
 }
 .flex-column {
     justify-content: space-between;
@@ -23,6 +30,12 @@ h2 {
     font-size: 32px;
 }
 @media (max-width: 768px) {
+    main {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: 0;
+    }
     h2 {
         font-size: 20px;
     }
@@ -30,6 +43,25 @@ h2 {
         font-size: 24px;
     }
     .flex-row {
+        height: 30px;
+    }
+}
+@media (max-width: 425px) {
+    .overview {
+        padding: 10px 20px;
+    }
+    .flex-row {
         height: 24px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+}
+@media (max-width: 350px) {
+    h2 {
+        font-size: 16px;
     }
 }

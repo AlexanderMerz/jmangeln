@@ -19,3 +19,10 @@ exports.objectsAreEqual = function(a, b) {
     }
     return true;
 }
+
+exports.normalize = function(obj) {
+    Object.entries(obj).forEach(function([key, value]) {
+        if (!value || value === '') obj[key] = null;
+    });
+    return obj;
+}

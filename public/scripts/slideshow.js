@@ -10,7 +10,7 @@ const dots = document.querySelectorAll('.dot');
 const prev = document.querySelector('button#prev');
 const next = document.querySelector('button#next');
 const auto = true;
-const intervalTime = 10000;
+const intervalTime = 5000;
 let slideInterval;
 
 function nextSlide () {

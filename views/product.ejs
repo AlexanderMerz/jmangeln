@@ -1,105 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>J&M Angeln - <%= product.name %></title>
-    <% include includes/styles %>
-    <link rel="stylesheet" href="/styles/product.css">
-    <script defer src="/scripts/image-modal.js"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>J&M Angeln - <%= product.name %></title>
+        <% include includes/styles %>
+        <link rel="stylesheet" href="/styles/product.css" />
+        <script defer src="/scripts/image-modal.js"></script>
+    </head>
+    <body>
+        <% include includes/navigation %>
 
-</head>
-<body>
-        
-    <% include includes/navigation %>
-
-    <main>
-
-        <section class="product">
-            <div class="product__left">
-                <img
-                    class="image__primary"
-                    src="<%= product.images[0] ? product.images[0] : 'https://placehold.it/400x400' %>" 
-                    alt="Produktbild"
-                >
-                <div class="gallery">
-                    <% for (const image of product.images) { %>
-                        <img src="<%= image %>" alt="Galeriebild">
-                    <% } %>
-                </div>
-            </div>
-            <div class="product__right">
-                <h1 class="name"><%= product.name %></h1>
-                <summary>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas officia, deserunt, perspiciatis nihil excepturi accusantium rerum veniam delectus maiores enim, in tempore qui hic ducimus ad mollitia suscipit voluptate vitae.</summary>
-                <div class="product__details">
-                    <div class="details__info">
-                        <strong>Lieferzeitraum</strong>
-                        <p>bis zu 10 Werktagen</p>
-                        <br>
-                        <strong>Anmerkungen</strong>
-                        <p>Lieferung nur innerhalb Deutschlands</p>
-                        <p>Gratis Stickerset und Autogrammkarte</p>
-                        <p>Versandkosten: 4,75€</p>
-                    </div>
-                    <div class="details__price">
-                        <h1>
-                            <%= (product.price).toFixed(2).toString().replace('.', ',') %> €
-                        </h1>
-                    </div>
-                </div>
-                <form method="POST" action="/merch/cart" class="product__action">
-                    <input type="hidden" name="productID" value="<%= product._id %>">
-                    <div class="selects">
-                        <select name="quantity" id="quantity" required>
-                            <option value="1" selected>1 Stück</option>
-                            <% for (let i = 2; i < 10; i++) { %>
-                                <option value="<%= i %>"><%= i %> Stück</option>
-                            <% } %>
-                        </select>
-                        <% if (product.sizes.length > 0) { %>
-                            <select name="size" id="size" required>
-                            <% for (const size of product.sizes) { %>
-                                <option value="<%= size %>">Größe <%= size %></option>
-                            <% } %>
-                            </select>
-                        <% } %>
-                        <% if (product.colors.length > 0) { %>
-                            <select name="color" id="color" required>
-                            <% for (const color of product.colors) { %>
-                                <option value="<%= color %>"><%= color %></option>
-                            <% } %>
-                            </select>
+        <main>
+            <section class="product">
+                <div class="product__left">
+                    <img
+                        class="image__primary"
+                        src="<%= product.images[0] ? product.images[0] : 'https://placehold.it/400x400' %>"
+                        alt="Produktbild"
+                    />
+                    <div class="gallery">
+                        <% for (const image of product.images) { %>
+                            <img src="<%= image %>" alt="Galeriebild" />
                         <% } %>
                     </div>
-                    <button type="submit" class="btn">Hinzufügen</button>
-                </form>
+                </div>
+                <div class="product__right">
+                    <div class="name">
+                        <h1><%= product.name %></h1>
+                    </div>
+                    <summary>
+                        <ul>
+                            <% for (const detail of product.details) { %>
+                                <li><%= detail %></li>
+                            <% } %>
+                        </ul>
+                    </summary>
+                    <br />
+                    <div class="product__details">
+                        <div class="details__delivery">
+                            <strong>Lieferung</strong>
+                            <p>bis zu 10 Werktagen</p>
+                            <p>nur innerhalb Deutschlands</p>
+                        </div>
+                        <div class="details__muh">
+                            <strong>Anmerkungen</strong>
+                            <p>Gratis Stickerset und Autogrammkarte</p>
+                            <p>Versandkosten: 4,75€</p>
+                        </div>
+                        <div class="details__hint">
+                            <%= product.hint %>
+                        </div>
+                        <div class="details__price">
+                            <h1>
+                                <%= (product.price).toFixed(2).toString().replace('.',',') %>&nbsp;€
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div class="stock">
+                        <% if (typeof product.stock === 'number' && product.stock <=5) { %>
+                            Nur noch <%= product.stock %> Stück auf Lager
+                        <% } else if (typeof product.stock === 'object' && product.stock['XS'] <= 5) { %>
+                            Nur noch <%= product.stock['XS'] %> Stück auf Lager
+                        <% } %>
+                    </div>
+
+                    <form
+                        method="POST"
+                        action="/merch/cart"
+                        class="product__action"
+                    >
+                        <input
+                            type="hidden"
+                            name="productID"
+                            value="<%= product._id %>"
+                        />
+                        <div class="selects">
+                            <% if (typeof product.stock === 'number') { %>
+
+                            <select
+                                name="quantity"
+                                id="quantity"
+                                onchange="updateQuantity(this.value)"
+                                required
+                            >
+                                <option value="1" selected>1 Stück</option>
+                                <% const max = product.stock <= 8 ? product.stock : 9 %>
+                                <% for (let i = 2; i <= max; i++) { %>
+                                    <option value="<%= i %>"><%= i %> Stück</option>
+                                <% } %>
+                            </select>
+
+                            <% } else if (typeof product.stock === 'object') { %>
+
+                            <select
+                                name="size"
+                                id="size"
+                                onchange="updateQuantity(this.value, '<%= JSON.stringify(product.stock) %>')"
+                                required
+                            >
+                                <% for (const size of Object.keys(product.stock)) { %>
+                                    <option value="<%= size %>">Größe <%= size %></option>
+                                <% } %>
+                            </select>
+
+                            <select name="quantity" id="quantity" required>
+                                <option value="1" selected>1 Stück</option>
+                                <% const max = product.stock['XS'] <= 8 ? product.stock['XS'] : 9 %>
+                                <% for (let i = 2; i <= max; i++) { %>
+                                    <option value="<%= i %>"><%= i %> Stück</option>
+                                <% } %>
+                            </select>
+
+                            <% } %> <% if (product.colors.length > 0) { %>
+                                <select name="color" id="color" required>
+                                    <% for (const color of product.colors) { %>
+                                        <option value="<%= color %>"><%= color %></option>
+                                    <% } %>
+                                </select>
+                            <% } %>
+                        </div>
+                        <button type="submit" class="dark btn">
+                            In den Warenkorb
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <div id="modal" class="modal">
+                <div class="close">&#10006;</div>
+                <img class="modal-content" id="modalImg" />
             </div>
-        </section>
+        </main>
 
+        <script>
+            const stockInformation = document.querySelector('.stock');
+            const quantitySelection = document.getElementById('quantity');
+            const primaryImage = document.querySelector('.image__primary');
+            const images = Array.from(document.querySelectorAll('.gallery img'));
 
+            for (const image of images) {
+                image.addEventListener('click', function() {
+                    if (!this.classList.contains('active')) {
+                        this.classList.add('active');
+                        images
+                            .filter(img => img !== this)
+                            .forEach(img => img.classList.remove('active'));
+                    }
+                    primaryImage.src = this.src;
+                });
+            }
 
-        <div id="modal" class="modal">
-            <div class="close">&#10006;</div>
-            <img class="modal-content" id="modalImg">
-        </div>
-
-    </main>
-
-    <script>
-        const primaryImage = document.querySelector('.image__primary');
-        const images = Array.from(document.querySelectorAll('.gallery img'));
-        for (const image of images) {
-            image.addEventListener('click', function() {
-                if (!this.classList.contains('active')) {
-                    this.classList.add('active');
-                    images.filter(img => img !== this)
-                        .forEach(img => img.classList.remove('active'));
+            function updateQuantity(size, stock) {
+                stockInformation.textContent = '';
+                if (stock) {
+                    quantitySelection.innerHTML = '';
+                    stock = JSON.parse(stock);
+                    for (let i = 1; i <= stock[size]; i++) {
+                        const option = document.createElement('option');
+                        option.value = i;
+                        option.textContent = `${i} Stück`;
+                        quantitySelection.appendChild(option);
+                    }
+                    if (stock[size] <= 5) {
+                        stockInformation.textContent =
+                            `Nur noch ${stock[size]} Stück auf Lager`;
+                    }
                 }
-                primaryImage.src = this.src;
-            });
-        }
-    </script>
-
-</body>
+            }
+        </script>
+    </body>
 </html>

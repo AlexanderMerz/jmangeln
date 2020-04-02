@@ -1,44 +1,48 @@
 const { findProductById } = require('./product-controller');
 
 exports.getCart = function(req) {
-    return (
-        req.session.cart
+    return req.session.cart
         ? req.session.cart.filter(product => product != null)
-        : []
-    );
+        : [];
 };
 
-exports.postCart = function(req, res) {
-    /* url check because any merch related post request will get to this function */
+exports.postCart = async function(req) {
     if (req.originalUrl !== '/merch/cart') {
         return res.status(400).redirect('/merch');
     }
-    const chosenProduct = {
-        id: req.body.productID,
-        quantity: parseInt(req.body.quantity),
-        size: req.body.size,
-        color: req.body.color
-    };
+
+    const { productID: id, size, color } = req.body;
+    let quantity = parseInt(req.body.quantity);
+
+    const chosenProduct = { id, quantity, size, color };
+
     if (!req.session.cart || req.session.cart.length === 0) {
         req.session.cart = [chosenProduct];
     } else {
-        const alreadyInCart = req.session.cart.findIndex(({ id }) => id === chosenProduct.id) >= 0;
-        if (alreadyInCart) {
-            const sameSize = req.session.cart[index].size == chosenProduct.size;
-            const sameColor = req.session.cart[index].color == chosenProduct.color;
-            if (sameSize && sameColor) {
-                req.session.cart[index].quantity += chosenProduct.quantity;
-            } else {
-                req.session.cart = [...req.session.cart, chosenProduct];
-            }
+        let { stock } = await findProductById(id);
+        if (typeof stock === 'object') stock = stock[size];
+
+        const index = req.session.cart.findIndex(function(cartEntry) {
+            return (
+                cartEntry.id === id &&
+                cartEntry.size === size &&
+                cartEntry.color === color
+            );
+        });
+
+        let totalQuantity = 0;
+
+        if (index >= 0) {
+            totalQuantity = req.session.cart[index].quantity += +quantity;
         } else {
+            totalQuantity = +quantity;
             req.session.cart = [...req.session.cart, chosenProduct];
         }
+        req.session.cart[
+            index >= 0 ? index : req.session.cart.length - 1
+        ].quantity = totalQuantity <= stock ? totalQuantity : stock;
+        await req.session.save();
     }
-    req.session.save(function(error){
-        if (error) res.redirect('/')
-        else res.redirect('/merch/cart');
-    });
 };
 
 exports.getQuantity = function(cart) {
@@ -57,8 +61,8 @@ exports.getTotal = function(cart) {
         for (const product of cart) {
             if (!product.data) {
                 throw Error(
-                    'Cart needs to be populated. Please call '
-                    + 'cartController.populateCart() first.'
+                    'Cart needs to be populated. Please call ' +
+                        'cartController.populateCart() first.'
                 );
             }
             total += product.quantity * product.data.price;
@@ -82,8 +86,19 @@ exports.populateCart = async function(cart) {
     }
 };
 
-exports.emptyCart = function(req, res, next) {
+exports.emptyCart = async function(req, res, next) {
     req.session.cart = [];
-    req.session.save();
+    await req.session.save();
     next();
-}
+};
+
+exports.getIndexOf = function(cart, product) {
+    if (cart && cart.length > 0) {
+        return cart.findIndex(function(cartEntry) {
+            const sameId = cartEntry.id === product.id;
+            const sameSize = cartEntry.size === product.size;
+            const sameColor = cartEntry.color === product.color;
+            return sameId && sameSize && sameColor;
+        });
+    }
+};

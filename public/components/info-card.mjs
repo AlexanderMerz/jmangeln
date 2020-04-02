@@ -22,15 +22,22 @@ export default class InfoCard extends HTMLElement {
             .append(template.content.cloneNode(true), style);
     }
 
-    connectedCallback() {
-        const card = this.shadowRoot.querySelector('.card');
-        const title = this.shadowRoot.querySelector('h1') || '';
-        const image = this.shadowRoot.querySelector('img');
+    navigate() {
         const href = this.getAttribute('href');
-        card.addEventListener('click', () => {
-            if (href) window.location = href;
-        });
-        title.innerText = this.getAttribute('title');
+        const disabled = this.getAttribute('disabled');
+        if (href && !disabled) {
+            window.location = href;
+        }
+    }
+
+    connectedCallback() {
+        const title = this.shadowRoot.querySelector('h1');
+        const image = this.shadowRoot.querySelector('img');
+        this.addEventListener('click', this.navigate);
+        this.getAttribute('title')
+            ? title.innerText = this.getAttribute('title')
+            : title.style.display = 'none';
+        image.style.height = this.getAttribute('image-height') || '220px';
         image.dataset.src = this.getAttribute('image');
         lazyLoad('.lazy', this.shadowRoot);
     }

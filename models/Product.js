@@ -5,13 +5,12 @@ const productSchema = new Schema({
     name: String,
     price: Number,
     images: Array,
-    material: String,
-    sizes: Array,
     colors: Array,
     image: String,
-    description: String,
+    details: Array,
+    hint: String,
     category: String,
-    stock: Number
+    stock: Number | Object
 })
 
 module.exports = model('Product', productSchema)

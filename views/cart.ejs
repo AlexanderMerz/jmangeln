@@ -16,63 +16,137 @@
         <% include includes/navigation %>
 
         <main>
-            <div class="heading">
-                <h1>Warenkorb</h1>
-            </div>
-            <% if (cart && cart.length > 0) { %>
-                <% for (const product of cart) { %>
-                    <div
-                        class="product"
-                        data-id="<%= product.data._id %>"
-                        data-size="<%= product.size %>"
-                        data-color="<%= product.color %>"
-                        data-quantity="<%= product.quantity %>"
-                    >
-                        <img src="/images/tshirt.png" alt="Produktbild" />
-                        <div class="product__info">
-                            <h1><%= product.data.name %></h1>
-                            <h2 class="price">
-                                <%= (product.quantity * product.data.price).toFixed(2).replace('.', ',') %> €
-                            </h2>
-                            <% if (product.size) { %>
-                                <h2>Größe: <%= product.size %></h2>
-                            <% } %> <% if (product.color) { %>
-                                <h2>Farbe: <%= product.color %></h2>
-                            <% } %>
-                            <h2>Anzahl: <%= product.quantity %></h2>
+            <section class="products">
+                <% if (cart && cart.length > 0) { %>
+                    <% for (const product of cart) { %>
+                        <div
+                            class="product"
+                            data-id="<%= product.data._id %>"
+                            data-size="<%= product.size %>"
+                            data-color="<%= product.color %>"
+                            data-quantity="<%= product.quantity %>"
+                        >
+                            <img src="<%= product.data.images[0] %>" alt="Produktbild" />
+                            <div class="product__info">
+                                <h1><%= product.data.name %></h1>
+                                <h2 class="price">
+                                    <%= (product.data.price).toFixed(2).replace('.', ',') %> €
+                                </h2>
+                                <% if (product.size) { %>
+                                    <h2>Größe: <%= product.size %></h2>
+                                <% } %>
+                                <% if (product.color) { %>
+                                    <h2>Farbe: <%= product.color %></h2>
+                                <% } %>
+                                <%
+                                    let max = 9;
+                                    if (typeof product.data.stock === 'object') {
+                                        max = product.data.stock[product.size] < max
+                                            ? product.data.stock[product.size] : max;
+                                    }
+                                    if (typeof product.data.stock === 'number') {
+                                        max = product.data.stock < max
+                                            ? product.data.stock : max;
+                                    }
+                                %>
+                                <select
+                                    name="quantity"
+                                    id="quantity"
+                                    onchange="updateQuantity(this)"
+                                >
+                                    <option value="0">Entfernen</option>
+                                    <% for (let i = 1; i <= max; i++) { %>
+                                        <% if (i === product.quantity) { %>
+                                            <option value="<%= i %>" selected><%= i %> Stück</option>
+                                        <% } else { %>
+                                            <option value="<%= i %>"><%= i %> Stück</option>
+                                        <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
                         </div>
-                        <span class="remove">&#10006;</span>
-                    </div>
-            <% } %>
-            <div class="total flex-column">
-                <h1><%= total.toFixed(2).replace('.', ',') %> €</h1>
-                <a href="/order/checkout" class="btn">JETZT KAUFEN</a>
-            </div>
-            <% } else { %>
+                    <% } %>
+            </section>
+            <section class="summary">
                 <div class="flex-column">
-                    <p class="empty">Es befinden sich keine Produkte im Warenkorb.</p>
-                    <br>
-                    <a href="/merch" class="btn">Zum Shop</a>
+                    <% for (const product of cart) { %>
+                        <div class="flex-row max-width">
+                            <h2 class="light">
+                                <span><%= product.quantity %></span>
+                                <span><%= product.data.name %></span>
+                                <span><%= product.size || '' %></span>
+                                <span><%= product.color || '' %></span>
+                            </h2>
+                            <h2 class="light">
+                                <%= (product.data.price * product.quantity).toFixed(2).replace('.', ',') %> €
+                            </h2>
+                        </div>
+                    <% } %>
                 </div>
-            <% } %>
+                <hr>
+                <div class="flex-column">
+                    <div class="flex-row max-width">
+                        <h2 class="light">ZWISCHENSUMME</h2>
+                        <h2 class="light"><%= (total).toFixed(2).replace('.', ',') %> €</h2>
+                    </div>
+                </div>
+                <div class="flex-column">
+                    <div class="flex-row max-width">
+                        <h2 class="light">&plus; Versandkosten</h2>
+                        <h2 class="light"><%= (4.75).toFixed(2).replace('.', ',') %> €</h2>
+                    </div>
+                </div>
+                <hr>
+                <div class="flex-column">
+                    <div class="flex-row max-width">
+                        <h2 class="light">GESAMTBETRAG</h2>
+                        <h2 class="light"><%= (total + 4.75).toFixed(2).replace('.', ',') %> €</h2>
+                    </div>
+                </div>
+            </section>
         </main>
+        <div class="cart-footer flex-column">
+            <a href="/merch">
+                <img src="/images/arrow_left.svg" alt="arrow-left">
+                Produkte
+            </a>
+            <a href="/order/checkout">
+                Zur Kasse
+                <img
+                    class="filter-primary"
+                    src="/images/arrow_right.svg"
+                    alt="arrow-right"
+                >
+            </a>    
+        </div>
+        <% } else { %>
+            <div class="empty">
+                <h1>Es befinden sich keine<br> Produkte im Warenkorb</h1>
+                <a href="/merch" class="btn">Zum Shop</a>
+            </div>
+        <% } %>
     </body>
     <script>
-        Array.from(document.querySelectorAll('.remove')).forEach(remove => {
-            remove.addEventListener('click', async function() {
-                const response = await fetch(
-                    `/api/cart/remove/${this.parentElement.dataset.id}`,
-                    {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(this.parentElement.dataset)
-                    }
-                );
-                const { status } = await response.json();
-                if (status === 200) {
-                    console.log(200);
-                    window.location.reload();
-                }
+        function updateQuantity(select) {
+            const { id, size, color } = select.parentElement.parentElement.dataset;
+            const quantity = select.value;
+            fetch(`/api/cart/update/${id}`, fetchOptions({ id, size, color, quantity }))
+            .then(response => response.json())
+            .then(({ status }) => {
+                if (status === 200) window.location.reload();
+            });
+        }
+        function fetchOptions(body) {
+            return {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            };
+        }
+        document.querySelectorAll('.product img').forEach(function(productImage){
+            const productId = productImage.parentElement.dataset.id;
+            productImage.addEventListener('click', function(){
+                window.location = `/merch/produkt/${productId}`;
             });
         });
     </script>

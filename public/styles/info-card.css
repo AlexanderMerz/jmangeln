@@ -40,7 +40,6 @@
 .card__image {
     position: relative;
     width: 100%;
-    height: 220px;
     object-fit: cover;
     border: none;
     outline: none;
