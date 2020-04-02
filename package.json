@@ -4,8 +4,8 @@
   "description": "The Official Website of the J&M Angeln Team from YouTube.",
   "main": "server.js",
   "scripts": {
-    "prod": "NODE_ENV=production pm2 server.js",
-    "dev": "NODE_ENV=development pm2 server.js",
+    "prod": "NODE_ENV=production pm2 start server.js",
+    "dev": "NODE_ENV=development pm2 start server.js",
     "test": "nodemon server.js"
   },
   "repository": {
