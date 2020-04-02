@@ -7,41 +7,45 @@ exports.getCart = function(req) {
 };
 
 exports.postCart = async function(req) {
-    if (req.originalUrl !== '/merch/cart') {
-        return res.status(400).redirect('/merch');
-    }
-
-    const { productID: id, size, color } = req.body;
-    let quantity = parseInt(req.body.quantity);
-
-    const chosenProduct = { id, quantity, size, color };
-
-    if (!req.session.cart || req.session.cart.length === 0) {
-        req.session.cart = [chosenProduct];
-    } else {
-        let { stock } = await findProductById(id);
-        if (typeof stock === 'object') stock = stock[size];
-
-        const index = req.session.cart.findIndex(function(cartEntry) {
-            return (
-                cartEntry.id === id &&
-                cartEntry.size === size &&
-                cartEntry.color === color
-            );
-        });
-
-        let totalQuantity = 0;
-
-        if (index >= 0) {
-            totalQuantity = req.session.cart[index].quantity += +quantity;
-        } else {
-            totalQuantity = +quantity;
-            req.session.cart = [...req.session.cart, chosenProduct];
+    try {
+        if (req.originalUrl !== '/merch/cart') {
+            return res.status(400).redirect('/merch');
         }
-        req.session.cart[
-            index >= 0 ? index : req.session.cart.length - 1
-        ].quantity = totalQuantity <= stock ? totalQuantity : stock;
-        await req.session.save();
+
+        const { productID: id, size, color } = req.body;
+        let quantity = parseInt(req.body.quantity);
+
+        const chosenProduct = { id, quantity, size, color };
+
+        if (!req.session.cart || req.session.cart.length === 0) {
+            req.session.cart = [chosenProduct];
+        } else {
+            let { stock } = await findProductById(id);
+            if (typeof stock === 'object') stock = stock[size];
+
+            const index = req.session.cart.findIndex(function(cartEntry) {
+                return (
+                    cartEntry.id === id &&
+                    cartEntry.size === size &&
+                    cartEntry.color === color
+                );
+            });
+
+            let totalQuantity = 0;
+
+            if (index >= 0) {
+                totalQuantity = req.session.cart[index].quantity += +quantity;
+            } else {
+                totalQuantity = +quantity;
+                req.session.cart = [...req.session.cart, chosenProduct];
+            }
+            req.session.cart[
+                index >= 0 ? index : req.session.cart.length - 1
+            ].quantity = totalQuantity <= stock ? totalQuantity : stock;
+            await req.session.save();
+        }
+    } catch (error) {
+        throw error;
     }
 };
 
