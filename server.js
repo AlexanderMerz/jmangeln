@@ -5,22 +5,17 @@ if (env.NODE_ENV === 'production' || env.NODE_ENV === 'development')
 else
     errorMessageFor('environment');
 
-// Core Modules
-const path = require('path');
-
-// Dependencies
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const express = require('express');
 const mongoose = require('mongoose');
-const multer = require('multer');
 const helmet = require('helmet');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
-// Import Route Handlers
 const apiRoutes = require('./routes/api.routes');
+const teamRoutes = require('./routes/team.routes')
 const merchRoutes = require('./routes/merch.routes');
 const orderRoutes = require('./routes/order.routes');
 const adminRoutes = require('./routes/admin.routes');
@@ -29,7 +24,6 @@ const MONGO_CONFIG = require('./config/mongo.config');
 
 const server = express();
 
-/* Server Configuration */
 server.use(express.static('public'));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
@@ -37,6 +31,9 @@ server.use(cookieParser());
 server.use(compression());
 server.use(helmet());
 server.use(helmet.hidePoweredBy());
+
+server.set('views', 'views');
+server.set('view engine', 'ejs');
 
 server.use(
     session({
@@ -51,44 +48,24 @@ server.use(
     })
 );
 
-/* Set Views Folder and Templating Engine */
-server.set('views', 'views');
-server.set('view engine', 'ejs');
+server.use(require('./middleware/cart.middleware'));
 
-/* File Upload Destination */
-// const getDefaultFilename = function(mimetype) {
-//     return new Date().getTime().toString() + '.' + mimetype;
-// }
-// const upload = multer({
-//     storage: multer.diskStorage({
-//         filename: (req, file, cb) => {
-//             cb(null, getDefaultFilename(file.mimetype.split('/')[1]));
-//         }
-//     })
-// });
-
-// Path to Pages Folder
-const pages = path.join(__dirname, 'public', 'pages');
-
-// Static Sites
-server.get('/videos', function(req, res) {
-    res.sendFile(pages + path.sep + 'videos.html');
+server.get('/', function (req, res) {
+    res.render('index', {
+        path: req.originalUrl,
+        quantity: req.quantity
+    });
 });
 
-// Team Routes
-server.get('/team*', function(request, response) {
-    switch (request.url) {
-        case '/team/jonas&nico':
-            response.sendFile(pages + path.sep + 'team-primary.html');
-            break;
-        case '/team/supporter':
-            response.sendFile(pages + path.sep + 'team-secondary.html');
-            break;
-        default:
-            response.sendFile(pages + path.sep + 'team.html');
-    }
+server.get('/videos', function (req, res) {
+    console.log(req.originalUrl);
+    res.render('videos', {
+        path: req.originalUrl,
+        quantity: req.quantity
+    });
 });
 
+server.use('/team', teamRoutes);
 server.use('/merch', merchRoutes);
 server.use('/api', apiRoutes);
 server.use('/order', orderRoutes);
@@ -97,7 +74,12 @@ server.use('/admin', adminRoutes);
 server.get('/datenschutz', (req, res) => res.render('datenschutz'));
 server.get('/impressum', (req, res) => res.render('impressum'));
 
-server.use((req, res) => res.render('404'));
+server.use(function (req, res) {
+    res.render('404', {
+        path: req.originalUrl,
+        quantity: req.quantity
+    });
+});
 
 mongoose
     .connect(MONGO_CONFIG.URI, MONGO_CONFIG.OPTIONS)

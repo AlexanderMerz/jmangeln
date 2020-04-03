@@ -5,7 +5,7 @@
  * @param {string} querySelector query selector to get images to lazy load
  * @param {ShadowRoot} shadowRoot passed in shadow root when called within web component
  */
-export function lazyLoad(selector, shadowRoot) {
+window.lazyLoad = function (selector, shadowRoot) {
 
     const images = shadowRoot
         ? Array.from(shadowRoot.querySelectorAll(selector))

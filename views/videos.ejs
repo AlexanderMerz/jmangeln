@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>J&M Angeln - Videos</title>
+    
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/videos.css">
+    <link rel="stylesheet" href="/styles/playlist-item.css">
+
+    <script src="/scripts/lazy-load.js"></script>
+
+</head>
+<body>
+
+    <% include includes/navigation %> 
+
+    <main class="video-player">
+        <div id="player"></div>
+        <section class="playlist"></section>
+    </main>
+    
+    <% include includes/footer %> 
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="/scripts/video-player.js"></script>
+    
+</body>
+</html>

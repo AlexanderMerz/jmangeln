@@ -36,21 +36,21 @@ info-card img {
     margin: 0;
 }
 
-info-card h1 {
-    margin: 0 !important;
-    font-weight: 100 !important;
-    font-size: 28px;
-}
-
 .product__info {
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 2rem 2rem;
     align-items: center;
+}
+
+.card__image {
+    padding-top: 2rem;
+    height: auto;
 }
 
 .product__info h1 {
     width: fit-content;
+    font-size: 28px;
 }
 
 .product__info button {

@@ -1,3 +1,40 @@
-<script defer src="/components/nav-bar.js"></script>
-<nav-bar></nav-bar>
+<link rel="stylesheet" href="/styles/navbar.css">
+<script defer src="/scripts/navbar.js"></script>
+<header class="navbar">
+    <picture class="navbar__brand">
+        <img src="/images/brand_small.jpg" alt="J&M Angeln Brand">
+    </picture>
+    <nav class="navbar__navigation">
+        <ul>
+            <li>
+                <a class="<%= path.includes('team') ? 'active' : '' %>" href="/team">
+                    Das Team
+                </a>
+            </li>
+            <li>
+                <a class="<%= path.includes('videos') ? 'active' : '' %>" href="/videos">
+                    Videos
+                </a>
+            </li>
+            <li>
+                <a
+                    class="<%= (path.includes('merch') && !path.includes('cart'))? 'active' : '' %>"
+                    href="/merch">
+                    Merchandise
+                </a>
+            </li>
+            <li>
+                <a class="<%= path.includes('cart') ? 'active' : '' %>" href="/merch/cart">
+                    <img src="/images/icons/cart.svg" alt="Warenkorb">
+                    <span ><%= quantity || 0  %> </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="menu-icon">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
+</header>
 <div class="space"></div>

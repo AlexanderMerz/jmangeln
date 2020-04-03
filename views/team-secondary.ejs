@@ -5,21 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>J&M Angeln | Jonas & Nico</title>
-        <link rel="stylesheet" href="../styles/global.css" />
-        <link rel="stylesheet" href="../styles/navbar.css" />
-        <link rel="stylesheet" href="../styles/content.css" />
-        <link rel="stylesheet" href="../styles/profiles.css" />
-        <script defer src="../components/nav-bar.js"></script>
-        <script defer src="../scripts/profiles.js"></script>
+
+        <link rel="stylesheet" href="/styles/global.css" />
+        <link rel="stylesheet" href="/styles/navbar.css" />
+        <link rel="stylesheet" href="/styles/content.css" />
+        <link rel="stylesheet" href="/styles/profiles.css" />
+
+        <script defer src="/scripts/profiles.js"></script>
+        
     </head>
     <body>
-        <nav-bar></nav-bar>
+        <% include includes/navigation %> 
         <main>
             <section class="profile">
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">Anne Heimlich</h1></div>
                     <div class="images">
-                        <img src="../images/team/secondary/anne_01.jpg" alt="Anne Heimlich">
+                        <img src="/images/team/secondary/anne_01.jpg" alt="Anne Heimlich">
                     </div>
                 </div>
                 <div class="profile__section">
@@ -55,7 +57,7 @@
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">Benedikt Lang</h1></div>
                     <div class="images">
-                        <img src="../images/team/secondary/benedikt_01.jpg" alt="Benedikt Lang">
+                        <img src="/images/team/secondary/benedikt_01.jpg" alt="Benedikt Lang">
                     </div>
                 </div>
                 <div class="profile__section">
@@ -95,7 +97,7 @@
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">David Lott</h1></div>
                     <div class="images">
-                        <img src="../images/team/secondary/lott_01.jpg" alt="David Lott">
+                        <img src="/images/team/secondary/lott_01.jpg" alt="David Lott">
                     </div>
                 </div>
                 <div class="profile__section">
@@ -124,7 +126,7 @@
                         die ich bei jedem einzelnen meiner Angeltrips gemacht habe, die neuen
                         Bekanntschaften und sehr guten Freunde die ich durchs Angeln gewonnen
                         habe. Anfangs war ich der totale Alrounder, Hauptsache erstmal ein paar
-                        Fische fangen... Ein Jahr lang war ich durch meinen Jugendfischereischein
+                        Fische fangen. Ein Jahr lang war ich durch meinen Jugendfischereischein
                         bei jedem Ausflug auf Bekannte mit richtigem Angelschein angewiesen.
                         Die fehlende Flexibilität und das teilweise fehlende Wissen haben mich
                         dazu bewogen, mich vor 3 Jahren zum Angelscheinkurs anzumelden. Nachdem
@@ -144,7 +146,7 @@
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">David Rosenthal</h1></div>
                     <div class="images">
-                        <img src="../images/team/secondary/rosenthal_01.jpg" alt="David Rosenthal">
+                        <img src="/images/team/secondary/rosenthal_01.jpg" alt="David Rosenthal">
                     </div>
 
                 </div>
@@ -169,7 +171,7 @@
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">Felix Hübner</h1></div>
                     <div class="images">
-                        <img src="../images/team/secondary/felix_01.jpg" alt="Felix Hübner">
+                        <img src="/images/team/secondary/felix_01.jpg" alt="Felix Hübner">
                     </div>
                 </div>
                 <div class="profile__section">
@@ -201,8 +203,8 @@
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">Franziska Lang</h1></div>
                     <div class="images">
-                        <img src="../images/team/secondary/franziska_01.jpg" alt="Franziska Lang">
-                        <img src="../images/team/secondary/franziska_02.jpg" alt="Franziska Lang">
+                        <img src="/images/team/secondary/franziska_01.jpg" alt="Franziska Lang">
+                        <img src="/images/team/secondary/franziska_02.jpg" alt="Franziska Lang">
                     </div>
                 </div>
                 <div class="profile__section">
@@ -226,7 +228,7 @@
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">Johannes Pfeiffer</h1></div>
                     <div class="images">
-                        <img src="../images/team/secondary/jojo_01.jpg" alt="Johannes Pfeiffer">
+                        <img src="/images/team/secondary/jojo_01.jpg" alt="Johannes Pfeiffer">
                     </div>
                 </div>
                 <div class="profile__section">
@@ -260,7 +262,7 @@
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">Jonas Schuster</h1></div>
                     <div class="images">
-                        <img src="../images/team/secondary/schuster_01.jpg" alt="Jonas Schuster">
+                        <img src="/images/team/secondary/schuster_01.jpg" alt="Jonas Schuster">
                     </div>
 
                 </div>
@@ -293,7 +295,7 @@
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">Manuel Heller</h1></div>
                     <div class="images">
-                        <img src="../images/team/secondary/heller_01.jpg" alt="Manuel Heller">
+                        <img src="/images/team/secondary/heller_01.jpg" alt="Manuel Heller">
                     </div>
                 </div>
                 <div class="profile__section">
@@ -318,5 +320,6 @@
                 </div>
             </section>
         </main>
+        <% include includes/footer %> 
     </body>
 </html>

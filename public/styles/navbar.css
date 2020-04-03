@@ -40,8 +40,7 @@
 .navbar__navigation ul li a {
     text-decoration: none;
     color: white;
-    height: 40px;
-    border: 10px solid black;
+    height: 60px;
     width: inherit;
     margin: 0 2.5vw;
     display: flex;
@@ -59,6 +58,20 @@
 .navbar__navigation ul li a:focus {
     outline: none;
     color: var(--primary-color);
+}
+.navbar__navigation ul li a[href="/merch/cart"] {
+    display: flex;
+    color: white;
+}
+.navbar__navigation ul li a[href="/merch/cart"] img {
+    filter: invert(1);
+}
+.navbar__navigation ul li a[href="/merch/cart"]:hover,
+.navbar__navigation ul li a[href="/merch/cart"].active > * {
+    filter: invert(56%) sepia(95%) saturate(3573%) hue-rotate(87deg) brightness(121%) contrast(121%);
+}
+.cart-quantity {
+    color: #fff;
 }
 .sticky {
     position: fixed;

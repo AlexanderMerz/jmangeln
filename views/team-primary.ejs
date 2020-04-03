@@ -5,31 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>J&M Angeln | Jonas & Nico</title>
-        <link rel="stylesheet" href="../styles/global.css" />
-        <link rel="stylesheet" href="../styles/navbar.css" />
-        <link rel="stylesheet" href="../styles/content.css" />
-        <link rel="stylesheet" href="../styles/profiles.css" />
 
-        <script defer src="../components/nav-bar.js"></script>
-        <script defer src="../scripts/profiles.js"></script>
+        <link rel="stylesheet" href="/styles/global.css" />
+        <link rel="stylesheet" href="/styles/navbar.css" />
+        <link rel="stylesheet" href="/styles/content.css" />
+        <link rel="stylesheet" href="/styles/profiles.css" />
+
+        <script defer src="/scripts/profiles.js"></script>
+
     </head>
     <body>
-        <nav-bar></nav-bar>
+        <% include includes/navigation %> 
         <main>
             <section class="profile">
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">Jonas Happle</h1></div>
                     <div class="images">
-                        <img class="show" src="../images/team/primary/jonas_03.jpg" alt="Jonas">
-                        <img src="../images/team/primary/jonas_02.jpg" alt="Jonas">
-                        <img src="../images/team/primary/jonas_04.jpg" alt="Jonas">
-                        <img src="../images/team/primary/jonas_05.jpg" alt="Jonas">
+                        <img class="show" src="/images/team/primary/jonas_03.jpg" alt="Jonas">
+                        <img src="/images/team/primary/jonas_02.jpg" alt="Jonas">
+                        <img src="/images/team/primary/jonas_04.jpg" alt="Jonas">
+                        <img src="/images/team/primary/jonas_05.jpg" alt="Jonas">
                     </div>
                     <div class="arrow arrow__left">
-                        <img src="../images/icons/arrow_left.svg" alt="keyboard arrow left">
+                        <img src="/images/icons/arrow_left.svg" alt="keyboard arrow left">
                     </div>
                     <div class="arrow arrow__right">
-                        <img src="../images/icons/arrow_right.svg" alt="keyboard arrow right">
+                        <img src="/images/icons/arrow_right.svg" alt="keyboard arrow right">
                     </div>
                 </div>
                 <div class="profile__section">
@@ -69,16 +70,16 @@
                 <div class="profile__section active">
                     <div class="name"><h1 class="primary">Nico Brutsche</h1></div>
                     <div class="images">
-                        <img src="../images/team/primary/nico_02.jpg" alt="Nico">
-                        <img src="../images/team/primary/nico_03.jpg" alt="Nico">
-                        <img src="../images/team/primary/nico_04.jpg" alt="Nico">
-                        <img src="../images/team/primary/nico_05.jpg" alt="Nico">
+                        <img src="/images/team/primary/nico_02.jpg" alt="Nico">
+                        <img src="/images/team/primary/nico_03.jpg" alt="Nico">
+                        <img src="/images/team/primary/nico_04.jpg" alt="Nico">
+                        <img src="/images/team/primary/nico_05.jpg" alt="Nico">
                     </div>
                     <div class="arrow arrow__left">
-                        <img src="../images/icons/arrow_left.svg" alt="keyboard arrow left">
+                        <img src="/images/icons/arrow_left.svg" alt="keyboard arrow left">
                     </div>
                     <div class="arrow arrow__right">
-                        <img src="../images/icons/arrow_right.svg" alt="keyboard arrow right">
+                        <img src="/images/icons/arrow_right.svg" alt="keyboard arrow right">
                     </div>
                 </div>
                 <div class="profile__section">
@@ -112,5 +113,6 @@
                 </div>
             </section>
         </main>
+        <% include includes/footer %> 
     </body>
 </html>

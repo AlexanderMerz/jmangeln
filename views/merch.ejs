@@ -6,16 +6,10 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>J&M Angeln - Merch</title>
 
-        <% include includes/styles %>
-
-        <link rel="stylesheet" href="/styles/slideshow.css" />
-        <link rel="stylesheet" href="/styles/cards.css" />
+        <link rel="stylesheet" href="/styles/global.css">
+        <link rel="stylesheet" href="/styles/info-card.css">
+        <link rel="stylesheet" href="/styles/cards.css">
         <link rel="stylesheet" href="/styles/merch.css" />
-        <link rel="preload" href="/scripts/lazy-load.mjs" as="script" />
-
-        <script defer src="/scripts/slideshow.js"></script>
-        <script type="module" src="/components/info-card.mjs"></script>
-        <script defer src="/components/cart-bar.js"></script>
 
     </head>
     <body>
@@ -23,29 +17,10 @@
         <% include includes/navigation %>
 
         <main>
-            <section class="slider">
-                <div class="slide current"></div>
-                <div class="slide"></div>
-                <div class="slide"></div>
-                <div class="slide"></div>
-            </section>
 
-            <div class="slider__content">
-                <h1>Unterstütze unsere Videoproduktion</h1>
-                <p>
-                    Alle unsere Produkte werden von Hand in einem
-                    Doppeldruckverfahren gefertigt. Die aufgedruckten
-                    Motive sind somit langlebig und haben eine wirklich
-                    knallige Farbe.<span class="hide-on-mobile"> Mit jedem gekauften Artikel unterstützt
-                    du uns bei unserer Videoproduktion.</span>
-                </p>
-            </div>
-            
-            <div class="dots"></div>
+            <% include includes/slideshow %>
 
-            <div class="heading">
-                <h1>Merchandise</h1>
-            </div>
+            <div class="heading"><h1>Merchandise</h1></div>
 
             <!-- <section class="filter">
             <input id="search" type="text" id="search" name="search" placeholder="Suchen...">
@@ -68,24 +43,26 @@
             <section class="products cards">
                 <div class="card-wrapper">
                     <% for (const product of products) { %>
-                    <info-card
-                        class="product <%= product.stock === 0 ? 'soldout' : '' %>"
-                        image="<%= product.images[0] ? product.images[0] : 'https://placehold.it/400x400'  %>"
-                        href="/merch/produkt/<%= product._id %>"
-                        paddingTop="32"
-                        image-height="500"
-                        data-name="<%= product.name %>"
-                        data-price="<%= (product.price).toFixed(2) %>"
-                        data-category="<%= product.category %>"
-                    >
-                        <div class="product__info">
-                            <h1><%= product.name %></h1>
-                            <h1 class="price">
-                                <%= (product.price).toFixed(2).replace('.', ',')
-                                %> €
-                            </h1>
-                        </div>
-                    </info-card>
+                        <a
+                            class="product card"
+                            href="/merch/produkt/<%= product._id %>"
+                            data-name="<%= product.name %>"
+                            data-price="<%= (product.price).toFixed(2) %>"
+                        >
+                            <img
+                                class="lazy card__image"
+                                src="<%= product.images[0] %>"
+                                alt="product-card image"
+                            >
+                            <div class="card__content">
+                                <div class="product__info">
+                                    <h1><%= product.name %></h1>
+                                    <h1 class="price">
+                                        <%= (product.price).toFixed(2).replace('.', ',') %> €
+                                    </h1>
+                                </div>
+                            </div>
+                        </a>
                     <% } %>
                 </div>
             </section>
@@ -93,9 +70,9 @@
 
         <% include includes/footer %>
 
-        <cart-bar qty="<%= quantity %>"></cart-bar>
+        <!-- <cart-bar qty="<%= quantity %>"></cart-bar> -->
 
-        <script>
+        <!-- <script>
             const soldOutProducts = document.querySelectorAll('.soldout');
             for (const product of soldOutProducts) {
               const sign = document.createElement('h1');
@@ -104,6 +81,6 @@
               product.firstElementChild.children[1].replaceWith(sign);
               product.setAttribute('disabled', true);
             }
-        </script>
+        </script> -->
     </body>
 </html>

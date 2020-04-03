@@ -13,6 +13,7 @@ router.get('/checkout', async function(req, res) {
     if (cart.length === 0) {
         return res.redirect('/merch');
     }
+    const quantity = cartController.getQuantity(cart);
     cart = await cartController.populateCart(cart);
     const total = cartController.getTotal(cart);
     const descriptions = cart.map(product => {
@@ -20,11 +21,16 @@ router.get('/checkout', async function(req, res) {
     });
     const prices = cart.map(product => product.data.price);
     const quantities = cart.map(prodct => prodct.quantity);
-    res.render('checkout', { cart, total, clientID, descriptions, prices, quantities });
+    const cartData = { descriptions, prices, quantities }
+    const data = { path: req.originalUrl, cart, quantity, total, clientID, ...cartData };
+    res.render('checkout', data);
 });
 
 router.get('/confirmation', cartController.emptyCart, function(req, res) {
-    res.render('confirmation');
+    res.render('confirmation', {
+        path: req.originalUrl,
+        quantity: req.quantity
+    });
 });
 
 module.exports = router;
