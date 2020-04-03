@@ -67,8 +67,11 @@
     filter: invert(1);
 }
 .navbar__navigation ul li a[href="/merch/cart"]:hover,
-.navbar__navigation ul li a[href="/merch/cart"].active > * {
+.navbar__navigation ul li a[href="/merch/cart"].active > img {
     filter: invert(56%) sepia(95%) saturate(3573%) hue-rotate(87deg) brightness(121%) contrast(121%);
+}
+.navbar__navigation ul li a[href="/merch/cart"].active span {
+    color: var(--primary-color);
 }
 .cart-quantity {
     color: #fff;
