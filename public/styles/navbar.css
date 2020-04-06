@@ -62,6 +62,8 @@
 .navbar__navigation ul li a[href="/merch/cart"] {
     display: flex;
     color: white;
+    width: 100px;
+    margin: 0;
 }
 .navbar__navigation ul li a[href="/merch/cart"] img {
     filter: invert(1);

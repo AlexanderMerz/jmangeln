@@ -1,126 +1,109 @@
-/* .banner {
-    position: relative;
-    background-color: black;
-    height: 100vh;
-    width: 100vw;
-    top: -35vh;
-    overflow-x: hidden;
-    z-index: -100;
-}
-.banner, .label {
-    transform: skewY(6deg);
-    -webkit-transform: skewY(6deg);
-}
-.label {
-    position: absolute;
-    top: 12.5vh;
-    left: 10%;
-    width: 80%;
-    height: 65vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.label__text, .label__highlight {
-    font-family: 'Syncopate', cursive;
-    font-weight: bold;
-    color: white;
-    text-shadow: 1px 1px 0 black;
-    opacity: 1;
-    margin: 0;
-    letter-spacing: -0.25rem;
-}
-.label__text {
-    font-size: 7.5rem;
-    text-shadow: -3px 3px 0 gray;
-}
-.label__highlight {
-    color: var(--primary-color);
-    margin-top: -40px;
-    font-size: 5.65rem;
-    text-shadow: -3px 3px 0 rgba(0, 100, 0, 1);
-} */
 .banner {
     position: relative;
-    height: calc(80vh - 60px);
+    height: calc(100vh - 60px);
     width: 100%;
     background-color: #000;
 }
-.banner img {
-    position: inherit;
-    height: calc(80vh - 60px);
-    width: 100%;
-    object-fit: cover;
-    object-position: bottom;
+.hero {
+    width: 70%;
+    min-width: 768px;
+    height: auot;
+    position: absolute;
+    right: -30px;
+    bottom: 0;
+    z-index: 0;
 }
 .banner__text {
-    position: absolute;
-    background-color: #000;
-    bottom: 0;
+    position: relative;
+    background-color: transparent;
+    top: 50px;
+    left: 75px;
     color: #fff;
-    width: 100%;
+    width: fit-content;
     height: auto;
-    text-align: center;
-    font-family: 'Syncopate', cursive;
-    font-size: 6vw;
-    margin: 0;
-    line-height: normal;
+    text-align: left;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    line-height: 0.8;
+    text-transform: uppercase;
+    text-align: right;
+    z-index: 1;
 }
-.banner__text span:not(.highlight) {
+.banner__text h1 {
+    margin: 0;
+    font-size: 80px;
+    font-weight: 900 !important;
+}
+.banner__text h1:not(.highlight) {
     width: 100%;
-    margin-left: 2.5vw;
+    text-shadow: 2px -2px 0 gray;
 }
 .banner__text .highlight {
     color: var(--primary-color);
-}
-.social__icon img {
-    height: 110px;
-    width: auto;
-    margin: 0 5px;
-    opacity: 0.8;
-}
-.social__icon:hover img {
-    opacity: 1;
+    text-shadow: 2px -2px 0 rgba(0, 245, 0, 0.4);
 }
 .social {
-    padding: 0 2.5rem;
-    position: relative;
-    width: 100%;
-    height: 20vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    margin: 1rem 0 0 auto;
+    background-color: transparent;
+    height: auto;
+    width: 300px;
+}
+.social__icon img {
+    position: relative;
+    filter: invert(1);
+    width: 100%;
+    height: auto;
 }
 
-@media (max-width: 1024px) {
-    .banner__text {
-        font-size: 80px;
-    }
+.green.social__icon img {
+    filter: invert(59%) sepia(35%) saturate(7455%) hue-rotate(87deg) brightness(120%) contrast(122%);
 }
+
+.social__icon {
+    margin: 0 5px;
+}
+
 @media (max-width: 768px) {
-    .banner__text {
-        font-size: 70px;
+    .hero {
+        position: relative;
+        /* top: 0; */
+        bottom: unset;
+        height: auto;
+        width: 100%;
+        min-width: unset;
+        right: 0;
     }
-}
-@media (max-width: 600px) {
-    .banner__text {
-        font-size: 52px;
+    .social {
+        margin:  20px auto 0 auto;
+        justify-content: center;
     }
-    .social__icon img {
-        height: 90px;
+    .banner__text {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        text-align: center;
+        top: 55vw;
+        line-height: 0.9;
+    }
+    .banner__text h1 {
+        font-size: 10vw;
+    }
+    .social__icon img  {
+        height: 62px;
         width: auto;
-        margin: 0 5px;
-        opacity: 1;
     }
 }
 @media (max-width: 425px) {
+    .banner__text h1 {
+        font-size: 44px;
+    }
     .banner__text {
-        font-size: 40px;
+        line-height: 1;
     }
 }
-@media (max-width: 375px) {
-    .social img {
-        height: 80px;
+@media (max-width: 350px) {
+    .banner__text h1 {
+        font-size: 36px;
     }
 }
